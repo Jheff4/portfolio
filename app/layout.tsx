@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { Sidebar } from "@/components/Sidebar";
 
 // display: "swap" prevents invisible text while the font loads —
 // the browser renders fallback text first, then swaps when Geist is ready.
@@ -49,7 +50,11 @@ export default function RootLayout({
         It's a Server Component wrapper around a "use client" inner nav —
         that pattern keeps the shell static and only hydrates the interactive bits.
       */}
-      <body className="min-h-screen bg-zinc-950 text-zinc-100">{children}</body>
+      <body className="min-h-screen bg-zinc-950 text-zinc-100">
+        <Sidebar />
+        {/* md:ml-[260px] offsets the fixed sidebar on desktop */}
+        <main className="md:ml-[260px]">{children}</main>
+      </body>
     </html>
   );
 }
