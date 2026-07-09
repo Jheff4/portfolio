@@ -52,8 +52,8 @@ export const homePageStyles = {
     content: "p-4",
     header: "flex items-center gap-2 text-xs text-zinc-400 uppercase mb-2",
     headerIcon: "w-4 h-4",
-    title: "font-semibold text-xl md:text-2xl text-zinc-100 mb-2",
-    description: "text-sm text-zinc-300",
+    title: "font-bold text-2xl md:text-3xl text-zinc-100 mb-2",
+    description: "text-base text-zinc-300",
     linkContainer: "mt-4",
     link: "inline-flex items-center text-sm text-zinc-300 hover:text-zinc-100 transition-colors",
     linkIcon: "w-4 h-4 ml-1"
