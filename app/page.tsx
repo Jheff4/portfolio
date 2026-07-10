@@ -180,33 +180,6 @@ export default function HomePage() {
         </article>
 
       </div>
-
-      {/*
-        Bottom footer — ghost name, "Reach out" CTA, live clock.
-        overflow-hidden clips the oversized text cleanly at the section boundary.
-        The clock is the only piece that needs JS — isolated as a tiny client leaf.
-        aria-hidden on the ghost text keeps screen readers from announcing it.
-      */}
-      <section className="border-t border-zinc-800 flex items-center justify-between px-6 md:px-20 py-6 overflow-hidden">
-        <p
-          className="text-[80px] md:text-[120px] font-extrabold tracking-tighter leading-none text-zinc-800 select-none pointer-events-none uppercase"
-          aria-hidden
-        >
-          ETINOSA
-        </p>
-        <div className="flex flex-col items-end gap-2 shrink-0 ml-4">
-          <Link
-            href="/contact"
-            className="text-sm text-zinc-300 hover:text-zinc-100 transition-colors flex items-center gap-2"
-          >
-            Reach out <span aria-hidden>→</span>
-          </Link>
-          <p className="text-sm text-zinc-500 tabular-nums">
-            <LiveClock />
-          </p>
-        </div>
-      </section>
-
     </div>
   );
 }

@@ -462,7 +462,7 @@ export const sidebarStyles = {
   mobileAvatar: "w-10 h-10 rounded-full overflow-hidden ring-1 ring-white/10 shadow-sm",
   mobileAvatarImage: "object-cover",
   mobileName: "font-semibold text-zinc-100 text-base",
-  mobileTyping: "text-xs text-zinc-400 truncate max-w-[120px]",
+  mobileTyping: "text-xs text-zinc-400 truncate max-w-[140px]",
 
   // Spacer for mobile
   mobileSpacer: "md:hidden h-16",
@@ -472,7 +472,7 @@ export const sidebarStyles = {
   desktopAvatarContainer: "flex items-center gap-3 mb-6",
   desktopAvatar: "w-12 h-12 rounded-full overflow-hidden ring-1 ring-white/10 shadow-sm",
   desktopAvatarImage: "object-cover",
-  desktopName: "font-semibold text-zinc-100",
+  desktopName: "font-semibold text-zinc-100 text-sm leading-tight",
   desktopTyping: "text-xs text-zinc-400",
 
   // Navigation
@@ -495,7 +495,7 @@ export const sidebarStyles = {
   footerText: "mt-6 text-sm text-zinc-400",
 
   // Mobile menu overlay
-  mobileOverlay: "md:hidden fixed inset-0 z-[60] transition-all duration-300",
+  mobileOverlay: "md:hidden fixed inset-0 z-[90] transition-all duration-300",
   mobileOverlayVisible: "opacity-100",
   mobileOverlayHidden: "opacity-0 pointer-events-none",
   mobileOverlayBg: "absolute inset-0 bg-black transition-opacity duration-300",

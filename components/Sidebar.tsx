@@ -7,9 +7,8 @@
 // To minimise that cost, keep all data (navItems, socials) as plain constants —
 // no fetching, no context, just serialisable values.
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { TypingAnimation } from "@/components/ui/typing-animation";
 import { sidebarStyles as s } from "@/lib/styles";
@@ -100,9 +99,32 @@ const socials = [
   },
 ];
 
+function EOAvatar({ size = "md" }: { size?: "sm" | "md" }) {
+  const sz = size === "sm" ? "w-10 h-10 text-sm" : "w-12 h-12 text-base";
+  return (
+    <div className={`${sz} rounded-xl bg-zinc-800 border border-zinc-700 flex items-center justify-center font-bold text-zinc-100 select-none shadow-sm`}>
+      EO
+    </div>
+  );
+}
+
 export function Sidebar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+
+  // Escape key closes the drawer
+  useEffect(() => {
+    if (!menuOpen) return;
+    const onKey = (e: KeyboardEvent) => { if (e.key === "Escape") setMenuOpen(false); };
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, [menuOpen]);
+
+  // Prevent background scroll while drawer is open
+  useEffect(() => {
+    document.body.style.overflow = menuOpen ? "hidden" : "";
+    return () => { document.body.style.overflow = ""; };
+  }, [menuOpen]);
 
   // Exact match for "/" to avoid highlighting Home on every page
   const isActive = (href: string) =>
@@ -114,15 +136,9 @@ export function Sidebar() {
       <div className={s.mobileTopNav}>
         <div className={s.mobileTopNavInner}>
           <div className={s.mobileAvatarContainer}>
-            {/*
-              next/image: priority=true means this image is preloaded.
-              Use it for any image visible in the first viewport (LCP candidate).
-            */}
-            <div className={s.mobileAvatar}>
-              <Image src="/Hexagon.png" alt="Avatar" width={40} height={40} className={s.mobileAvatarImage} priority />
-            </div>
+            <EOAvatar size="sm" />
             <div>
-              <p className={s.mobileName}>Etinosa</p>
+              <p className={s.mobileName}>Etinosa Ogbevoen</p>
               <TypingAnimation
                 className={s.mobileTyping}
                 texts={["Frontend Engineer", "AI Builder", "Full-Stack Engineer", "Product Thinker"]}
@@ -138,11 +154,9 @@ export function Sidebar() {
       {/* ── Desktop sidebar ────────────────────────────────── */}
       <aside className={s.desktopSidebar}>
         <div className={s.desktopAvatarContainer}>
-          <div className={s.desktopAvatar}>
-            <Image src="/Hexagon.png" alt="Avatar" width={48} height={48} className={s.desktopAvatarImage} priority />
-          </div>
+          <EOAvatar size="md" />
           <div>
-            <p className={s.desktopName}>Etinosa</p>
+            <p className={s.desktopName}>Etinosa Ogbevoen</p>
             <TypingAnimation
               className={s.desktopTyping}
               texts={["Frontend Engineer", "AI Builder", "Full-Stack Engineer", "Product Thinker"]}
@@ -201,11 +215,9 @@ export function Sidebar() {
           <div className={s.mobileSidebarHeader}>
             <div className={s.mobileHeaderInner}>
               <div className={s.mobileHeaderAvatarContainer}>
-                <div className={s.mobileAvatar}>
-                  <Image src="/Hexagon.png" alt="Avatar" width={40} height={40} className={s.mobileAvatarImage} />
-                </div>
+                <EOAvatar size="sm" />
                 <div>
-                  <p className={s.mobileName}>Etinosa</p>
+                  <p className={s.mobileName}>Etinosa Ogbevoen</p>
                   <p className={s.mobileTyping}>Frontend Engineer</p> {/* cycles on mobile open */}
                 </div>
               </div>
