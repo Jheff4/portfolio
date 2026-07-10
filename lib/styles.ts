@@ -476,8 +476,8 @@ export const sidebarStyles = {
   desktopTyping: "text-xs text-zinc-400",
 
   // Navigation
-  navContainer: "flex-1",
-  navList: "space-y-2",
+  navContainer: "flex",
+  navList: "space-y-2 w-full",
   navItem: "flex items-center gap-3 px-3 py-3 rounded-lg transition-colors duration-150",
   navItemActive: "bg-zinc-800 text-zinc-50",
   navItemInactive: "text-zinc-200 hover:bg-zinc-800 hover:text-zinc-50",
@@ -492,7 +492,7 @@ export const sidebarStyles = {
   socialLabel: "truncate",
 
   // Footer
-  footerText: "mt-6 text-sm text-zinc-400",
+  footerText: "mt-6 text-sm text-zinc-400 h-full flex items-end",
 
   // Mobile menu overlay
   mobileOverlay: "md:hidden fixed inset-0 z-[90] transition-all duration-300",
