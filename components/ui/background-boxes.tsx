@@ -17,7 +17,8 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
     "#a5b4fc",
     "#c4b5fd",
   ];
-  const getRandomColor = () => colors[Math.floor(Math.random() * colors.length)];
+  const getRandomColor = () =>
+    colors[Math.floor(Math.random() * colors.length)];
 
   return (
     <div
@@ -52,7 +53,7 @@ export const BoxesCore = ({ className, ...rest }: { className?: string }) => {
                   viewBox="0 0 24 24"
                   strokeWidth="1.5"
                   stroke="currentColor"
-                  className="pointer-events-none absolute -top-[14px] -left-[22px] h-6 w-10 stroke-[1px] text-zinc-800"
+                  className="pointer-events-none absolute top-[-14px] left-[-22px] h-6 w-10 stroke-[1px] text-zinc-800"
                 >
                   <path
                     strokeLinecap="round"

@@ -55,7 +55,7 @@ export default function RootLayout({
         <Sidebar />
         {/* md:ml-[260px] offsets the fixed sidebar on desktop */}
         <main className="md:ml-[260px]">{children}</main>
-        <Footer />
+        <div className="md:ml-[260px]"><Footer /></div>
       </body>
     </html>
   );

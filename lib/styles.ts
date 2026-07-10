@@ -19,9 +19,9 @@ export const homePageStyles = {
   heroSection: "w-full max-w-[880px] mx-auto",
 
   // Headings
-  h1: "text-[40px] md:whitespace-nowrap sm:text-[48px] md:text-[55px] lg:text-[72px] xl:text-[72px] leading-[0.95] font-extrabold tracking-tight mb-3 text-zinc-100",
+  h1: "text-[40px] md:whitespace-nowrap sm:text-[48px] md:text-[55px] lg:text-[72px] xl:text-[72px] leading-[0.95] font-extrabold tracking-tight mb-3 text-white",
 
-  h2: "text-xl sm:text-2xl md:text-3xl text-zinc-300 font-medium mb-6",
+  h2: "text-xl sm:text-2xl md:text-3xl text-white font-medium mb-6",
 
   // Callout card
   calloutCard: {
@@ -76,7 +76,7 @@ export const pageStyles = {
   backgroundContainer: "relative",
   backgroundEffect: "absolute inset-0 rounded-xl overflow-hidden",
   content: "relative z-10",
-  heading: "text-5xl font-bold tracking-tight text-zinc-100 md:text-6xl lg:text-7xl",
+  heading: "text-5xl font-bold tracking-tight text-white md:text-6xl lg:text-7xl",
   interestsContainer: "mt-6 flex flex-wrap gap-x-3 gap-y-2 text-sm font-medium tracking-wide text-zinc-400",
   interestItem: "flex items-center",
   dotSeparator: "ml-3 text-zinc-600",

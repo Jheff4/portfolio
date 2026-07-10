@@ -6,7 +6,6 @@ import type { CSSProperties } from "react";
 import Link from "next/link";
 import { Cover } from "@/components/ui/cover";
 import { Spotlight } from "@/components/ui/spotlight";
-import { LiveClock } from "@/components/ui/live-clock";
 import { homePageStyles as s } from "@/lib/styles";
 
 export default function HomePage() {
@@ -180,6 +179,8 @@ export default function HomePage() {
         </article>
 
       </div>
+
+
     </div>
   );
 }
