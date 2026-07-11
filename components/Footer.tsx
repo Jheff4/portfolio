@@ -19,7 +19,7 @@ export default function Footer() {
   }, []);
 
   return (
-    <footer className="relative pb-12 md:pb-5 bg-zinc-950 border-t border-zinc-800 text-zinc-300 overflow-hidden">
+    <footer className="relative pb-12 md:pb-0 bg-zinc-950 border-t border-zinc-800 text-zinc-300 overflow-hidden">
       <div className="flex flex-col sm:flex-row items-center justify-between gap-4 px-6 md:px-20 py-5">
         <Link
           href="/contact"

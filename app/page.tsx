@@ -19,7 +19,6 @@ export default function HomePage() {
 
   return (
     <div className={s.container}>
-
       {/*
         Spotlight: pure SVG + CSS animation (animate-spotlight from globals.css).
         No JS required — it runs entirely in CSS after the initial HTML paint.
@@ -49,16 +48,14 @@ export default function HomePage() {
       <div className={s.gradientOverlay} aria-hidden />
 
       <div className={s.heroSection}>
-
         {/* ── Headline ──────────────────────────────────────────── */}
         {/*
           font-mono forces Geist Mono — matching the screenshot exactly.
-          The dark box behind "Virat" is bg-neutral-900 on the Cover component.
+          The dark box around "Etinosa" is bg-neutral-900 on the Cover component.
           Cover is "use client" but it's a leaf — only its small bundle ships.
         */}
         <h1 className={s.h1}>
-          Hey, I&apos;m{" "}
-          <Cover className="font-mono text-white">Etinosa</Cover>
+          Hey, I&apos;m <Cover className="font-mono text-white">Etinosa</Cover>
         </h1>
 
         {/*
@@ -89,12 +86,12 @@ export default function HomePage() {
                 stroke="currentColor"
                 aria-hidden
               >
-                <path d="M3 12l9-9 9 9" strokeWidth="1.2" />
+                <path d="M3 16l9-9 9 9" strokeWidth="1.2" />
               </svg>
               <span className={s.calloutCard.text}>Connect with me on X</span>
             </div>
             <a
-              href="https://x.com/HexagonDService"
+              href="https://x.com/_Etinosa_"
               target="_blank"
               rel="noopener noreferrer"
               className={s.calloutCard.button}
@@ -177,10 +174,7 @@ export default function HomePage() {
             </div>
           </div>
         </article>
-
       </div>
-
-
     </div>
   );
 }
