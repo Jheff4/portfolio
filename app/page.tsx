@@ -5,8 +5,10 @@
 import type { CSSProperties } from "react";
 import Link from "next/link";
 import { Cover } from "@/components/ui/cover";
+import { PointerHighlight } from "@/components/ui/pointer-highlight";
 import { Spotlight } from "@/components/ui/spotlight";
 import { homePageStyles as s } from "@/lib/styles";
+import { cn } from "@/lib/utils";
 
 export default function HomePage() {
   // Inline style object for the video — prevents accidental interaction.
@@ -19,85 +21,56 @@ export default function HomePage() {
 
   return (
     <div className={s.container}>
-      {/*
-        Spotlight: pure SVG + CSS animation (animate-spotlight from globals.css).
-        No JS required — it runs entirely in CSS after the initial HTML paint.
-        Position is fixed via the spotlightStyles position class.
-      */}
-      {/*
-        fill="green" matches the live site — the entire page has a green ambient glow.
-        The spotlight is a large blurred SVG ellipse; changing fill to green
-        shifts the whole hero from neutral to the distinctive green-tinted look.
-      */}
       <Spotlight
         className="-top-40 -z-10 left-0 md:-top-20 md:left-60"
-        fill="green"
+        fill="#0FFF50"
       />
 
-      {/*
-        Background grid: built entirely with CSS background-image gradients.
-        No JS, no canvas, no SVG — just two overlapping 1px lines per 40px cell.
-        pointer-events-none and -z-20 ensure it never blocks interaction.
-      */}
       <div
-        className={`${s.backgroundGrid.wrapper} ${s.backgroundGrid.pattern}`}
+        className={cn(s.backgroundGrid.wrapper, s.backgroundGrid.pattern)}
         aria-hidden
       />
 
-      {/* Gradient fade at top and bottom to blend grid into background */}
       <div className={s.gradientOverlay} aria-hidden />
 
-      <div className={s.heroSection}>
-        {/* ── Headline ──────────────────────────────────────────── */}
-        {/*
-          font-mono forces Geist Mono — matching the screenshot exactly.
-          The dark box around "Etinosa" is bg-neutral-900 on the Cover component.
-          Cover is "use client" but it's a leaf — only its small bundle ships.
-        */}
-        <h1 className={s.h1}>
-          Hey, I&apos;m <Cover className="font-mono text-white">Etinosa</Cover>
-        </h1>
+      <section className={s.heroSection}>
+        <div className="relative">
+          <h1 className={s.h1}>
+            Hey, I&apos;m <Cover className="font-mono text-white">Etinosa</Cover>
+          </h1>
 
-        {/*
-          h2 sits on its own line with the Cover box around the last word.
-          The green cursor/pointer triangle in the screenshot is the
-          animated beam SVG inside Cover on hover.
-        */}
-        <h2 className={s.h2}>
-          Frontend{" "}
-          <span className={s.spanWithMargin}>
-            <Cover className="font-mono text-white">Engineer</Cover>
-          </span>
-        </h2>
+          <h2 className={s.h2}>
+            Frontend{" "}
+            <span className={s.spanWithMargin}>
+              <PointerHighlight>Engineer</PointerHighlight>
+            </span>
+          </h2>
+        </div>
 
-        {/* ── Callout card ──────────────────────────────────────── */}
-        {/*
-          Semi-transparent pill card with backdrop-blur.
-          bg-white/5 + border-white/20 gives the frosted glass look from the screenshot.
-          hover states are pure CSS transitions — no JS.
-        */}
-        <div className={`${s.calloutCard.wrapper} mb-8`}>
-          <div className={s.calloutCard.innerContainer}>
-            <div className={s.calloutCard.textContainer}>
-              <svg
-                className={s.calloutCard.icon}
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                aria-hidden
+        <div className="mb-6">
+          <div className={s.calloutCard.wrapper}>
+            <div className={s.calloutCard.innerContainer}>
+              <div className={s.calloutCard.textContainer}>
+                <svg
+                  className={s.calloutCard.icon}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  aria-hidden
+                >
+                  <path d="M3 16l9-9 9 9" strokeWidth="1.2" />
+                </svg>
+                <span className={s.calloutCard.text}>Connect with me on X</span>
+              </div>
+              <a
+                href="https://x.com/_Etinosa_"
+                target="_blank"
+                rel="noopener noreferrer"
+                className={s.calloutCard.button}
               >
-                <path d="M3 16l9-9 9 9" strokeWidth="1.2" />
-              </svg>
-              <span className={s.calloutCard.text}>Connect with me on X</span>
+                Follow
+              </a>
             </div>
-            <a
-              href="https://x.com/_Etinosa_"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={s.calloutCard.button}
-            >
-              Follow
-            </a>
           </div>
         </div>
 
@@ -174,7 +147,7 @@ export default function HomePage() {
             </div>
           </div>
         </article>
-      </div>
+      </section>
     </div>
   );
 }
