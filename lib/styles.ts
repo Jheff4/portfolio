@@ -1,7 +1,5 @@
 import type { CSSProperties } from "react";
 
-// assets/dummyStyles.js
-
 export const homePageStyles = {
   // Layout and container styles
   container: "relative z-10 bg-zinc-950b overflow-x-hidden px-4 pb-4 pt-20 sm:px-6 sm:pb-6 md:px-20 md:pb-20 md:pt-16",
@@ -61,7 +59,7 @@ export const homePageStyles = {
 
   // Inline span adjustments
   spanInline: "inline-block align-middle",
-  spanWithMargin: "inline-block align-middle"
+  spanWithMargin: "inline-block align-middle mb-0.5"
 };
 
 export const spotlightStyles = {
@@ -69,7 +67,6 @@ export const spotlightStyles = {
 };
 
 
-// assets/dummyStyles.js
 export const pageStyles = {
   container: "flex min-h-screen pt-20 w-full items-start justify-center bg-zinc-950 px-6 py-12 md:px-12 md:py-20 lg:px-16",
   wrapper: "w-full max-w-3xl",
@@ -92,8 +89,6 @@ export const pageStyles = {
   ctaButtonSecondary: "flex items-center gap-2 rounded-lg border border-zinc-800 bg-zinc-900 px-6 py-3 text-sm font-semibold text-zinc-100 transition-all hover:border-zinc-700 hover:bg-zinc-800",
   emailIcon: "h-4 w-4"
 };
-
-// assets/dummyStyles.js
 
 export const timelineStyles = {
   // Layout styles
@@ -278,7 +273,6 @@ export const contactPageStyles = {
   alternativeLink: "text-zinc-300 underline decoration-zinc-700 underline-offset-4 transition-colors hover:text-zinc-100 hover:decoration-zinc-500"
 };
 
-// Add these to assets/dummyStyles.js
 
 export const projectStyles = {
   // Page container
@@ -364,7 +358,6 @@ export const toolsPageStyles = {
   toolCategory: "text-xs text-zinc-500 group-hover:text-zinc-400"
 };
 
-// Add these to assets/dummyStyles.js
 
 export const projectDetailStyles = {
   // Page container
@@ -452,7 +445,6 @@ export const projectDetailStyles = {
   projectInfoText: "text-zinc-300 capitalize",
 };
 
-// Add these to assets/dummyStyles.js
 
 export const sidebarStyles = {
   // Mobile top navbar
