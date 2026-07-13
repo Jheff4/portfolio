@@ -1,10 +1,16 @@
-// Server Component — reads static data at build time, zero client JS for the grid itself.
-// CometCard (used on tools page) is a client leaf, but this page has none — just plain CSS hover.
 import Image from "next/image";
 import Link from "next/link";
 import { getAllProjects } from "@/lib/projects-data";
 import { projectStyles as s } from "@/lib/styles";
 import type { Metadata } from "next";
+import { FollowerPointerCard } from "@/components/ui/following-pointer";
+
+const TitleComponent = ({ title }: { title: string }) => (
+  <div className={s.titleComponentContainer}>
+    <img src="/icon.svg" height={20} width={20} alt="EO" className={s.titleComponentAvatar} />
+    <p className={s.titleComponentText}>{title}</p>
+  </div>
+);
 
 export const metadata: Metadata = {
   title: "Projects",
@@ -26,14 +32,11 @@ export default function ProjectsPage() {
 
         <div className={s.projectsGrid}>
           {projects.map((project) => (
-            /*
-              Overlay-link pattern — avoids nesting <a> inside <a> (invalid HTML)
-              and removes the need for stopPropagation (which can't be a Server Component prop).
-              The Link sits at z-0 as an absolute overlay; card content is z-10 above it.
-              Buttons are siblings to the Link in stacking order, so they capture their
-              own clicks naturally without any event handler.
-            */
-            <div key={project.id} className={`${s.projectCard} relative`}>
+            <FollowerPointerCard
+              key={project.slug}
+              title={<TitleComponent title={project.author} />}
+            >
+            <div className={`${s.projectCard} relative`}>
               {/* Full-card clickable overlay to the detail page */}
               <Link
                 href={`/projects/${project.slug}`}
@@ -109,6 +112,7 @@ export default function ProjectsPage() {
                 </div>
               </div>
             </div>
+            </FollowerPointerCard>
           ))}
         </div>
       </div>
