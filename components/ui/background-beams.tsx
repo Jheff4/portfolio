@@ -60,7 +60,7 @@ export const BackgroundBeams = React.memo(
     return (
       <div
         className={cn(
-          "absolute inset-0 flex h-full w-full items-center justify-center [mask-repeat:no-repeat] [mask-size:40px] pointer-events-none",
+          "absolute inset-0 flex h-full w-full items-center justify-center mask-no-repeat mask-size-[40px] pointer-events-none",
           className,
         )}
       >
@@ -112,13 +112,12 @@ export const BackgroundBeams = React.memo(
                   delay: Math.random() * 10,
                 }}
               >
-                <stop stopColor="#EAB308" stopOpacity="0" />   {/* green fade-in */}
-                <stop stopColor="#FACC15" />                  {/* emerald green */}
-                <stop offset="32.5%" stopColor="#22C55E" />   {/* rich yellow */}
-                <stop offset="100%" stopColor="#22C55E" stopOpacity="0" /> {/* soft yellow fade-out */}
-
-
-
+                <stop stopColor="#EAB308" stopOpacity="0" />{" "}
+                {/* green fade-in */}
+                <stop stopColor="#FACC15" /> {/* emerald green */}
+                <stop offset="32.5%" stopColor="#22C55E" /> {/* rich yellow */}
+                <stop offset="100%" stopColor="#22C55E" stopOpacity="0" />{" "}
+                {/* soft yellow fade-out */}
               </motion.linearGradient>
             ))}
 

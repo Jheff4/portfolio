@@ -7,6 +7,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProjectBySlug, getAllProjectSlugs } from "@/lib/projects-data";
 import { projectDetailStyles as s } from "@/lib/styles";
+import { BackgroundBeams } from "@/components/ui/background-beams";
 import type { Metadata } from "next";
 
 interface Props {
@@ -231,6 +232,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         </div>
 
       </div>
+      <BackgroundBeams />
     </div>
   );
 }

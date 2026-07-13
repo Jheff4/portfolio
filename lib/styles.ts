@@ -361,7 +361,7 @@ export const toolsPageStyles = {
 
 export const projectDetailStyles = {
   // Page container
-  pageContainer: "min-h-screen relative bg-zinc-950 pt-20 px-4 sm:px-6 lg:px-8 pb-20 antialiased",
+  pageContainer: "min-h-screen relative bg-zinc-950 pt-20 px-4 sm:px-6 lg:px-8 pb-20 antialiased overflow-hidden",
   innerContainer: "max-w-6xl mx-auto relative z-10",
 
   // Back button
