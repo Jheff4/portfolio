@@ -175,9 +175,9 @@ export default async function ProjectDetailPage({ params }: Props) {
               </div>
             </div>
 
-            {/* Links */}
+            {/* Project Links */}
             <div className={s.sidebarSection}>
-              <h3 className={s.sidebarSectionTitle}>Links</h3>
+              <h3 className={s.sidebarSectionTitle}>Project Links</h3>
               <div className={s.linksContainer}>
                 {project.links.github && (
                   <a
@@ -208,17 +208,21 @@ export default async function ProjectDetailPage({ params }: Props) {
               </div>
             </div>
 
-            {/* Project info */}
+            {/* Project Info */}
             <div className={s.sidebarSection}>
-              <h3 className={s.sidebarSectionTitle}>Details</h3>
+              <h3 className={s.sidebarSectionTitle}>Project Info</h3>
               <div className={s.projectInfoContainer}>
+                <div>
+                  <p className={s.projectInfoLabel}>Author</p>
+                  <p className={s.authorName}>{project.author}</p>
+                </div>
                 <div>
                   <p className={s.projectInfoLabel}>Status</p>
                   <p className={s.projectInfoText}>{project.status}</p>
                 </div>
                 <div>
-                  <p className={s.projectInfoLabel}>Author</p>
-                  <p className={s.projectInfoText}>{project.author}</p>
+                  <p className={s.projectInfoLabel}>Category</p>
+                  <p className={s.projectInfoText}>{project.tags[0]}</p>
                 </div>
               </div>
             </div>

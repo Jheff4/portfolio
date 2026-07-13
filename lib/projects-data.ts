@@ -60,8 +60,8 @@ export const projects: Project[] = [
       github: "https://github.com/HexagonDigitalServices/Invoice",
       howIBuilt: "https://youtu.be/2Mrwszudm9M?si=n34faY8CSOuH6iAi",
     },
-    author: "AI Invoice Generator",
-    authorAvatar: "/Hexagon.png",
+    author: "Etinosa Ogbevoen",
+    authorAvatar: "/icon.svg",
   },
   {
     id: "2",
@@ -95,8 +95,8 @@ export const projects: Project[] = [
       github: "https://github.com/HexagonDigitalServices/L-M-S",
       howIBuilt: "https://youtu.be/lDg72UDAq60?si=keX7_pOq_QytNwO7",
     },
-    author: "LMS Platform",
-    authorAvatar: "/Hexagon.png",
+    author: "Etinosa Ogbevoen",
+    authorAvatar: "/icon.svg",
   },
   {
     id: "3",
@@ -130,8 +130,8 @@ export const projects: Project[] = [
       github: "https://github.com/HexagonDigitalServices/BUILDRESUMEWEB",
       howIBuilt: "https://youtu.be/gWHgPP5ay7Q?si=FhtnDh4O7jm9rsEY",
     },
-    author: "Resume Builder",
-    authorAvatar: "/Hexagon.png",
+    author: "Etinosa Ogbevoen",
+    authorAvatar: "/icon.svg",
   },
   {
     id: "4",
@@ -165,8 +165,8 @@ export const projects: Project[] = [
       github: "https://github.com/HexagonDigitalServices/FlowTask",
       howIBuilt: "https://youtu.be/VAKDr1lsix0?si=FZvPZSo2qIOTjiJD",
     },
-    author: "Task Manager",
-    authorAvatar: "/Hexagon.png",
+    author: "Etinosa Ogbevoen",
+    authorAvatar: "/icon.svg",
   },
   {
     id: "5",
@@ -200,8 +200,8 @@ export const projects: Project[] = [
       github: "https://github.com/HexagonDigitalServices/Foodie-frenzy",
       howIBuilt: "https://youtu.be/6CL4f8fPk9w?si=eo8gxXCjMmd1xRUz",
     },
-    author: "Food Delivery App",
-    authorAvatar: "/Hexagon.png",
+    author: "Etinosa Ogbevoen",
+    authorAvatar: "/icon.svg",
   },
   {
     id: "6",
@@ -235,8 +235,8 @@ export const projects: Project[] = [
       github: "https://github.com/HexagonDigitalServices/BOOKMOVIE",
       howIBuilt: "https://youtu.be/KQ7srsb8cfc?si=3m4Uk4mvYGF25Ykf",
     },
-    author: "Movie Ticket Booking",
-    authorAvatar: "/Hexagon.png",
+    author: "Etinosa Ogbevoen",
+    authorAvatar: "/icon.svg",
   },
 ];
 
