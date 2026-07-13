@@ -164,14 +164,14 @@ export const timelineStyles = {
   specializationBadge: "rounded-full bg-emerald-900/30 px-3 py-1 text-xs text-emerald-300",
 
   // Technologies section styles
-  techSectionContainer: "mt-12 rounded-xl bg-zinc-900/50 p-6 md:p-8",
+  techSectionContainer: "mt-12 rounded-xl bg-zinc-900/50 p-3 sm:p-6 md:p-8",
   techSectionHeader: "flex items-center gap-3",
   techSectionIconContainer: "rounded-lg bg-zinc-800 p-3",
   techSectionIcon: "h-6 w-6 text-zinc-300",
   techSectionTitle: "text-xl font-semibold text-white",
   techSectionSubtitle: "text-sm text-zinc-400",
-  techGrid: "mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6",
-  techCard: "rounded-lg bg-zinc-800/30 p-4 text-center",
+  techGrid: "mt-6 grid grid-cols-2 gap-3 lg:grid-cols-3 xl:grid-cols-6",
+  techCard: "rounded-lg bg-zinc-800/30 p-3 sm:p-4 text-center",
   techCardTitle: "text-sm font-semibold",
   techCardContent: "mt-2 text-xs text-zinc-300",
 
