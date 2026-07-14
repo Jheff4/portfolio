@@ -9,6 +9,7 @@
 // not ongoing re-renders. The radial-gradient mask hides the edges cleanly.
 
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import { Boxes } from "@/components/ui/background-boxes";
 import { contactPageStyles as s } from "@/lib/styles";
 
@@ -44,10 +45,27 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
-    // Placeholder — wire up to a serverless function or Formspree endpoint.
-    await new Promise((r) => setTimeout(r, 1200));
-    setStatus("sent");
-    setFormData({ name: "", email: "", subject: "", message: "" });
+
+    try {
+      // The three values below are public EmailJS identifiers, read from env.
+      // templateParams keys must match the {{variables}} in your EmailJS template.
+      await emailjs.send(
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        {
+          name: formData.name,
+          email: formData.email,
+          subject: formData.subject,
+          message: formData.message,
+        },
+        { publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY! },
+      );
+      setStatus("sent");
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    } catch (err) {
+      console.error("EmailJS send failed:", err);
+      setStatus("error");
+    }
   };
 
   return (
@@ -225,6 +243,13 @@ export default function ContactPage() {
                   </span>
                 </button>
               </div>
+
+              {status === "error" && (
+                <p className="text-sm text-red-400">
+                  Something went wrong sending your message. Please try again or
+                  email me directly.
+                </p>
+              )}
             </form>
 
           </div>
