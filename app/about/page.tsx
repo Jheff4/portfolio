@@ -2,6 +2,7 @@
 // The Gmail compose link is built server-side and injected as a plain href.
 import Link from "next/link";
 import { aboutPageStyles as s } from "@/lib/styles";
+import { BackgroundBeamsWithCollision } from "@/components/ui/background-beams-with-collision";
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
@@ -39,6 +40,11 @@ export default function AboutPage() {
       <div className={s.contentContainer}>
 
         <div className={s.backgroundContainer}>
+          {/* Beams as an absolute background decoration behind the content */}
+          <div className={s.backgroundEffect}>
+            <BackgroundBeamsWithCollision />
+          </div>
+
           <div className={s.contentWrapper}>
 
             {/* Large name heading — the signature visual of this page */}

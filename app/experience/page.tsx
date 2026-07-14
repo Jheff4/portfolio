@@ -1,7 +1,15 @@
-"use client";
-
+// Server Component — the timeline content is static markup (no state, no handlers),
+// so it's built here on the server and passed to the Timeline client leaf as props.
+// Result: all role text/bullets/badges ship as zero-JS HTML; only Timeline's
+// framer-motion scroll animation hydrates in the browser.
 import { Timeline } from "@/components/ui/timeline";
 import { timelineStyles as s } from "@/lib/styles";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Experience",
+  description: "Career timeline — roles, milestones, and the tech I've worked with.",
+};
 
 const timelineData = [
   {
