@@ -68,7 +68,7 @@ export const spotlightStyles = {
 
 
 export const pageStyles = {
-  container: "flex min-h-screen pt-20 w-full items-start justify-center bg-zinc-950 px-6 py-12 md:px-12 md:py-20 lg:px-16",
+  container: "flex pt-20 w-full items-start justify-center bg-zinc-950 px-6 py-12 md:px-12 md:py-20 lg:px-16",
   wrapper: "w-full max-w-3xl",
   backgroundContainer: "relative",
   backgroundEffect: "absolute inset-0 rounded-xl overflow-hidden",
@@ -92,7 +92,7 @@ export const pageStyles = {
 
 export const timelineStyles = {
   // Layout styles
-  container: "min-h-screen bg-zinc-950 p-4 md:p-8 pt-20 lg:pt-20 xl:pt-30",
+  container: "bg-zinc-950 p-4 md:p-8 pt-20 lg:pt-20 xl:pt-30",
   innerContainer: "mx-auto max-w-5xl",
   mainTitle: "mt-4 text-4xl font-bold text-white md:text-5xl",
   mainParagraph: "mt-4 text-lg text-zinc-400",
@@ -189,7 +189,7 @@ export const timelineStyles = {
 
 export const aboutPageStyles = {
   // Layout and container styles
-  pageContainer: "flex min-h-screen pt-20 w-full items-start justify-center bg-zinc-950 px-6 py-12 md:px-12 md:py-20 lg:px-16",
+  pageContainer: "flex pt-20 w-full items-start justify-center bg-zinc-950 px-6 py-12 md:px-12 md:py-20 lg:px-16",
   contentContainer: "w-full max-w-3xl",
 
   // Background container
@@ -226,8 +226,8 @@ export const aboutPageStyles = {
 
 export const contactPageStyles = {
   // Layout and container styles
-  pageContainer: "flex min-h-screen pt-20 w-full items-start justify-center bg-zinc-950 px-6 py-12 md:px-12 md:py-20 lg:px-16",
-  contentContainer: "w-full max-w-2xl",
+  pageContainer: "relative overflow-hidden flex pt-20 w-full items-start justify-center bg-zinc-950 px-4 py-12 md:px-12 md:py-20 lg:px-16",
+  contentContainer: "relative z-10 w-full max-w-3xl pointer-events-none",
 
   // Form container with boxes background
   formOuterContainer: "relative w-full overflow-hidden bg-zinc-950 flex flex-col items-center justify-center rounded-lg",
@@ -235,21 +235,22 @@ export const contactPageStyles = {
 
   // Header
   headerContainer: "mb-12 z-10",
-  headerTitle: "text-5xl md:whitespace-nowrap z-30 font-bold tracking-tight text-zinc-100 md:text-6xl lg:text-7xl",
+  headerTitle: "text-5xl z-30 font-bold tracking-tight text-zinc-100 md:text-6xl lg:text-7xl",
   headerSubtitle: "mt-4 text-lg text-zinc-400",
 
   // Contact methods grid
-  contactMethodsGrid: "mb-12 grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 z-10",
+  contactMethodsGrid: "mb-12 grid grid-cols-1 gap-4 sm:grid-cols-1 lg:grid-cols-2 xl:grid-cols-2 z-10 pointer-events-auto",
 
   // Contact method card
   contactCard: "group flex items-center gap-4 rounded-xl border border-zinc-800 bg-zinc-900/30 p-4 transition-all hover:border-zinc-700 hover:bg-zinc-900/50",
-  contactIconContainer: "flex h-12 w-12 items-center justify-center rounded-full bg-zinc-800 text-zinc-300 transition-colors group-hover:bg-zinc-700 group-hover:text-zinc-100",
+  contactIconContainer: "flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-full bg-zinc-800 text-zinc-300 transition-colors group-hover:bg-zinc-700 group-hover:text-zinc-100",
   contactIcon: "h-5 w-5",
+  contactTextContainer: "min-w-0",
   contactLabel: "text-sm font-medium text-zinc-500",
-  contactValue: "text-zinc-200 transition-colors group-hover:text-zinc-100",
+  contactValue: "break-all text-zinc-200 transition-colors group-hover:text-zinc-100",
 
   // Form styles
-  formContainer: "relative z-10 space-y-6 rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6 md:p-8",
+  formContainer: "relative z-10 space-y-6 rounded-2xl border border-zinc-800 bg-zinc-900/30 p-6 md:p-8 pointer-events-auto",
   formGrid: "grid grid-cols-1 gap-6 md:grid-cols-2",
 
   // Form field common styles
@@ -276,7 +277,7 @@ export const contactPageStyles = {
 
 export const projectStyles = {
   // Page container
-  pageContainer: "flex min-h-screen w-full justify-center pt-20 bg-zinc-950 px-6 py-12 md:px-12 md:py-20 lg:px-16",
+  pageContainer: "flex w-full justify-center pt-20 bg-zinc-950 px-6 py-12 md:px-12 md:py-20 lg:px-16",
   innerContainer: "w-full max-w-full",
 
   // Header
@@ -338,7 +339,7 @@ export const styles = {
 
 export const toolsPageStyles = {
   // Layout and container styles
-  pageContainer: "flex min-h-screen w-full justify-center bg-zinc-950 pt-20 xl:pt-16 px-6 py-12 md:px-12 md:py-20 lg:px-16",
+  pageContainer: "flex w-full justify-center bg-zinc-950 pt-20 xl:pt-16 px-6 py-12 md:px-12 md:py-20 lg:px-16",
   contentContainer: "w-full max-w-full",
 
   // Header
@@ -361,7 +362,7 @@ export const toolsPageStyles = {
 
 export const projectDetailStyles = {
   // Page container
-  pageContainer: "min-h-screen relative bg-zinc-950 pt-20 px-4 sm:px-6 lg:px-8 pb-20 antialiased overflow-hidden",
+  pageContainer: "relative bg-zinc-950 pt-20 px-4 sm:px-6 lg:px-8 pb-20 antialiased overflow-hidden",
   innerContainer: "max-w-6xl mx-auto relative z-10",
 
   // Back button
@@ -460,7 +461,7 @@ export const sidebarStyles = {
   mobileSpacer: "md:hidden h-16",
 
   // Desktop sidebar
-  desktopSidebar: "hidden md:flex flex-col w-[260px] h-screen px-6 py-8 bg-zinc-950 border-r border-zinc-800 fixed left-0 top-0 overflow-y-auto",
+  desktopSidebar: "hidden md:flex flex-col w-[260px] shrink-0 h-screen px-6 py-8 bg-zinc-950 border-r border-zinc-800 sticky top-0 overflow-y-auto",
   desktopAvatarContainer: "flex items-center gap-3 mb-6",
   desktopAvatar: "w-12 h-12 rounded-full overflow-hidden ring-1 ring-white/10 shadow-sm",
   desktopAvatarImage: "object-cover",

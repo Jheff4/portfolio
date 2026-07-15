@@ -52,10 +52,17 @@ export default function RootLayout({
         that pattern keeps the shell static and only hydrates the interactive bits.
       */}
       <body className="min-h-screen bg-zinc-950 text-zinc-100">
-        <Sidebar />
-        {/* md:ml-[260px] offsets the fixed sidebar on desktop */}
-        <main className="md:ml-[260px]">{children}</main>
-        <div className="md:ml-[260px]"><Footer /></div>
+        {/* The whole layout — sidebar + content — is one centered, capped block,
+            so on ultra-wide/zoomed-out screens it sits centered rather than pinned left. */}
+        <div className="mx-auto flex w-full max-w-[1660px]">
+          <Sidebar />
+          <div className="flex min-w-0 flex-1 flex-col">
+            {/* No forced full height — the column grows with the content so the
+                footer follows it instead of being pinned a screen away. */}
+            <main>{children}</main>
+            <Footer />
+          </div>
+        </div>
       </body>
     </html>
   );
