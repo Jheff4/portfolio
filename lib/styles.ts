@@ -17,7 +17,7 @@ export const homePageStyles = {
   heroSection: "w-full max-w-[880px] mx-auto",
 
   // Headings
-  h1: "text-[28px] sm:text-[40px] md:whitespace-nowrap md:text-[55px] lg:text-[72px] leading-[0.95] font-extrabold tracking-tight mb-3 text-white",
+  h1: "text-[28px] sm:text-[40px] md:text-[55px] lg:text-[72px] xl:whitespace-nowrap leading-[0.95] font-extrabold tracking-tight mb-3 text-white",
 
   h2: "text-base sm:text-xl md:text-3xl text-white font-medium mb-6",
 
@@ -289,7 +289,7 @@ export const projectStyles = {
   projectsGrid: "grid grid-cols-1 gap-8 md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3",
 
   // Project card
-  projectCard: "group relative h-full overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/50 transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-900 hover:shadow-2xl hover:shadow-zinc-950/50",
+  projectCard: "group relative flex h-full flex-col overflow-hidden rounded-2xl border border-zinc-800 bg-zinc-900/50 transition-all duration-300 hover:border-zinc-700 hover:bg-zinc-900 hover:shadow-2xl hover:shadow-zinc-950/50",
 
   // Image container
   imageContainer: "relative aspect-[16/10] w-full overflow-hidden bg-zinc-800",
@@ -306,7 +306,7 @@ export const projectStyles = {
   bookmarkIcon: "h-4 w-4 text-zinc-400",
 
   // Content section
-  contentSection: "p-6",
+  contentSection: "flex flex-1 flex-col p-6",
   projectTitle: "text-xl font-bold text-zinc-100 group-hover:text-zinc-50",
   projectDescription: "mt-2 line-clamp-2 text-sm leading-relaxed text-zinc-400",
 
@@ -315,7 +315,7 @@ export const projectStyles = {
   tag: "rounded-md bg-zinc-800 px-2.5 py-1 text-xs font-medium text-zinc-300 transition-colors hover:bg-zinc-700 hover:text-zinc-100",
 
   // Actions
-  actionsContainer: "mt-6 flex items-center justify-between border-t border-zinc-800 pt-4",
+  actionsContainer: "mt-auto flex items-center justify-between pt-5",
   actionsLinksContainer: "flex gap-2",
 
   // Buttons
@@ -467,7 +467,7 @@ export const sidebarStyles = {
   desktopAvatar: "w-12 h-12 rounded-full overflow-hidden ring-1 ring-white/10 shadow-sm",
   desktopAvatarImage: "object-cover",
   desktopName: "font-semibold text-zinc-100 text-sm leading-tight",
-  desktopTyping: "text-xs text-zinc-400",
+  desktopTyping: "text-xs text-zinc-400 leading-none",
 
   // Navigation
   navContainer: "flex",

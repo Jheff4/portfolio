@@ -1,11 +1,9 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { motion, AnimatePresence, useMotionValue } from "motion/react";
 import { cn } from "@/lib/utils";
-import { u } from "motion/react-client";
-import Image from "next/image";
 
 export const FollowerPointerCard = ({
   children,
@@ -19,25 +17,24 @@ export const FollowerPointerCard = ({
   const x = useMotionValue(0);
   const y = useMotionValue(0);
   const ref = React.useRef<HTMLDivElement>(null);
-  const [rect, setRect] = useState<DOMRect | null>(null);
   const [isInside, setIsInside] = useState<boolean>(false); // Add this line
-
-  useEffect(() => {
-    if (ref.current) {
-      setRect(ref.current.getBoundingClientRect());
-    }
-  }, []);
+  const [isPointer, setIsPointer] = useState<boolean>(false); // over a link/button
 
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (rect) {
-      const scrollX = window.scrollX;
-      const scrollY = window.scrollY;
-      x.set(e.clientX - rect.left + scrollX);
-      y.set(e.clientY - rect.top + scrollY);
+    // Measure fresh each move so the pointer stays accurate after resizes /
+    // layout reflows (a cached rect goes stale when the grid re-wraps).
+    const el = ref.current;
+    if (el) {
+      const r = el.getBoundingClientRect();
+      x.set(e.clientX - r.left);
+      y.set(e.clientY - r.top);
     }
+    // Turn the pointer into a hand over clickable elements, like the OS cursor
+    setIsPointer(!!(e.target as HTMLElement).closest("a, button"));
   };
   const handleMouseLeave = () => {
     setIsInside(false);
+    setIsPointer(false);
   };
 
   const handleMouseEnter = () => {
@@ -55,7 +52,9 @@ export const FollowerPointerCard = ({
       className={cn("relative", className)}
     >
       <AnimatePresence>
-        {isInside && <FollowPointer x={x} y={y} title={title} />}
+        {isInside && (
+          <FollowPointer x={x} y={y} title={title} isPointer={isPointer} />
+        )}
       </AnimatePresence>
       {children}
     </div>
@@ -66,10 +65,12 @@ export const FollowPointer = ({
   x,
   y,
   title,
+  isPointer,
 }: {
   x: any;
   y: any;
   title?: string | React.ReactNode;
+  isPointer?: boolean;
 }) => {
   const colors = [
     "#0ea5e9",
@@ -101,18 +102,37 @@ export const FollowPointer = ({
         opacity: 0,
       }}
     >
-      <svg
-        stroke="currentColor"
-        fill="currentColor"
-        strokeWidth="1"
-        viewBox="0 0 16 16"
-        className="h-6 w-6 translate-x-[-12px] translate-y-[-10px] rotate-[-70deg] transform stroke-emerald-500 text-emerald-400"
-        height="1em"
-        width="1em"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"></path>
-      </svg>
+      {isPointer ? (
+        // Hand — shown over links/buttons, like the OS pointer cursor
+        <svg
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          className="h-6 w-6 translate-x-[-4px] translate-y-[-2px] text-emerald-400"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2" />
+          <path d="M14 10V4a2 2 0 0 0-2-2a2 2 0 0 0-2 2v2" />
+          <path d="M10 10.5V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2v8" />
+          <path d="M18 8a2 2 0 1 1 4 0v6a8 8 0 0 1-8 8h-2c-2.8 0-4.5-.86-5.99-2.34l-3.6-3.6a2 2 0 0 1 2.83-2.82L7 15" />
+        </svg>
+      ) : (
+        <svg
+          stroke="currentColor"
+          fill="currentColor"
+          strokeWidth="1"
+          viewBox="0 0 16 16"
+          className="h-6 w-6 translate-x-[-12px] translate-y-[-10px] rotate-[-70deg] transform stroke-emerald-500 text-emerald-400"
+          height="1em"
+          width="1em"
+          xmlns="http://www.w3.org/2000/svg"
+        >
+          <path d="M14.082 2.182a.5.5 0 0 1 .103.557L8.528 15.467a.5.5 0 0 1-.917-.007L5.57 10.694.803 8.652a.5.5 0 0 1-.006-.916l12.728-5.657a.5.5 0 0 1 .556.103z"></path>
+        </svg>
+      )}
       <motion.div
         style={{
           backgroundColor: colors[Math.floor(Math.random() * colors.length)],

@@ -35,17 +35,16 @@ export default function ProjectsPage() {
             <FollowerPointerCard
               key={project.slug}
               title={<TitleComponent title={project.author} />}
+              className="[&_a]:cursor-none [&_button]:cursor-none"
             >
               <div className={`${s.projectCard} relative`}>
-                {/* Full-card clickable overlay to the detail page */}
+                {/* Thumbnail links to the detail page — only the image (and the
+                    buttons below) are clickable, so the pointer only shows there */}
                 <Link
                   href={`/projects/${project.slug}`}
-                  className="absolute inset-0 z-0"
                   aria-label={`View ${project.title} details`}
-                />
-  
-                {/* Thumbnail — pointer-events-none so the overlay link shows through */}
-                <div className={`${s.imageContainer} relative z-10 pointer-events-none`}>
+                  className={`${s.imageContainer} relative z-10 block`}
+                >
                   <Image
                     src={project.image}
                     alt={project.title}
@@ -62,7 +61,7 @@ export default function ProjectsPage() {
                       {project.status}
                     </span>
                   </div>
-                </div>
+                </Link>
   
                 {/* Card content */}
                 <div className={`${s.contentSection} relative z-10`}>

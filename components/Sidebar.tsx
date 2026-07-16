@@ -280,7 +280,7 @@ export function Sidebar() {
        >
         <div className={s.desktopAvatarContainer}>
           <EOAvatar size="md" />
-          <div>
+          <div className="flex flex-col gap-1">
             <p className={s.desktopName}>Etinosa Ogbevoen</p>
             <TypingAnimation
               className={s.desktopTyping}
