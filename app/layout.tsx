@@ -56,9 +56,10 @@ export default function RootLayout({
             so on ultra-wide/zoomed-out screens it sits centered rather than pinned left. */}
         <div className="mx-auto flex w-full max-w-[1660px]">
           <Sidebar />
-          <div className="flex min-w-0 flex-1 flex-col">
-            {/* No forced full height — the column grows with the content so the
-                footer follows it instead of being pinned a screen away. */}
+          {/* border-l is the sidebar divider — on the content column so it's
+              content-height (stops at the footer) rather than viewport-height */}
+          <div className="flex min-w-0 flex-1 flex-col md:border-l md:border-zinc-800">
+            {/* Grows with content so the footer follows it, not pinned a screen away */}
             <main>{children}</main>
             <Footer />
           </div>
