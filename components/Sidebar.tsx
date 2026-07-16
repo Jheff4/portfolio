@@ -272,6 +272,12 @@ export function Sidebar() {
 
       {/* ── Desktop sidebar ────────────────────────────────── */}
       <aside className={s.desktopSidebar}>
+       {/* Fixed nav panel — left is the centered block's left edge, so it stays
+           centered on ultra-wide yet never moves on scroll (true position: fixed) */}
+       <div
+         className={s.desktopSidebarInner}
+         style={{ left: "max(0px, calc((100vw - 1660px) / 2))" }}
+       >
         <div className={s.desktopAvatarContainer}>
           <EOAvatar size="md" />
           <div>
@@ -329,6 +335,7 @@ export function Sidebar() {
             </li>
           ))}
         </ul>
+       </div>
 
         <p className={s.footerText}>Made by Etinosa | © 2026</p>
       </aside>

@@ -339,7 +339,7 @@ export const styles = {
 
 export const toolsPageStyles = {
   // Layout and container styles
-  pageContainer: "flex w-full justify-center bg-zinc-950 pt-20 xl:pt-16 px-6 py-12 md:px-12 md:py-20 lg:px-16",
+  pageContainer: "flex w-full justify-center bg-zinc-950 pt-20 xl:pt-16 px-6 pb-32 md:px-12 md:pb-48 lg:px-16",
   contentContainer: "w-full max-w-full",
 
   // Header
@@ -461,7 +461,8 @@ export const sidebarStyles = {
   mobileSpacer: "md:hidden h-16",
 
   // Desktop sidebar
-  desktopSidebar: "hidden md:flex flex-col w-[260px] shrink-0 h-screen px-6 py-8 bg-zinc-950 border-r border-zinc-800 sticky top-0 overflow-y-auto",
+  desktopSidebar: "hidden md:flex flex-col w-[260px] shrink-0 bg-zinc-950",
+  desktopSidebarInner: "fixed top-0 h-screen w-[260px] px-6 py-8 flex flex-col overflow-y-auto bg-zinc-950",
   desktopAvatarContainer: "flex items-center gap-3 mb-6",
   desktopAvatar: "w-12 h-12 rounded-full overflow-hidden ring-1 ring-white/10 shadow-sm",
   desktopAvatarImage: "object-cover",
@@ -485,7 +486,7 @@ export const sidebarStyles = {
   socialLabel: "truncate",
 
   // Footer
-  footerText: "mt-6 text-sm text-zinc-400 h-full flex items-end",
+  footerText: "sticky bottom-0 z-10 mt-auto px-6 pb-8 text-sm text-zinc-400",
 
   // Mobile menu overlay
   mobileOverlay: "md:hidden fixed inset-0 z-[90] transition-all duration-300",
