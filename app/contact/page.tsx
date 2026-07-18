@@ -113,7 +113,7 @@ export default function ContactPage() {
           </a>
 
           <a
-            href="https://x.com"
+            href="https://x.com/_Etinosa_"
             target="_blank"
             rel="noopener noreferrer"
             className={s.contactCard}
@@ -128,8 +128,8 @@ export default function ContactPage() {
               </svg>
             </div>
             <div className={s.contactTextContainer}>
-              <p className={s.contactLabel}>Twitter</p>
-              <p className={s.contactValue}>@Etinosa</p>
+              <p className={s.contactLabel}>X (Twitter)</p>
+              <p className={s.contactValue}>@_Etinosa_</p>
             </div>
           </a>
         </div>

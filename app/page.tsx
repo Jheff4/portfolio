@@ -23,7 +23,7 @@ export default function HomePage() {
     <div className={s.container}>
       <Spotlight
         className="-top-40 -z-10 left-0 md:-top-20 md:left-60"
-        fill="#0FFF50"
+        fill="#FFB800"
       />
 
       <div
@@ -87,7 +87,7 @@ export default function HomePage() {
         <div className="mb-10">
           <Link
             href="/about"
-            className="group inline-flex items-center gap-1.5 text-sm font-medium text-emerald-400 transition-colors hover:text-emerald-300"
+            className="group inline-flex items-center gap-1.5 text-sm font-medium text-amber-400 transition-colors hover:text-amber-300"
           >
             More about me
             <svg
@@ -125,7 +125,7 @@ export default function HomePage() {
               playsInline
               preload="metadata"
             >
-              <source src="/homevideo.webm" type="video/webm" />
+              <source src="/homevideo.mp4" type="video/mp4" />
             </video>
           </div>
           <div className={s.article.content}>
@@ -141,12 +141,12 @@ export default function HomePage() {
               <span>FEATURED WORK</span>
             </div>
             <h3 className={s.article.title}>
-              The engineering behind the interface
+              <Link href="/projects/razor-dex">Razor DEX</Link>
             </h3>
             <p className={s.article.description}>
-              From a Web3 exchange and wallets to production-grade fintech and AI
-              systems — the products I&apos;ve built and the decisions behind
-              them.
+              A decentralized exchange I lead frontend on, handling swaps,
+              pools, and a lottery at real scale. One of several things
+              I&apos;ve worked on.
             </p>
             <div className={s.article.linkContainer}>
               <Link href="/projects" className={s.article.link}>

@@ -14,6 +14,15 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
+// The generic "link" field covers different destinations per project (a
+// Chrome Web Store listing, an npm package, etc.) — label it from the host
+// rather than adding a new schema field for every possible destination.
+function getExternalLinkLabel(url: string): string {
+  if (url.includes("chromewebstore.google.com")) return "Chrome Web Store";
+  if (url.includes("npmjs.com")) return "View on npm";
+  return "External Link";
+}
+
 // generateStaticParams — runs at BUILD time.
 // Returns the list of slug values to pre-render.
 // Any slug not in this list → 404 (notFound()).
@@ -98,6 +107,14 @@ export default async function ProjectDetailPage({ params }: Props) {
                   </svg>
                   GitHub
                 </a>
+              )}
+              {project.isPrivateRepo && (
+                <span className={s.privateTag}>
+                  <svg className={s.buttonIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                  </svg>
+                  {project.privateRepoNote ? `Private · ${project.privateRepoNote}` : "Private Repo"}
+                </span>
               )}
             </div>
           </div>
@@ -204,6 +221,32 @@ export default async function ProjectDetailPage({ params }: Props) {
                       <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
                     <span className={s.linkText}>Live Demo</span>
+                  </a>
+                )}
+                {project.links.link && (
+                  <a
+                    href={project.links.link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={s.linkCard}
+                  >
+                    <svg className={s.linkIcon} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M13.828 10.172a4 4 0 010 5.656l-4 4a4 4 0 01-5.656-5.656l1.5-1.5M10.172 13.828a4 4 0 010-5.656l4-4a4 4 0 015.656 5.656l-1.5 1.5" />
+                    </svg>
+                    <span className={s.linkText}>{getExternalLinkLabel(project.links.link)}</span>
+                  </a>
+                )}
+                {project.links.x && (
+                  <a
+                    href={project.links.x}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={s.linkCard}
+                  >
+                    <svg className={s.linkIcon} fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                    </svg>
+                    <span className={s.linkText}>X</span>
                   </a>
                 )}
               </div>

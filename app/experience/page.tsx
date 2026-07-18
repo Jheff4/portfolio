@@ -38,7 +38,7 @@ const timelineData = [
             <>Built the DEX interface — swap, liquidity pools, and a lottery — at the center of <strong className="font-semibold text-white">32M+ swaps</strong> and <strong className="font-semibold text-white">50M+ total transactions</strong>, engineered against race conditions and stale-quote trades</>,
             "Architected an RPC failover system (health checks, retry/timeout, fallback selection) that keeps wallets functional through provider outages",
             "Shipped core wallet flows across extension and mobile: account generation, network switching, secure storage, and full transaction-lifecycle tracking",
-            "Defined frontend architectural standards and a reusable component library, improving maintainability and velocity across the team",
+            "Defined frontend architectural standards and built Razor Kit — the open-source, MIT-licensed wallet-connection kit (100% test coverage) that standardizes UI across the Movement ecosystem",
           ].map((item, i) => (
             <li key={i} className={s.listItem}>
               <div className={s.bulletBlue} />

@@ -201,9 +201,9 @@ export const Beam = ({
             repeatDelay: hovered ? Math.random() * (2 - 1) + 1 : (delay ?? 1),
           }}
         >
-          <stop stopColor="#2edfb6" stopOpacity="0" />
-          <stop stopColor="#57f63b" />
-          <stop offset="1" stopColor="#57f63b" stopOpacity="0" />
+          <stop stopColor="#ffb800" stopOpacity="0" />
+          <stop stopColor="#ffb800" />
+          <stop offset="1" stopColor="#ffb800" stopOpacity="0" />
         </motion.linearGradient>
       </defs>
     </motion.svg>

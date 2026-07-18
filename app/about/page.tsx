@@ -79,8 +79,8 @@ export default function AboutPage() {
               </p>
               <div className="grid gap-3 sm:grid-cols-2">
                 {[
-                  { title: "Razor", slug: "razor", blurb: "The first DEX on Movement — DEX, wallet & mobile", metric: "1.47M+ users · 50M+ transactions" },
-                  { title: "Stratos Wallet", slug: "stratos-wallet", blurb: "Production-grade fintech wallet frontend", metric: "Ledger-first · real-time reliability" },
+                  { title: "Razor DEX", slug: "razor-dex", blurb: "Move-ecosystem DEX (Aptos, Sui, Movement) — first on Movement", metric: "1.47M+ users · 50M+ transactions" },
+                  { title: "Razor Kit", slug: "razor-kit", blurb: "Open-source wallet-connection kit for Movement", metric: "MIT · TypeScript · 100% coverage" },
                   { title: "Sportz", slug: "sportz", blurb: "Real-time multi-sport broadcast platform", metric: "Sub-second latency · 95 tests" },
                   { title: "Echo", slug: "echo", blurb: "Multi-tenant AI customer-support SaaS", metric: "RAG · full tenant isolation" },
                 ].map(({ title, slug, blurb, metric }) => (
@@ -103,7 +103,7 @@ export default function AboutPage() {
                       </svg>
                     </div>
                     <p className="mt-1 text-sm text-zinc-400">{blurb}</p>
-                    <p className="mt-2 text-xs font-medium text-emerald-400">{metric}</p>
+                    <p className="mt-2 text-xs font-medium text-amber-400">{metric}</p>
                   </Link>
                 ))}
               </div>
@@ -153,10 +153,13 @@ export default function AboutPage() {
                   pointer where there&apos;s no link, I don&apos;t hide the icon,
                   I hunt down the invisible overlay that made it one. Nothing
                   ships until I&apos;ve watched it behave: resized to 320px, poked
-                  at the awkward in-between widths, broken on purpose. I hold
-                  motion and performance to the same bar — I won&apos;t trade away
-                  smooth, deliberate animation to hit a load time, or the reverse;
-                  done right, it earns both. And I build for the moment things go
+                  at the awkward in-between widths, broken on purpose. I build
+                  for scale before it shows up — the data model, the folder
+                  structure, the state boundaries all assume the product is going
+                  to get much bigger, so growth becomes a non-event instead of a
+                  rewrite. I hold motion and performance to the same bar — I
+                  won&apos;t trade away smooth, deliberate animation to hit a load
+                  time, or the reverse; done right, it earns both. And I build for the moment things go
                   wrong: the network drops, the model hallucinates, a provider
                   falls over — in the products I work on, that&apos;s not the edge
                   case, it&apos;s the job.
@@ -175,17 +178,17 @@ export default function AboutPage() {
                   I started building for the web in{" "}
                   <strong className="font-semibold text-white">2018</strong> and
                   narrowed from generalist into frontend engineering at scale.
-                  Today I lead frontend across three Web3 products at Razor — the
-                  first DEX on Movement (
+                  Today I lead frontend across Razor&apos;s Move-ecosystem
+                  products — a DEX that&apos;s first on Movement (
                   <strong className="font-semibold text-white">1.47M+ users</strong>
                   ,{" "}
                   <strong className="font-semibold text-white">
                     50M+ transactions
                   </strong>
-                  ), plus browser and mobile wallets — take on AI contract work,
-                  and build fintech and AI systems to a production standard,
-                  documenting the decisions as I go. Along the way I&apos;ve
-                  mentored dozens of developers.
+                  ), self-custody wallets, and an open-source wallet kit — take on
+                  AI contract work, and build fintech and AI systems to a
+                  production standard, documenting the decisions as I go. Along
+                  the way I&apos;ve mentored dozens of developers.
                 </p>
               </section>
 

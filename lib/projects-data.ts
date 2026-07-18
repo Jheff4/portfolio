@@ -15,7 +15,12 @@ export interface Project {
     youtube?: string;
     archive?: string;
     howIBuilt?: string;
+    x?: string;
   };
+  /** True when the source is closed (employer-owned, NDA, etc.) — surfaced as a badge instead of leaving the reader to wonder why there's no GitHub link. */
+  isPrivateRepo?: boolean;
+  /** Short reason shown alongside the private badge, e.g. "NDA". */
+  privateRepoNote?: string;
   author: string;
   authorAvatar: string;
   techStack: string[];
@@ -33,39 +38,101 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: "1",
-    title: "Razor — Web3 Wallet & DEX",
-    slug: "razor",
+    title: "Razor DEX",
+    slug: "razor-dex",
     description:
-      "Lead frontend across three Web3 products on Movement — the first DEX, which scaled to 1.47M+ users, plus browser & mobile wallets.",
+      "A DEX for the Move ecosystem (Aptos, Sui, Movement) — and the first to launch on Movement — at the center of 50M+ transactions.",
     detailedDescription:
-      "Razor is a suite of three production Web3 products in the Movement blockchain ecosystem: the first decentralized exchange on Movement, a browser-extension wallet, and a React Native / Expo mobile wallet. As lead frontend engineer I own the architecture and UI consistency across all three codebases. The DEX ships swap, liquidity pools, and a lottery, and has scaled to 1.47M+ users and 50M+ transactions (32M+ swaps and 7.5M+ liquidity operations). The whole thing lives under one hard constraint: a money-moving interface has to stay fast, correct, and resilient while providers, networks, and quotes fail underneath it.",
-    image: "/projects/razor.jpg", // TODO: add image
-    tags: ["Web3", "Wallet", "DEX", "React Native", "TypeScript"],
+      "Razor DEX is a decentralized exchange for the Move ecosystem — the chains built on the Move language, including Aptos, Sui, and Movement — and the first DEX to launch on Movement. I lead the frontend — the swap interface, liquidity pools, and an on-chain lottery — built for correctness while quotes, providers, and the network shift underneath it. Across the ecosystem it has processed 50M+ transactions (32M+ swaps and 7.5M+ liquidity operations) for 1.47M+ users.",
+    image: "/projects/razor-dex.jpg", // TODO: product screenshot
+    tags: ["Web3", "DEX", "DeFi", "Frontend", "TypeScript"],
     status: "active",
-    techStack: ["React", "TypeScript", "React Native / Expo", "Redux", "Wagmi / Viem", "GraphQL"],
+    techStack: ["React", "TypeScript", "Redux", "Wagmi / Viem", "GraphQL"],
     features: [
-      "Three products, one system: the first DEX on Movement, a browser-extension wallet, and a React Native / Expo mobile wallet",
-      "A DEX that scaled to 1.47M+ users and 50M+ transactions — 32M+ swaps and 7.5M+ liquidity operations",
-      "Built the swap interface at the center of that volume — race- and stale-quote-safe",
-      "RPC failover (health checks, retry/timeout, fallback) that keeps wallets working through provider outages",
-      "Core wallet flows across extension + mobile: account generation, network switching, secure storage, full transaction-lifecycle tracking",
-      "A reusable component library standardizing UI across all three codebases",
+      "Swap interface engineered against race conditions and stale-quote trades",
+      "Liquidity pools driving 7.5M+ add/remove-liquidity operations",
+      "On-chain lottery",
+      "50M+ transactions and 32M+ swaps processed across 1.47M+ users",
+      "Multi-chain across the Move ecosystem (Aptos, Sui, Movement) — and the first DEX to launch on Movement",
     ],
     learningOutcomes: [
-      "Owned frontend architecture across three separate codebases and kept them visually and behaviorally consistent",
-      "Built an RPC failover layer so a single provider outage never takes wallets offline",
       "Engineered swap state to stay correct under stale quotes and network churn at 50M+ transaction scale",
-      "Integrated monitoring that surfaced production frontend errors which previously failed silently",
+      "Kept every money-moving flow race-safe and idempotent",
+      "Built first-mover on a brand-new chain — no established tooling to lean on",
     ],
     links: {
       visit: "https://razordex.xyz",
-      link: "https://chromewebstore.google.com/detail/razor-wallet/fdcnegogpncmfejlfnffnofpngdiejii",
+      x: "https://x.com/RazorDex_",
     },
+    isPrivateRepo: true,
     author: "Etinosa Ogbevoen",
     authorAvatar: "/icon.svg",
   },
   {
     id: "2",
+    title: "Razor Wallet",
+    slug: "razor-wallet",
+    description:
+      "A self-custody wallet for the Move ecosystem (Aptos, Sui, Movement), across browser extension and mobile, trusted by 80K+ people.",
+    detailedDescription:
+      "Razor Wallet is a self-custody wallet for the Move ecosystem — Aptos, Sui, and Movement — shipping as a browser extension (80,000+ installs) and a React Native / Expo mobile app for iOS and Android. I lead the frontend across both — account generation and management, network switching, secure storage, and full transaction-lifecycle tracking — backed by an RPC failover layer that keeps wallets working through provider outages.",
+    image: "/projects/razor-wallet.jpg", // TODO: product screenshot
+    tags: ["Web3", "Wallet", "React Native", "Frontend", "TypeScript"],
+    status: "active",
+    techStack: ["React", "TypeScript", "React Native / Expo", "Redux", "Wagmi / Viem"],
+    features: [
+      "Browser extension with 80,000+ installs, plus a React Native / Expo mobile app (iOS & Android)",
+      "Account generation, network switching, and secure storage",
+      "Full transaction-lifecycle tracking",
+      "RPC failover (health checks, retry/timeout, fallback) that survives provider outages",
+    ],
+    learningOutcomes: [
+      "Built an RPC failover layer so a single provider outage never takes wallets offline",
+      "Shared one UI system across extension and mobile without forking the design",
+      "Handled key generation and secure storage with the care self-custody demands",
+    ],
+    links: {
+      visit: "https://razorwallet.xyz",
+      link: "https://chromewebstore.google.com/detail/razor-wallet/fdcnegogpncmfejlfnffnofpngdiejii",
+      x: "https://x.com/RazorDAO",
+    },
+    isPrivateRepo: true,
+    author: "Etinosa Ogbevoen",
+    authorAvatar: "/icon.svg",
+  },
+  {
+    id: "3",
+    title: "Razor Kit",
+    slug: "razor-kit",
+    description:
+      "An open-source wallet-connection kit for the Move ecosystem — MIT, TypeScript, 100% coverage.",
+    detailedDescription:
+      "Razor Kit is the open-source wallet-connection kit for the Move ecosystem — the reusable frontend layer that lets any Move dapp (Aptos, Sui, Movement) add wallet connection and management in a few lines. Built in TypeScript with built-in themes, full customization, and 100% test coverage, published to npm and documented at kit.razorwallet.xyz. It's the standardized UI foundation behind Razor's own products, opened up for everyone.",
+    image: "/projects/razor-kit.jpg", // TODO: docs / demo screenshot
+    tags: ["Open Source", "TypeScript", "Library", "Web3"],
+    status: "active",
+    techStack: ["TypeScript", "React", "Vite", "npm"],
+    features: [
+      "Drop-in wallet connection and management for any Movement dapp",
+      "Built-in themes and fully customizable components",
+      "100% test coverage",
+      "Published to npm as @razorlabs/razorkit, MIT-licensed",
+    ],
+    learningOutcomes: [
+      "Designed a public API other developers build against — DX and docs treated as first-class",
+      "Held it to 100% coverage, because a library's bugs become everyone's bugs",
+      "Made it themeable by design so teams match their brand without forking",
+    ],
+    links: {
+      visit: "https://kit.razorwallet.xyz",
+      github: "https://github.com/razorlabsorg/razorkit",
+      link: "https://www.npmjs.com/package/@razorlabs/razorkit",
+    },
+    author: "Etinosa Ogbevoen",
+    authorAvatar: "/icon.svg",
+  },
+  {
+    id: "4",
     title: "Sportz — Real-Time Broadcast Platform",
     slug: "sportz",
     description:
@@ -101,13 +168,13 @@ export const projects: Project[] = [
       "Authored a 50+ page handbook of ADRs and production post-mortems as it was built",
     ],
     links: {
-      // TODO: add repo link if shareable
+      github: "https://github.com/Jheff4/sportz-websockets",
     },
     author: "Etinosa Ogbevoen",
     authorAvatar: "/icon.svg",
   },
   {
-    id: "3",
+    id: "5",
     title: "Stratos Wallet",
     slug: "stratos-wallet",
     description:
@@ -146,7 +213,7 @@ export const projects: Project[] = [
     authorAvatar: "/icon.svg",
   },
   {
-    id: "4",
+    id: "6",
     title: "Echo — Multi-Tenant AI Support SaaS",
     slug: "echo",
     description:
@@ -175,7 +242,7 @@ export const projects: Project[] = [
     authorAvatar: "/icon.svg",
   },
   {
-    id: "5",
+    id: "7",
     title: "Geoscape — AI Email Automation",
     slug: "geoscape",
     description:
@@ -198,8 +265,10 @@ export const projects: Project[] = [
       "Kept a human in the loop with an override dashboard rather than a black box",
     ],
     links: {
-      // TODO: add link if shareable (contract — may stay private)
+      // NDA — private software handling sensitive data; no public link.
     },
+    isPrivateRepo: true,
+    privateRepoNote: "NDA",
     author: "Etinosa Ogbevoen",
     authorAvatar: "/icon.svg",
   },

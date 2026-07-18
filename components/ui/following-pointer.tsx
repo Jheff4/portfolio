@@ -72,6 +72,8 @@ export const FollowPointer = ({
   title?: string | React.ReactNode;
   isPointer?: boolean;
 }) => {
+  // Picked once per render and shared by the cursor icon AND the name-tag
+  // border, so they change color together rather than drifting independently.
   const colors = [
     "#0ea5e9",
     "#737373",
@@ -81,6 +83,7 @@ export const FollowPointer = ({
     "#ef4444",
     "#eab308",
   ];
+  const color = colors[Math.floor(Math.random() * colors.length)];
   return (
     <motion.div
       className="absolute z-50 h-4 w-4 rounded-full"
@@ -111,7 +114,8 @@ export const FollowPointer = ({
           strokeWidth="2"
           strokeLinecap="round"
           strokeLinejoin="round"
-          className="h-6 w-6 translate-x-[-4px] translate-y-[-2px] text-emerald-400"
+          className="h-6 w-6 translate-x-[-4px] translate-y-[-2px]"
+          style={{ color }}
           xmlns="http://www.w3.org/2000/svg"
         >
           <path d="M18 11V6a2 2 0 0 0-2-2a2 2 0 0 0-2 2" />
@@ -125,7 +129,8 @@ export const FollowPointer = ({
           fill="currentColor"
           strokeWidth="1"
           viewBox="0 0 16 16"
-          className="h-6 w-6 translate-x-[-12px] translate-y-[-10px] rotate-[-70deg] transform stroke-emerald-500 text-emerald-400"
+          className="h-6 w-6 translate-x-[-12px] translate-y-[-10px] rotate-[-70deg] transform"
+          style={{ color, stroke: color }}
           height="1em"
           width="1em"
           xmlns="http://www.w3.org/2000/svg"
@@ -135,7 +140,7 @@ export const FollowPointer = ({
       )}
       <motion.div
         style={{
-          backgroundColor: colors[Math.floor(Math.random() * colors.length)],
+          backgroundColor: color,
         }}
         initial={{
           scale: 0.5,

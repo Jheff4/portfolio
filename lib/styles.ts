@@ -48,12 +48,12 @@ export const homePageStyles = {
       pointerEvents: 'none'
     } satisfies CSSProperties,
     content: "p-4",
-    header: "flex items-center gap-2 text-xs text-zinc-400 uppercase mb-2",
+    header: "flex items-center gap-2 text-xs text-white uppercase mb-2",
     headerIcon: "w-4 h-4",
-    title: "font-bold text-xl sm:text-2xl md:text-3xl text-zinc-100 mb-2",
-    description: "text-sm sm:text-base text-zinc-300",
+    title: "font-bold text-xl sm:text-2xl md:text-3xl text-white mb-2 transition-colors hover:text-amber-300",
+    description: "text-sm sm:text-base text-white",
     linkContainer: "mt-4",
-    link: "inline-flex items-center text-sm text-zinc-300 hover:text-zinc-100 transition-colors",
+    link: "inline-flex items-center text-sm text-white hover:text-amber-300 transition-colors",
     linkIcon: "w-4 h-4 ml-1"
   },
 
@@ -310,6 +310,10 @@ export const projectStyles = {
   statusBadge: "rounded-full px-3 py-1 text-xs font-medium backdrop-blur-md",
   statusActive: "bg-green-500/10 text-green-400 ring-1 ring-green-500/20",
   statusInactive: "bg-zinc-500/10 text-zinc-400 ring-1 ring-zinc-500/20",
+  // Same shape/size as otherButton so it reads as part of the button row,
+  // not a floating status pill — just non-interactive (no href, no hover).
+  privateTag: "flex items-center gap-1.5 rounded-lg border border-amber-500/20 bg-amber-500/10 px-4 py-2 text-xs font-semibold text-amber-400",
+  privateTagIcon: "h-3.5 w-3.5",
 
   // Bookmark button
   bookmarkButton: "absolute right-3 top-12 rounded-full bg-zinc-950/80 p-2 opacity-0 backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100 hover:bg-zinc-900",
@@ -403,6 +407,10 @@ export const projectDetailStyles = {
   visitButton: "inline-flex items-center gap-2 rounded-lg bg-zinc-100 px-5 py-3 text-sm font-semibold text-zinc-900 transition-all hover:bg-zinc-200 hover:shadow-lg hover:scale-105",
   secondaryButton: "inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-900 px-5 py-3 text-sm font-semibold text-zinc-300 transition-all hover:border-zinc-600 hover:bg-zinc-800 hover:text-zinc-100",
   buttonIcon: "h-4 w-4",
+  // Same shape/size as visitButton/secondaryButton so it sits in the button
+  // row as a peer — just non-interactive (no href, no hover) since it's a
+  // fact, not an action.
+  privateTag: "inline-flex items-center gap-2 rounded-lg border border-amber-500/20 bg-amber-500/10 px-5 py-3 text-sm font-semibold text-amber-400",
 
   // Project image
   imageContainer: "mb-12 rounded-2xl overflow-hidden border border-zinc-800",
@@ -432,8 +440,8 @@ export const projectDetailStyles = {
   // Learning outcomes
   learningOutcomesGrid: "grid grid-cols-1 sm:grid-cols-2 gap-3",
   learningOutcomeCard: "flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-900/30 p-3",
-  learningOutcomeNumber: "flex h-6 w-6 items-center justify-center rounded-full bg-green-500/10",
-  learningOutcomeNumberText: "text-xs font-medium text-green-400",
+  learningOutcomeNumber: "flex h-6 w-6 items-center justify-center rounded-full bg-amber-500/10",
+  learningOutcomeNumberText: "text-xs font-medium text-amber-400",
   learningOutcomeText: "text-sm text-zinc-400",
 
   // Sidebar sections
