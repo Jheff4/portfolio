@@ -32,7 +32,13 @@ const tools: Tool[] = [
   { name: "Slack", category: "Communication", icon: "/slack.webp", href: "https://slack.com" },
   { name: "Medium", category: "Writing", icon: "/medium.webp", href: "https://medium.com" },
   { name: "Lovable", category: "Productivity", icon: "/lovable.webp", href: "https://lovable.dev" },
-  { name: "Android Studio", category: "IDE", icon: "/android.webp", href: "https://developer.android.com/studio" },
+  { name: "GitHub", category: "Version Control", icon: "/github.svg", href: "https://github.com" },
+  { name: "Docker", category: "DevOps", icon: "/docker.svg", href: "https://docker.com" },
+  { name: "Figma", category: "Design", icon: "/figma.svg", href: "https://figma.com" },
+  { name: "Storybook", category: "Frontend", icon: "/storybook.svg", href: "https://storybook.js.org" },
+  { name: "Postman", category: "API", icon: "/postman.svg", href: "https://postman.com" },
+  { name: "Expo", category: "Mobile", icon: "/expo.svg", href: "https://expo.dev" },
+  { name: "Vercel", category: "Deployment", icon: "/vercel.svg", href: "https://vercel.com" },
 ];
 
 export default function ToolsPage() {

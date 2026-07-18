@@ -76,11 +76,32 @@ export default function HomePage() {
 
         {/* ── Bio paragraph ─────────────────────────────────────── */}
         <p className={s.paragraph}>
-          I craft fast, accessible, and visually sharp interfaces — frontend
-          engineer with a sharp eye for detail and a bias for shipping. I care
-          deeply about performance, animation quality, and the gap between a
-          good UI and a great one.
+          I build interfaces where mistakes cost money — crypto wallets (one
+          trusted by 80,000+ people), exchanges, and AI products. I sweat the
+          details most people never notice: every stroke, every indent, a
+          half-degree tilt that&apos;s off — the things I can&apos;t unsee. And
+          under the polish, the part I care about most: keeping a product fast,
+          correct, and resilient when the network fails underneath it.
         </p>
+
+        <div className="mb-10">
+          <Link
+            href="/about"
+            className="group inline-flex items-center gap-1.5 text-sm font-medium text-emerald-400 transition-colors hover:text-emerald-300"
+          >
+            More about me
+            <svg
+              className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+              strokeWidth={2}
+              aria-hidden
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
+          </Link>
+        </div>
 
         {/* ── Featured video card ───────────────────────────────── */}
         {/*
@@ -120,11 +141,12 @@ export default function HomePage() {
               <span>FEATURED WORK</span>
             </div>
             <h3 className={s.article.title}>
-              My 2025: shipping, signal, and a few uncomfortable rules
+              The engineering behind the interface
             </h3>
             <p className={s.article.description}>
-              A candid review of 2025 into 2026. The video above showcases some
-              of the key projects and moments from my journey.
+              From a Web3 exchange and wallets to production-grade fintech and AI
+              systems — the products I&apos;ve built and the decisions behind
+              them.
             </p>
             <div className={s.article.linkContainer}>
               <Link href="/projects" className={s.article.link}>

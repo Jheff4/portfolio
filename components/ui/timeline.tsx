@@ -17,12 +17,18 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [height, setHeight] = useState(0);
 
+  // Measure the timeline's real height and keep it in sync as content reflows
+  // (more entries, font/image loads, viewport resize). Measuring only once on
+  // mount leaves the gradient line stale — too short for the actual content.
   useEffect(() => {
-    if (ref.current) {
-      const rect = ref.current.getBoundingClientRect();
-      setHeight(rect.height);
-    }
-  }, [ref]);
+    const el = ref.current;
+    if (!el) return;
+    const measure = () => setHeight(el.getBoundingClientRect().height);
+    measure();
+    const observer = new ResizeObserver(measure);
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -38,7 +44,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
         {data.map((item, index) => (
           <div
             key={index}
-            className="flex justify-start pt-10 lg:pt-40 lg:gap-10"
+            className="flex justify-start pt-10 lg:pt-24 lg:gap-10"
           >
             <div className="sticky hidden lg:flex flex-col lg:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm lg:w-full">
               <div className="h-10 absolute left-3 w-10 rounded-full bg-white flex items-center justify-center">

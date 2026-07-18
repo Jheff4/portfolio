@@ -26,7 +26,7 @@ export default function ProjectsPage() {
         <div className={s.header}>
           <h1 className={s.pageTitle}>Projects</h1>
           <p className={s.pageSubtitle}>
-            Playground — Small MVPs to Production Apps
+            Production systems, real users, and the engineering behind them
           </p>
         </div>
 

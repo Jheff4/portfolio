@@ -119,6 +119,9 @@ export const timelineStyles = {
   iconContainerAmber: "mt-1 rounded-lg bg-amber-900/20 p-2",
   iconContainerRose: "mt-1 rounded-lg bg-rose-900/20 p-2",
   iconContainerEmerald: "mt-1 rounded-lg bg-emerald-900/20 p-2",
+  iconContainerCyan: "mt-1 rounded-lg bg-cyan-900/20 p-2",
+  iconContainerIndigo: "mt-1 rounded-lg bg-indigo-900/20 p-2",
+  iconContainerOrange: "mt-1 rounded-lg bg-orange-900/20 p-2",
 
   // Icon styles
   iconSize: "h-5 w-5",
@@ -128,6 +131,9 @@ export const timelineStyles = {
   iconAmber: "h-5 w-5 text-amber-400",
   iconRose: "h-5 w-5 text-rose-400",
   iconEmerald: "h-5 w-5 text-emerald-400",
+  iconCyan: "h-5 w-5 text-cyan-400",
+  iconIndigo: "h-5 w-5 text-indigo-400",
+  iconOrange: "h-5 w-5 text-orange-400",
 
   // Content styles
   contentTitle: "text-lg font-semibold text-white",
@@ -145,6 +151,10 @@ export const timelineStyles = {
   bulletGreen: "mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-green-500",
   bulletAmber: "mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-amber-500",
   bulletRose: "mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-rose-500",
+  bulletEmerald: "mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-emerald-500",
+  bulletCyan: "mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-cyan-500",
+  bulletIndigo: "mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-indigo-500",
+  bulletOrange: "mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-orange-500",
 
   // Technology badge styles
   techBadgesContainer: "flex flex-wrap gap-2 pt-2",

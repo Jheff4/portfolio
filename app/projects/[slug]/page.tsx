@@ -147,7 +147,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             {/* Learning outcomes */}
             {project.learningOutcomes.length > 0 && (
               <section>
-                <h2 className={s.sectionTitle}>What I Learned</h2>
+                <h2 className={s.sectionTitle}>Key Engineering Decisions</h2>
                 <div className={s.learningOutcomesGrid}>
                   {project.learningOutcomes.map((outcome, i) => (
                     <div key={outcome} className={s.learningOutcomeCard}>
