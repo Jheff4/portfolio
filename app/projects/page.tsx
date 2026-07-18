@@ -97,6 +97,17 @@ export default function ProjectsPage() {
                           GitHub
                         </a>
                       )}
+                      {project.extraLinks?.map(({ label, url }) => (
+                        <a
+                          key={url}
+                          href={url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`${s.otherButton} relative z-20`}
+                        >
+                          {label}
+                        </a>
+                      ))}
                       {project.isPrivateRepo && (
                         <span className={`${s.privateTag} relative z-20`}>
                           <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

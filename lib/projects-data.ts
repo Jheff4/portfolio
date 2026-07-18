@@ -21,6 +21,8 @@ export interface Project {
   isPrivateRepo?: boolean;
   /** Short reason shown alongside the private badge, e.g. "NDA". */
   privateRepoNote?: string;
+  /** Extra named links beyond the fixed set above — e.g. a second repo when frontend/backend/docs are split across repos. */
+  extraLinks?: { label: string; url: string }[];
   author: string;
   authorAvatar: string;
   techStack: string[];
@@ -138,7 +140,7 @@ export const projects: Project[] = [
     description:
       "A full-stack real-time multi-sport broadcast system delivering live scores and commentary at sub-second latency.",
     detailedDescription:
-      "Sportz is a full-stack real-time broadcast platform that streams live scores and ball-by-ball commentary to viewers at sub-second latency. It's built the way production systems should be: real-time state as a single source of truth, a full test pyramid, end-to-end observability, and hardened APIs — with the whole architecture and its failure modes documented in a 50+ page engineering handbook.",
+      "Sportz is a full-stack real-time broadcast platform — a React frontend and a Node/WebSocket backend, in separate repos — that streams live scores and ball-by-ball commentary at sub-second latency. It's built the way production systems should be: real-time state as a single source of truth, a full test pyramid, end-to-end observability, and hardened APIs. The architecture and its failure modes are written up in a companion engineering handbook (see Sportz Docs).",
     image: "/projects/sportz.jpg", // TODO: add image
     tags: ["Real-time", "Full-Stack", "TypeScript", "Observability", "Testing"],
     status: "active",
@@ -167,20 +169,50 @@ export const projects: Project[] = [
       "Made the system observable end to end so a single request is followable browser → backend → DB",
       "Authored a 50+ page handbook of ADRs and production post-mortems as it was built",
     ],
-    links: {
-      github: "https://github.com/Jheff4/sportz-websockets",
-    },
+    // Two separate repos — labelled clearly since both are "source code".
+    links: {},
+    extraLinks: [
+      { label: "Frontend", url: "https://github.com/Jheff4/sportz-ui" },
+      { label: "Backend", url: "https://github.com/Jheff4/sportz-websockets" },
+    ],
     author: "Etinosa Ogbevoen",
     authorAvatar: "/icon.svg",
   },
   {
     id: "5",
+    title: "Sportz Docs",
+    slug: "sportz-docs",
+    description:
+      "The engineering handbook for Sportz — 50+ pages of ADRs and production post-mortems.",
+    detailedDescription:
+      "A companion documentation site for Sportz — a searchable handbook of architecture decision records and production post-mortems, written as the system was built rather than after the fact. It exists so the reasoning behind a decision (and the failure that prompted it) is as discoverable as the code itself.",
+    image: "/projects/sportz-docs.jpg", // TODO: add image
+    tags: ["Documentation", "TypeScript", "Frontend"],
+    status: "active",
+    techStack: ["TypeScript", "React", "MDX"],
+    features: [
+      "50+ pages of architecture decision records (ADRs), written at decision time",
+      "Production post-mortems documenting real failures and the fixes that followed",
+      "Searchable, versioned handbook — not a wiki nobody maintains",
+    ],
+    learningOutcomes: [
+      "Treated documentation as a deliverable with its own frontend, not an afterthought in a README",
+      "Wrote ADRs and post-mortems as they happened, so the reasoning doesn't get lost in hindsight",
+    ],
+    links: {
+      github: "https://github.com/Jheff4/sportz-docs",
+    },
+    author: "Etinosa Ogbevoen",
+    authorAvatar: "/icon.svg",
+  },
+  {
+    id: "6",
     title: "Stratos Wallet",
     slug: "stratos-wallet",
     description:
       "A production-grade fintech wallet frontend built around ledger-first correctness and real-time resilience.",
     detailedDescription:
-      "Stratos is a production-grade fintech wallet frontend — a deliberate deep-dive into the hard parts of money software on the client: correctness, real-time state, and resilience under failure. It pairs a ledger-first data model with a custom real-time reliability protocol and a chaos harness that proves the UI degrades gracefully instead of only working on the happy path.",
+      "Stratos is a production-grade fintech wallet frontend — a deliberate deep-dive into the hard parts of money software on the client: correctness, real-time state, and resilience under failure. It pairs a ledger-first data model with a custom real-time reliability protocol and a chaos harness that proves the UI degrades gracefully instead of only working on the happy path. The design decisions behind it are documented in a companion Docusaurus site (see Stratos Docs).",
     image: "/projects/stratos.jpg", // TODO: add image
     tags: ["Fintech", "React", "TypeScript", "GraphQL", "Real-time"],
     status: "active",
@@ -207,13 +239,41 @@ export const projects: Project[] = [
       "Made resilience testable by injecting 18 failure modes instead of trusting the happy path",
     ],
     links: {
-      // TODO: add repo / live / docs links
+      github: "https://github.com/Jheff4/stratos-wallet",
     },
     author: "Etinosa Ogbevoen",
     authorAvatar: "/icon.svg",
   },
   {
-    id: "6",
+    id: "7",
+    title: "Stratos Docs",
+    slug: "stratos-docs",
+    description:
+      "A Docusaurus documentation site for Stratos — ADRs, engineering stories, interview prep, and quizzes.",
+    detailedDescription:
+      "The companion documentation site for Stratos Wallet, built with Docusaurus: architecture decision records for every major call, narrative engineering stories walking through failure modes and the patterns that prevent them, an interview-prep section (system design, real-time, data & state, React architecture, behavioral), and self-testing quizzes across the whole system.",
+    image: "/projects/stratos-docs.jpg", // TODO: add image
+    tags: ["Documentation", "Docusaurus", "Frontend"],
+    status: "active",
+    techStack: ["Docusaurus", "React", "MDX", "TypeScript"],
+    features: [
+      "Architecture Decision Records for every major design call",
+      "Engineering stories — narrative write-ups of failure modes and the patterns that prevent them",
+      "Interview-prep section: system design, real-time, data & state, React architecture, behavioral",
+      "Self-testing quizzes across architecture, data model, state, real-time, and resilience",
+    ],
+    learningOutcomes: [
+      "Built a docs site good enough that other engineers actually use it, not just write it",
+      "Turned interview prep into a maintained artifact instead of a one-off cram session",
+    ],
+    links: {
+      github: "https://github.com/Jheff4/stratos-wallet",
+    },
+    author: "Etinosa Ogbevoen",
+    authorAvatar: "/icon.svg",
+  },
+  {
+    id: "8",
     title: "Echo — Multi-Tenant AI Support SaaS",
     slug: "echo",
     description:
@@ -236,21 +296,21 @@ export const projects: Project[] = [
       "Kept credentials out of the app entirely — only secret references stored, real secrets in a managed store",
     ],
     links: {
-      // TODO: add link if shareable
+      github: "https://github.com/Jheff4/echo",
     },
     author: "Etinosa Ogbevoen",
     authorAvatar: "/icon.svg",
   },
   {
-    id: "7",
+    id: "9",
     title: "Geoscape — AI Email Automation",
     slug: "geoscape",
     description:
-      "Contract work: an AI platform that classifies email intent and automates CRM workflows, with a reliability layer.",
+      "An AI platform that classifies email intent and automates CRM workflows, with a reliability layer.",
     detailedDescription:
-      "A contract build: an AI-powered email management and workflow automation platform that reads incoming email intent and routes requests straight into CRM workflows, replacing manual triage. The core of the work is an AI reliability layer — structured prompting, output validation, confidence-based routing, and fallback behavior — so malformed or hallucinated model responses never reach downstream CRM systems. Built on the Vercel AI SDK (Gemini).",
+      "An AI-powered email management and workflow automation platform that reads incoming email intent and routes requests straight into CRM workflows, replacing manual triage. The core of the work is an AI reliability layer — structured prompting, output validation, confidence-based routing, and fallback behavior — so malformed or hallucinated model responses never reach downstream CRM systems. Built on the Vercel AI SDK (Gemini).",
     image: "/projects/geoscape.jpg", // TODO: add image
-    tags: ["AI", "LLM", "Automation", "Contract"],
+    tags: ["AI", "LLM", "Automation"],
     status: "active",
     techStack: ["React", "TypeScript", "Vercel AI SDK", "Gemini", "Node.js"],
     features: [

@@ -402,8 +402,9 @@ export const projectDetailStyles = {
   tagsContainer: "flex flex-wrap gap-2 mb-8",
   tag: "rounded-full bg-zinc-800 px-3 py-1 text-sm font-medium text-zinc-300 transition-colors hover:bg-zinc-700 hover:text-zinc-100",
 
-  // Action buttons
-  actionButtonsContainer: "flex flex-wrap gap-3",
+  // Action buttons (+ status/private badges) — items-center so the small
+  // status pill lines up with the taller buttons instead of top-floating.
+  actionButtonsContainer: "flex flex-wrap items-center gap-3 lg:justify-end",
   visitButton: "inline-flex items-center gap-2 rounded-lg bg-zinc-100 px-5 py-3 text-sm font-semibold text-zinc-900 transition-all hover:bg-zinc-200 hover:shadow-lg hover:scale-105",
   secondaryButton: "inline-flex items-center gap-2 rounded-lg border border-zinc-700 bg-zinc-900 px-5 py-3 text-sm font-semibold text-zinc-300 transition-all hover:border-zinc-600 hover:bg-zinc-800 hover:text-zinc-100",
   buttonIcon: "h-4 w-4",
