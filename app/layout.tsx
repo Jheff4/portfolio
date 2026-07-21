@@ -26,11 +26,21 @@ export const metadata: Metadata = {
     // Pages can set their own title: "Projects | Etinosa"
     template: "%s | Etinosa",
   },
-  description: "Full-stack engineer building products that ship.",
+  description:
+    "Frontend engineer building interfaces where mistakes cost money — wallets, exchanges, and AI products.",
   openGraph: {
-    title: "Etinosa's Portfolio",
-    description: "Full-stack engineer building products that ship.",
+    title: "Etinosa Ogbevoen — Frontend Engineer",
+    description:
+      "Frontend engineer building interfaces where mistakes cost money — wallets, exchanges, and AI products.",
     type: "website",
+    // og:image is auto-injected from app/opengraph-image.tsx
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Etinosa Ogbevoen — Frontend Engineer",
+    description:
+      "Frontend engineer building interfaces where mistakes cost money — wallets, exchanges, and AI products.",
+    // twitter:image falls back to the og:image above
   },
 };
 

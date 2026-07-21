@@ -46,10 +46,10 @@ export const projects: Project[] = [
       "A DEX for the Move ecosystem (Aptos, Sui, Movement) — and the first to launch on Movement — at the center of 50M+ transactions.",
     detailedDescription:
       "Razor DEX is a decentralized exchange for the Move ecosystem — the chains built on the Move language, including Aptos, Sui, and Movement — and the first DEX to launch on Movement. I lead the frontend — the swap interface, liquidity pools, and an on-chain lottery — built for correctness while quotes, providers, and the network shift underneath it. Across the ecosystem it has processed 50M+ transactions (32M+ swaps and 7.5M+ liquidity operations) for 1.47M+ users.",
-    image: "/projects/razor-dex.jpg", // TODO: product screenshot
+    image: "/projects/razor-dex.png",
     tags: ["Web3", "DEX", "DeFi", "Frontend", "TypeScript"],
     status: "active",
-    techStack: ["React", "TypeScript", "Redux", "Wagmi / Viem", "GraphQL"],
+    techStack: ["React", "TypeScript", "Redux", "Wagmi / Viem", "REST", "GraphQL"],
     features: [
       "Swap interface engineered against race conditions and stale-quote trades",
       "Liquidity pools driving 7.5M+ add/remove-liquidity operations",
@@ -77,20 +77,20 @@ export const projects: Project[] = [
     description:
       "A self-custody wallet for the Move ecosystem (Aptos, Sui, Movement), across browser extension and mobile, trusted by 80K+ people.",
     detailedDescription:
-      "Razor Wallet is a self-custody wallet for the Move ecosystem — Aptos, Sui, and Movement — shipping as a browser extension (80,000+ installs) and a React Native / Expo mobile app for iOS and Android. I lead the frontend across both — account generation and management, network switching, secure storage, and full transaction-lifecycle tracking — backed by an RPC failover layer that keeps wallets working through provider outages.",
+      "Razor Wallet is a self-custody wallet for the Move ecosystem — Aptos, Sui, and Movement — shipping as a browser extension (80,000+ installs) and a React Native / Expo mobile app for iOS and Android, both living in a single monorepo. I lead the frontend across both — account generation and management, network switching, secure storage, and full transaction-lifecycle tracking — backed by an RPC failover layer that keeps wallets working through provider outages.",
     image: "/projects/razor-wallet.jpg", // TODO: product screenshot
-    tags: ["Web3", "Wallet", "React Native", "Frontend", "TypeScript"],
+    tags: ["Web3", "Wallet", "React Native", "Monorepo", "TypeScript"],
     status: "active",
     techStack: ["React", "TypeScript", "React Native / Expo", "Redux", "Wagmi / Viem"],
     features: [
-      "Browser extension with 80,000+ installs, plus a React Native / Expo mobile app (iOS & Android)",
+      "Browser extension (80,000+ installs) and a React Native / Expo mobile app (iOS & Android) — both in one monorepo",
       "Account generation, network switching, and secure storage",
       "Full transaction-lifecycle tracking",
       "RPC failover (health checks, retry/timeout, fallback) that survives provider outages",
     ],
     learningOutcomes: [
       "Built an RPC failover layer so a single provider outage never takes wallets offline",
-      "Shared one UI system across extension and mobile without forking the design",
+      "Ran extension and mobile from one monorepo — a shared UI system and shared logic, no forked design",
       "Handled key generation and secure storage with the care self-custody demands",
     ],
     links: {
@@ -141,7 +141,7 @@ export const projects: Project[] = [
       "A full-stack real-time multi-sport broadcast system delivering live scores and commentary at sub-second latency.",
     detailedDescription:
       "Sportz is a full-stack real-time broadcast platform — a React frontend and a Node/WebSocket backend, in separate repos — that streams live scores and ball-by-ball commentary at sub-second latency. It's built the way production systems should be: real-time state as a single source of truth, a full test pyramid, end-to-end observability, and hardened APIs. The architecture and its failure modes are written up in a companion engineering handbook (see Sportz Docs).",
-    image: "/projects/sportz.jpg", // TODO: add image
+    image: "/projects/sportz.png",
     tags: ["Real-time", "Full-Stack", "TypeScript", "Observability", "Testing"],
     status: "active",
     techStack: [
@@ -170,7 +170,9 @@ export const projects: Project[] = [
       "Authored a 50+ page handbook of ADRs and production post-mortems as it was built",
     ],
     // Two separate repos — labelled clearly since both are "source code".
-    links: {},
+    links: {
+      visit: "https://sportz-ui.vercel.app",
+    },
     extraLinks: [
       { label: "Frontend", url: "https://github.com/Jheff4/sportz-ui" },
       { label: "Backend", url: "https://github.com/Jheff4/sportz-websockets" },
@@ -186,20 +188,21 @@ export const projects: Project[] = [
       "The engineering handbook for Sportz — 50+ pages of ADRs and production post-mortems.",
     detailedDescription:
       "A companion documentation site for Sportz — a searchable handbook of architecture decision records and production post-mortems, written as the system was built rather than after the fact. It exists so the reasoning behind a decision (and the failure that prompted it) is as discoverable as the code itself.",
-    image: "/projects/sportz-docs.jpg", // TODO: add image
-    tags: ["Documentation", "TypeScript", "Frontend"],
+    image: "/projects/sportz-docs.jpg",
+    tags: ["Documentation", "Mintlify", "MDX"],
     status: "active",
-    techStack: ["TypeScript", "React", "MDX"],
+    techStack: ["Mintlify", "MDX", "TypeScript"],
     features: [
       "50+ pages of architecture decision records (ADRs), written at decision time",
       "Production post-mortems documenting real failures and the fixes that followed",
       "Searchable, versioned handbook — not a wiki nobody maintains",
     ],
     learningOutcomes: [
-      "Treated documentation as a deliverable with its own frontend, not an afterthought in a README",
+      "Treated documentation as a real deliverable — structured, searchable, and maintained — not an afterthought in a README",
       "Wrote ADRs and post-mortems as they happened, so the reasoning doesn't get lost in hindsight",
     ],
     links: {
+      visit: "https://sportzdocs.mintlify.site",
       github: "https://github.com/Jheff4/sportz-docs",
     },
     author: "Etinosa Ogbevoen",
@@ -212,9 +215,9 @@ export const projects: Project[] = [
     description:
       "A production-grade fintech wallet frontend built around ledger-first correctness and real-time resilience.",
     detailedDescription:
-      "Stratos is a production-grade fintech wallet frontend — a deliberate deep-dive into the hard parts of money software on the client: correctness, real-time state, and resilience under failure. It pairs a ledger-first data model with a custom real-time reliability protocol and a chaos harness that proves the UI degrades gracefully instead of only working on the happy path. The design decisions behind it are documented in a companion Docusaurus site (see Stratos Docs).",
-    image: "/projects/stratos.jpg", // TODO: add image
-    tags: ["Fintech", "React", "TypeScript", "GraphQL", "Real-time"],
+      "Stratos is a production-grade fintech wallet frontend — a deliberate deep-dive into the hard parts of money software on the client: correctness, real-time state, and resilience under failure. It pairs a ledger-first data model with a custom real-time reliability protocol and a chaos harness that proves the UI degrades gracefully instead of only working on the happy path. The design decisions behind it are documented in a companion Docusaurus site that lives in the same monorepo (see Stratos Docs).",
+    image: "/projects/stratos.png",
+    tags: ["Fintech", "React", "TypeScript", "Monorepo", "Real-time"],
     status: "active",
     techStack: [
       "React 19",
@@ -277,14 +280,15 @@ export const projects: Project[] = [
     title: "Echo — Multi-Tenant AI Support SaaS",
     slug: "echo",
     description:
-      "A multi-tenant AI customer-support platform with an embeddable widget, RAG, and hard tenant isolation.",
+      "A full-stack, multi-tenant AI customer-support SaaS — embeddable widget, RAG, and hard tenant isolation — built in one monorepo.",
     detailedDescription:
-      "Echo is a multi-tenant AI customer-support SaaS: an embeddable AI support widget backed by a retrieval-augmented generation pipeline, real-time conversation management, and human-escalation workflows — with full organization isolation and production security boundaries so one tenant can never reach another's data.",
+      "Echo is a full-stack, multi-tenant AI customer-support SaaS, built end to end in a single monorepo — frontend, backend, and shared types in one codebase. It ships an embeddable AI support widget backed by a retrieval-augmented generation pipeline, real-time conversation management, and human-escalation workflows — with full organization isolation and production security boundaries so one tenant can never reach another's data.",
     image: "/projects/echo.jpg", // TODO: add image
-    tags: ["AI", "RAG", "SaaS", "Multi-Tenant"],
+    tags: ["AI", "RAG", "SaaS", "Full-Stack", "Monorepo"],
     status: "active",
     techStack: ["React", "TypeScript", "RAG", "Embeddings", "Vector Search", "Node.js"], // confirm/expand
     features: [
+      "Full-stack in a single monorepo — frontend, backend, and shared types in one codebase",
       "Embeddable AI support widget with a retrieval-augmented generation pipeline",
       "Full organization isolation across every tenant",
       "Real-time conversation management with human-escalation workflows",
@@ -303,13 +307,13 @@ export const projects: Project[] = [
   },
   {
     id: "9",
-    title: "Geoscape — AI Email Automation",
-    slug: "geoscape",
+    title: "AI Email Automation",
+    slug: "ai-email-automation",
     description:
       "An AI platform that classifies email intent and automates CRM workflows, with a reliability layer.",
     detailedDescription:
       "An AI-powered email management and workflow automation platform that reads incoming email intent and routes requests straight into CRM workflows, replacing manual triage. The core of the work is an AI reliability layer — structured prompting, output validation, confidence-based routing, and fallback behavior — so malformed or hallucinated model responses never reach downstream CRM systems. Built on the Vercel AI SDK (Gemini).",
-    image: "/projects/geoscape.jpg", // TODO: add image
+    image: "/projects/ai-email-automation.svg", // NDA — bespoke "under NDA" placeholder, no product shot
     tags: ["AI", "LLM", "Automation"],
     status: "active",
     techStack: ["React", "TypeScript", "Vercel AI SDK", "Gemini", "Node.js"],

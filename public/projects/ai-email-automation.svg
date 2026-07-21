@@ -1,0 +1,25 @@
+<svg viewBox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Geoscape — protected under NDA">
+  <defs>
+    <radialGradient id="g-glow" cx="50%" cy="42%" r="60%">
+      <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.16"/>
+      <stop offset="100%" stop-color="#f59e0b" stop-opacity="0"/>
+    </radialGradient>
+    <pattern id="g-grid" width="48" height="48" patternUnits="userSpaceOnUse">
+      <path d="M48 0H0V48" fill="none" stroke="#ffffff" stroke-opacity="0.035" stroke-width="1"/>
+    </pattern>
+  </defs>
+
+  <rect width="1440" height="900" fill="#09090b"/>
+  <rect width="1440" height="900" fill="url(#g-grid)"/>
+  <rect width="1440" height="900" fill="url(#g-glow)"/>
+
+  <!-- lock badge -->
+  <rect x="656" y="316" width="128" height="128" rx="32" fill="#1c1917" stroke="#f59e0b" stroke-opacity="0.35" stroke-width="2"/>
+  <g stroke="#fbbf24" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <rect x="696" y="382" width="48" height="38" rx="7"/>
+    <path d="M706 382 V370 a14 14 0 0 1 28 0 V382"/>
+  </g>
+
+  <text x="720" y="520" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="36" font-weight="700" fill="#fafafa" letter-spacing="0.5">Protected under NDA</text>
+  <text x="720" y="566" text-anchor="middle" font-family="ui-monospace, SFMono-Regular, Menlo, monospace" font-size="20" fill="#a1a1aa">AI email automation · private client software</text>
+</svg>

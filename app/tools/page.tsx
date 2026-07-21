@@ -27,7 +27,6 @@ const tools: Tool[] = [
   { name: "PyCharm", category: "IDE", icon: "/pycharm.webp", href: "https://jetbrains.com/pycharm" },
   { name: "Windsurf", category: "IDE", icon: "/windsurf.webp", href: "https://codeium.com/windsurf" },
   { name: "Perplexity", category: "Research", icon: "/perplexity.webp", href: "https://perplexity.ai" },
-  { name: "Hugging Face", category: "AI Platform", icon: "/huggingface.webp", href: "https://huggingface.co" },
   { name: "Gemini", category: "Productivity", icon: "/gemini.webp", href: "https://gemini.google.com" },
   { name: "Slack", category: "Communication", icon: "/slack.webp", href: "https://slack.com" },
   { name: "Medium", category: "Writing", icon: "/medium.webp", href: "https://medium.com" },

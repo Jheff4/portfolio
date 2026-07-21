@@ -141,8 +141,9 @@ export default function AboutPage() {
                   for the details most people never register — every stroke,
                   indent, and half-degree tilt — because those are exactly what
                   make an interface feel considered. Frontend-first, but
-                  comfortable across the stack: GraphQL, WebSockets,
-                  observability, and LLM integration when a project needs it.
+                  comfortable across the stack: REST and GraphQL, WebSockets,
+                  monorepos, observability, and LLM integration when a project
+                  needs it.
                 </p>
               </section>
 
@@ -176,8 +177,8 @@ export default function AboutPage() {
                 <h2 className={s.sectionHeading}>My Journey</h2>
                 <p className={s.paragraph}>
                   I started building for the web in{" "}
-                  <strong className="font-semibold text-white">2018</strong> and
-                  narrowed from generalist into frontend engineering at scale.
+                  <strong className="font-semibold text-white">2018</strong>{" "}
+                  and narrowed from generalist into frontend engineering at scale.
                   Today I lead frontend across Razor&apos;s Move-ecosystem
                   products — a DEX that&apos;s first on Movement (
                   <strong className="font-semibold text-white">1.47M+ users</strong>

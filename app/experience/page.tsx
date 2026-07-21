@@ -347,7 +347,7 @@ const timelineData = [
 
 const techCategories = [
   { label: "Frontend", color: s.textBlue, techs: "React, Next.js, React Native, TypeScript, Tailwind" },
-  { label: "State & Data", color: s.textGreen, techs: "TanStack Query, Redux Toolkit, Zustand, Jotai, GraphQL, Zod" },
+  { label: "State & Data", color: s.textGreen, techs: "TanStack Query, Redux Toolkit, Zustand, Jotai, REST, GraphQL, Zod" },
   { label: "Real-time & Web3", color: s.textCyan, techs: "WebSockets, reliability protocols, Wagmi, Viem, Foundry" },
   { label: "AI / LLM", color: s.textPurple, techs: "Vercel AI SDK, Gemini, RAG, embeddings" },
   { label: "Backend & Data", color: s.textAmber, techs: "Node.js, Express, PostgreSQL, AWS, Convex" },

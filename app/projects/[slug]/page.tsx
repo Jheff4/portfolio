@@ -210,7 +210,7 @@ export default async function ProjectDetailPage({ params }: Props) {
             </div>
 
             {/* Project Links — only render when there's at least one link
-                (e.g. Geoscape is NDA-private with no public links at all). */}
+                (an NDA-private project may have no public links at all). */}
             {(project.links.github ||
               project.links.visit ||
               project.links.link ||
