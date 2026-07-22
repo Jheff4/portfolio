@@ -431,6 +431,8 @@ export function Sidebar() {
       </div>
 
       {/* ── Mobile bottom nav ──────────────────────────────── */}
+      {/* Commented out — redundant with the top bar's hamburger drawer,
+          which is the nav we're keeping on mobile.
       <div className={s.bottomNav}>
         <div className={s.bottomNavContainer}>
           <div className={s.bottomNavInner}>
@@ -451,6 +453,7 @@ export function Sidebar() {
           </div>
         </div>
       </div>
+      */}
     </>
   );
 }
