@@ -13,57 +13,17 @@ export const BackgroundBeamsWithCollision = ({
   const containerRef = useRef<HTMLDivElement>(null);
   const parentRef = useRef<HTMLDivElement>(null);
 
+  // Positioned as a % of the container width (not fixed px) so the beams stay
+  // evenly spread on every screen — on a phone the old px values pushed most
+  // of them off-screen to the right, leaving 2–3 clustered on the left.
   const beams = [
-    {
-      initialX: 10,
-      translateX: 10,
-      duration: 7,
-      repeatDelay: 3,
-      delay: 2,
-    },
-    {
-      initialX: 600,
-      translateX: 600,
-      duration: 3,
-      repeatDelay: 3,
-      delay: 4,
-    },
-    {
-      initialX: 100,
-      translateX: 100,
-      duration: 7,
-      repeatDelay: 7,
-      className: "h-6",
-    },
-    {
-      initialX: 400,
-      translateX: 400,
-      duration: 5,
-      repeatDelay: 14,
-      delay: 4,
-    },
-    {
-      initialX: 800,
-      translateX: 800,
-      duration: 11,
-      repeatDelay: 2,
-      className: "h-20",
-    },
-    {
-      initialX: 1000,
-      translateX: 1000,
-      duration: 4,
-      repeatDelay: 2,
-      className: "h-12",
-    },
-    {
-      initialX: 1200,
-      translateX: 1200,
-      duration: 6,
-      repeatDelay: 4,
-      delay: 2,
-      className: "h-6",
-    },
+    { left: "8%", duration: 7, repeatDelay: 3, delay: 2 },
+    { left: "22%", duration: 3, repeatDelay: 3, delay: 4 },
+    { left: "36%", duration: 7, repeatDelay: 7, className: "h-6" },
+    { left: "50%", duration: 5, repeatDelay: 14, delay: 4 },
+    { left: "64%", duration: 11, repeatDelay: 2, className: "h-20" },
+    { left: "78%", duration: 4, repeatDelay: 2, className: "h-12" },
+    { left: "92%", duration: 6, repeatDelay: 4, delay: 2, className: "h-6" },
   ];
 
   return (
@@ -77,7 +37,7 @@ export const BackgroundBeamsWithCollision = ({
     >
       {beams.map((beam) => (
         <CollisionMechanism
-          key={beam.initialX + "beam-idx"}
+          key={beam.left + "beam-idx"}
           beamOptions={beam}
           containerRef={containerRef}
           parentRef={parentRef}
@@ -103,10 +63,9 @@ const CollisionMechanism = React.forwardRef<
     containerRef: React.RefObject<HTMLDivElement | null>;
     parentRef: React.RefObject<HTMLDivElement | null>;
     beamOptions?: {
-      initialX?: number;
-      translateX?: number;
-      initialY?: number;
-      translateY?: number;
+      left?: string;
+      initialY?: number | string;
+      translateY?: number | string;
       rotate?: number;
       className?: string;
       duration?: number;
@@ -181,13 +140,11 @@ const CollisionMechanism = React.forwardRef<
         animate="animate"
         initial={{
           translateY: beamOptions.initialY || "-200px",
-          translateX: beamOptions.initialX || "0px",
           rotate: beamOptions.rotate || 0,
         }}
         variants={{
           animate: {
             translateY: beamOptions.translateY || "1800px",
-            translateX: beamOptions.translateX || "0px",
             rotate: beamOptions.rotate || 0,
           },
         }}
@@ -199,8 +156,9 @@ const CollisionMechanism = React.forwardRef<
           delay: beamOptions.delay || 0,
           repeatDelay: beamOptions.repeatDelay || 0,
         }}
+        style={{ left: beamOptions.left ?? "0%" }}
         className={cn(
-          "absolute left-0 top-20 m-auto h-14 w-px rounded-full bg-linear-to-t from-yellow-500 via-green-500 to-transparent",
+          "absolute top-20 m-auto h-14 w-px rounded-full bg-linear-to-t from-yellow-500 via-green-500 to-transparent",
           beamOptions.className,
         )}
       />

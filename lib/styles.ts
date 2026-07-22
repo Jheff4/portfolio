@@ -330,7 +330,7 @@ export const projectStyles = {
 
   // Actions
   actionsContainer: "mt-auto flex items-center justify-between pt-5",
-  actionsLinksContainer: "flex gap-2",
+  actionsLinksContainer: "flex flex-wrap gap-2",
 
   // Buttons
   visitButton: "rounded-lg bg-zinc-100 px-4 py-2 text-xs font-semibold text-zinc-900 transition-all hover:bg-zinc-200 hover:shadow-lg",
