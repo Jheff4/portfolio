@@ -415,7 +415,7 @@ export const projectDetailStyles = {
 
   // Project image
   imageContainer: "mb-12 rounded-2xl overflow-hidden border border-zinc-800",
-  projectImage: "w-full h-auto aspect-video object-cover",
+  projectImage: "w-full h-auto aspect-[16/10] object-cover",
 
   // Main grid
   gridContainer: "grid grid-cols-1 lg:grid-cols-3 gap-8",

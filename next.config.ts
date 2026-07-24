@@ -7,6 +7,8 @@ const nextConfig: NextConfig = {
     dangerouslyAllowSVG: true,
     contentDispositionType: "attachment",
     contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    // Default is [75]; the Echo detail image explicitly requests quality=100.
+    qualities: [75, 100],
   },
 };
 
