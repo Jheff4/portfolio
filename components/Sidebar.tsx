@@ -123,6 +123,23 @@ const MailIcon = ({ className, ...props }: IconProps) => (
     <path strokeLinecap="round" strokeLinejoin="round" d="M3 7l9 7 9-7" />
   </svg>
 );
+const DownloadIcon = ({ className, ...props }: IconProps) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    strokeWidth={2}
+    stroke="currentColor"
+    aria-hidden
+    className={className}
+    {...props}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M12 3v12m0 0l-4-4m4 4l4-4M4 17v2a2 2 0 002 2h12a2 2 0 002-2v-2"
+    />
+  </svg>
+);
 const MenuIcon = ({ className, ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
@@ -313,6 +330,15 @@ export function Sidebar() {
           </ul>
         </nav>
 
+        <a
+          href="/etinosa-ogbevoen-cv.pdf"
+          download
+          className={s.downloadCvButton}
+        >
+          <DownloadIcon className={s.downloadCvIcon} />
+          Download CV
+        </a>
+
         <p className={s.connectLabel}>Connect</p>
         <ul className={s.socialList}>
           {socials.map(({ label, href, svgPath }) => (
@@ -395,7 +421,17 @@ export function Sidebar() {
               ))}
             </ul>
 
-            <div className="mt-8">
+            <a
+              href="/etinosa-ogbevoen-cv.pdf"
+              download
+              className={`${s.mobileDownloadCvButton} mt-6`}
+              onClick={() => setMenuOpen(false)}
+            >
+              <DownloadIcon className={s.mobileDownloadCvIcon} />
+              Download CV
+            </a>
+
+            <div>
               <p className={s.mobileSectionLabel}>CONNECT</p>
               <ul className={s.mobileSocialList}>
                 {socials.map(({ label, href, svgPath }) => (

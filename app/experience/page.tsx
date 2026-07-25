@@ -27,7 +27,7 @@ const timelineData = [
             </svg>
           </div>
           <div>
-            <p className={s.contentTitle}>Lead Frontend Engineer · Razor DAO</p>
+            <p className={s.contentTitle}>Lead Frontend Engineer · Razor Labs</p>
             <p className={s.contentSubtitle}>The first DEX on the Movement blockchain — plus wallet & mobile</p>
             <p className={s.contentText}>Apr 2023 – Present · Remote</p>
           </div>
@@ -108,8 +108,8 @@ const timelineData = [
           </div>
           <div>
             <p className={s.contentTitle}>Frontend Engineer · Movemint</p>
-            <p className={s.contentSubtitle}>NFT marketplace</p>
-            <p className={s.contentText}>2024 · Remote</p>
+            <p className={s.contentSubtitle}>NFT marketplace — a Razor sub-product</p>
+            <p className={s.contentText}>Mar 2024 – May 2024 · Remote</p>
           </div>
         </div>
         <ul className={s.list}>
@@ -127,6 +127,46 @@ const timelineData = [
         </ul>
         <div className={s.techBadgesContainer}>
           {["React", "TypeScript", "Web3 / EVM", "Tailwind"].map((t) => (
+            <span key={t} className={s.techBadge}>{t}</span>
+          ))}
+        </div>
+      </div>
+    ),
+  },
+  {
+    title: "2024",
+    content: (
+      <div className={s.itemContainer}>
+        <div className={s.itemFlexContainer}>
+          <div className={s.iconContainerEmerald}>
+            {/* Lucide: graduation-cap */}
+            <svg className={s.iconEmerald} fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
+              <path d="M21.42 10.922a1 1 0 0 0-.019-1.838L12.83 5.18a2 2 0 0 0-1.66 0L2.6 9.08a1 1 0 0 0 0 1.832l8.57 3.908a2 2 0 0 0 1.66 0z" />
+              <path d="M22 10v6" />
+              <path d="M6 12.5V16a6 3 0 0 0 12 0v-3.5" />
+            </svg>
+          </div>
+          <div>
+            <p className={s.contentTitle}>Software Development Mentor · 3MTT Nigeria</p>
+            <p className={s.contentSubtitle}>Edo State Government tech-empowerment initiative</p>
+            <p className={s.contentText}>Sep 2024 – Nov 2024 · Edo State, Nigeria · Hybrid</p>
+          </div>
+        </div>
+        <ul className={s.list}>
+          {[
+            "Served as a Software Development Mentor under the Edo State Government's technology empowerment initiative, delivered in partnership with 3MTT (3 Million Technical Talent)",
+            "Designed and delivered structured training on frontend and backend web development — HTML, CSS, JavaScript, TypeScript, Git/GitHub, React, Node.js, Express, and MongoDB",
+            <>Mentored <strong className="font-semibold text-white">30+ learners</strong> through hands-on projects, code reviews, and Agile/Git-based collaborative sprints — scalable app-building, debugging, and clean architecture</>,
+            "Contributed to curriculum design and program evaluation, improving training effectiveness and learner outcomes",
+          ].map((item, i) => (
+            <li key={i} className={s.listItem}>
+              <div className={s.bulletEmerald} />
+              <span>{item}</span>
+            </li>
+          ))}
+        </ul>
+        <div className={s.techBadgesContainer}>
+          {["JavaScript", "TypeScript", "React", "Node.js", "Express", "MongoDB", "Git"].map((t) => (
             <span key={t} className={s.techBadge}>{t}</span>
           ))}
         </div>
@@ -253,7 +293,7 @@ const timelineData = [
     ),
   },
   {
-    title: "2018 - 2019",
+    title: "2018 - 2020",
     content: (
       <div className={s.itemContainer}>
         <div className={s.itemFlexContainer}>
@@ -268,7 +308,7 @@ const timelineData = [
           <div>
             <p className={s.contentTitle}>Software Development Intern · Computer Training Institute</p>
             <p className={s.contentSubtitle}>Where it started</p>
-            <p className={s.contentText}>May 2018 – Feb 2019 · On-site</p>
+            <p className={s.contentText}>May 2018 – 2020 · On-site</p>
           </div>
         </div>
         <ul className={s.list}>
@@ -310,7 +350,7 @@ const timelineData = [
           {[
             { label: "Platform Users", value: "1.47M+", sub: "Razor, on Movement" },
             { label: "Transactions", value: "50M+", sub: "32M+ swaps" },
-            { label: "Developers Mentored", value: "30+", sub: "and counting" },
+            { label: "Developers Mentored", value: "30+", sub: "3MTT, 2024" },
             { label: "Years Building", value: "5+", sub: "Frontend at scale" },
           ].map(({ label, value, sub }) => (
             <div key={label} className={s.achievementCard}>
@@ -322,7 +362,6 @@ const timelineData = [
         </div>
         <ul className={s.list}>
           {[
-            <>Mentored <strong className="font-semibold text-white">30+ developers</strong> as a Software Development Mentor with 3MTT (Sep – Nov 2024) — JavaScript, TypeScript, React, Node.js, Express, and MongoDB — through hands-on builds, code reviews, and agile sprints, plus independent mentoring beyond the program</>,
             <>Spoke to secondary-school students from <strong className="font-semibold text-white">20+ schools</strong> on leveraging technology</>,
             "Author of engineering handbooks, ADRs, and post-mortems used as onboarding and learning resources for other engineers",
           ].map((item, i) => (

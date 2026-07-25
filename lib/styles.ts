@@ -497,6 +497,10 @@ export const sidebarStyles = {
   navIcon: "w-4 h-4 text-zinc-300",
   navLabel: "text-sm",
 
+  // Download CV
+  downloadCvButton: "mt-6 flex items-center justify-center gap-2 rounded-lg bg-zinc-100 px-4 py-3 text-sm font-semibold text-zinc-900 transition-all hover:bg-zinc-200",
+  downloadCvIcon: "h-4 w-4",
+
   // Social section
   connectLabel: "mt-8 text-xs text-zinc-500",
   socialList: "mt-3 space-y-2 text-sm",
@@ -532,6 +536,10 @@ export const sidebarStyles = {
   mobileNavItem: "flex items-center gap-3 px-3 py-3 rounded-lg transition-colors duration-150",
   mobileNavIcon: "w-5 h-5 text-zinc-300",
   mobileNavLabel: "text-sm font-medium",
+
+  // Mobile download CV
+  mobileDownloadCvButton: "flex items-center justify-center gap-2 rounded-lg bg-zinc-100 px-4 py-3 text-sm font-semibold text-zinc-900 transition-all hover:bg-zinc-200 mb-8",
+  mobileDownloadCvIcon: "h-4 w-4",
 
   // Mobile social section
   mobileSocialSection: "mb-8",
