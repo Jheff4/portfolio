@@ -76,10 +76,10 @@ export default function HomePage() {
 
         {/* ── Bio paragraph ─────────────────────────────────────── */}
         <p className={s.paragraph}>
-          I build interfaces where mistakes cost money — crypto wallets (one
+          I build interfaces where mistakes cost money: crypto wallets (one
           trusted by 80,000+ people), exchanges, and AI products. I sweat the
           details most people never notice: every stroke, every indent, a
-          half-degree tilt that&apos;s off — the things I can&apos;t unsee. And
+          half-degree tilt that&apos;s off, the things I can&apos;t unsee. And
           under the polish, the part I care about most: keeping a product fast,
           correct, and resilient when the network fails underneath it.
         </p>

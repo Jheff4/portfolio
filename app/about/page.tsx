@@ -79,7 +79,7 @@ export default function AboutPage() {
               </p>
               <div className="grid gap-3 sm:grid-cols-2">
                 {[
-                  { title: "Razor DEX", slug: "razor-dex", blurb: "Move-ecosystem DEX (Aptos, Sui, Movement) — first on Movement", metric: "1.47M+ users · 50M+ transactions" },
+                  { title: "Razor DEX", slug: "razor-dex", blurb: "Move-ecosystem DEX (Aptos, Sui, Movement): first on Movement", metric: "1.47M+ users · 50M+ transactions" },
                   { title: "Razor Kit", slug: "razor-kit", blurb: "Open-source wallet-connection kit for Movement", metric: "MIT · TypeScript · 100% coverage" },
                   { title: "Sportz", slug: "sportz", blurb: "Real-time multi-sport broadcast platform", metric: "Sub-second latency · 95 tests" },
                   { title: "Echo", slug: "echo", blurb: "Multi-tenant AI customer-support SaaS", metric: "RAG · full tenant isolation" },
@@ -115,16 +115,16 @@ export default function AboutPage() {
               <section>
                 <h2 className={s.sectionHeading}>Who I Am</h2>
                 <p className={s.paragraph}>
-                  Hey, I&apos;m Etinosa — a frontend engineer with{" "}
+                  Hey, I&apos;m Etinosa, a frontend engineer with{" "}
                   <strong className="font-semibold text-white">5+ years</strong>{" "}
                   building interfaces where mistakes are expensive: crypto
                   wallets, exchanges, and AI products. As one of Razor&apos;s
-                  first engineers, I lead frontend across its DEX — now at{" "}
-                  <strong className="font-semibold text-white">1.47M+ users</strong>{" "}
-                  — and a wallet{" "}
+                  first engineers, I lead frontend across its DEX, now at{" "}
+                  <strong className="font-semibold text-white">1.47M+ users</strong>,{" "}
+                  and a wallet{" "}
                   <strong className="font-semibold text-white">80,000+</strong>{" "}
-                  people trust, and I care most about the unglamorous part of the
-                  craft — keeping a product fast, correct, and resilient when the
+                  people trust. I care most about the unglamorous part of the
+                  craft: keeping a product fast, correct, and resilient when the
                   network fails underneath it.
                 </p>
               </section>
@@ -136,10 +136,10 @@ export default function AboutPage() {
                   afford to break. That means real-time state that stays
                   consistent, money-moving flows that are race-safe and
                   idempotent, and failure handled as a first-class case rather
-                  than an afterthought — all without losing the polish that
+                  than an afterthought, all without losing the polish that
                   separates a good UI from a great one. I have an obsessive eye
-                  for the details most people never register — every stroke,
-                  indent, and half-degree tilt — because those are exactly what
+                  for the details most people never register: every stroke,
+                  indent, and half-degree tilt, because those are exactly what
                   make an interface feel considered. Frontend-first, but
                   comfortable across the stack: REST and GraphQL, WebSockets,
                   monorepos, observability, and LLM integration when a project
@@ -150,26 +150,29 @@ export default function AboutPage() {
               <section>
                 <h2 className={s.sectionHeading}>How I Work</h2>
                 <p className={s.paragraph}>
-                  I chase the root cause, not the symptom — when a cursor shows a
+                  I chase the root cause, not the symptom: when a cursor shows a
                   pointer where there&apos;s no link, I don&apos;t hide the icon,
                   I hunt down the invisible overlay that made it one. Nothing
                   ships until I&apos;ve watched it behave: resized to 320px, poked
                   at the awkward in-between widths, broken on purpose. I build
-                  for scale before it shows up — the data model, the folder
+                  for scale before it shows up: the data model, the folder
                   structure, the state boundaries all assume the product is going
                   to get much bigger, so growth becomes a non-event instead of a
-                  rewrite. I hold motion and performance to the same bar — I
-                  won&apos;t trade away smooth, deliberate animation to hit a load
-                  time, or the reverse; done right, it earns both. And I build for the moment things go
-                  wrong: the network drops, the model hallucinates, a provider
-                  falls over — in the products I work on, that&apos;s not the edge
-                  case, it&apos;s the job.
+                  rewrite. I hold motion and performance to the same bar: when a
+                  page was mounting fifteen thousand animated cells and stuttering
+                  the nav on mobile, I didn&apos;t just dial a number down, I
+                  rebuilt it around what the device actually needed. Done right,
+                  motion and speed aren&apos;t a trade-off, they reinforce each
+                  other. And I build for the moment things go wrong: the network
+                  drops, the model hallucinates, a provider falls over. In the
+                  products I work on, that&apos;s not the edge case, it&apos;s
+                  the job.
                 </p>
                 <p className={`${s.paragraph} mt-4`}>
                   Underneath all of it I&apos;m endlessly curious. I pick up a new
                   tool by rebuilding something real with it, and I&apos;d always
                   rather understand why something works than memorize that it
-                  does — that&apos;s the part of the job I&apos;d do for free.
+                  does. That&apos;s the part of the job I&apos;d do for free.
                 </p>
               </section>
 
@@ -180,14 +183,14 @@ export default function AboutPage() {
                   <strong className="font-semibold text-white">2018</strong>{" "}
                   and narrowed from generalist into frontend engineering at scale.
                   Today I lead frontend across Razor&apos;s Move-ecosystem
-                  products — a DEX that&apos;s first on Movement (
+                  products: a DEX that&apos;s first on Movement (
                   <strong className="font-semibold text-white">1.47M+ users</strong>
                   ,{" "}
                   <strong className="font-semibold text-white">
                     50M+ transactions
                   </strong>
-                  ), self-custody wallets, and an open-source wallet kit — take on
-                  AI contract work, and build fintech and AI systems to a
+                  ), self-custody wallets, and an open-source wallet kit. I also
+                  take on AI contract work and build fintech and AI systems to a
                   production standard, documenting the decisions as I go. Along
                   the way I&apos;ve mentored dozens of developers.
                 </p>
@@ -198,7 +201,7 @@ export default function AboutPage() {
                 <p className={s.paragraph}>
                   LLMs are reshaping how interfaces are built and how people
                   interact with software. I want to stay at the edge of that
-                  shift — building the tools and the UX that make AI genuinely
+                  shift, building the tools and the UX that make AI genuinely
                   reliable and useful in everyday work, not just impressive in a
                   demo.
                 </p>
@@ -207,7 +210,7 @@ export default function AboutPage() {
               <section>
                 <h2 className={s.sectionHeading}>Beyond Code</h2>
                 <p className={s.paragraph}>
-                  Big on music — it runs under everything I do — with football
+                  Big on music, it runs under everything I do, with football
                   never far off. I care about fashion, read widely, and travel
                   when I can; the stuff away from the screen sharpens the taste
                   that goes back into the work.
@@ -221,7 +224,7 @@ export default function AboutPage() {
               <Link
                 href="/contact"
                 className={s.primaryButton}
-                aria-label="Get in touch — open contact page"
+                aria-label="Get in touch: open contact page"
               >
                 Get in Touch
               </Link>

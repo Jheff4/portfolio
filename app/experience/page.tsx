@@ -8,7 +8,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Experience",
-  description: "Career timeline — roles, milestones, and the tech I've worked with.",
+  description: "Career timeline: roles, milestones, and the tech I've worked with.",
 };
 
 const timelineData = [
@@ -27,18 +27,18 @@ const timelineData = [
             </svg>
           </div>
           <div>
-            <p className={s.contentTitle}>Lead Frontend Engineer · Razor Labs</p>
-            <p className={s.contentSubtitle}>The first DEX on the Movement blockchain — plus wallet & mobile</p>
+            <p className={s.contentTitle}>Lead Frontend Engineer · Razor DAO</p>
+            <p className={s.contentSubtitle}>The first DEX on the Movement blockchain, plus wallet & mobile</p>
             <p className={s.contentText}>Apr 2023 – Present · Remote</p>
           </div>
         </div>
         <ul className={s.list}>
           {[
-            <>As one of the first engineers, helped take Razor from the first commit to <strong className="font-semibold text-white">1.47M+ users</strong> — leading frontend across three production Web3 products (the first DEX on Movement, a browser-extension wallet, and a React Native / Expo mobile wallet, iOS &amp; Android) and owning architecture and UI consistency across all three codebases</>,
-            <>Built the DEX interface — swap, liquidity pools, and a lottery — at the center of <strong className="font-semibold text-white">32M+ swaps</strong> and <strong className="font-semibold text-white">50M+ total transactions</strong>, engineered against race conditions and stale-quote trades</>,
+            <>As one of the first engineers, helped take Razor from the first commit to <strong className="font-semibold text-white">1.47M+ users</strong>, leading frontend across three production Web3 products (the first DEX on Movement, a browser-extension wallet, and a React Native / Expo mobile wallet, iOS &amp; Android) and owning architecture and UI consistency across all three codebases</>,
+            <>Built the DEX interface (swap, liquidity pools, and a lottery) at the center of <strong className="font-semibold text-white">32M+ swaps</strong> and <strong className="font-semibold text-white">50M+ total transactions</strong>, engineered against race conditions and stale-quote trades</>,
             "Architected an RPC failover system (health checks, retry/timeout, fallback selection) that keeps wallets functional through provider outages",
             "Shipped core wallet flows across extension and mobile: account generation, network switching, secure storage, and full transaction-lifecycle tracking",
-            "Defined frontend architectural standards and built Razor Kit — the open-source, MIT-licensed wallet-connection kit (100% test coverage) that standardizes UI across the Movement ecosystem",
+            "Defined frontend architectural standards and built Razor Kit, the open-source, MIT-licensed wallet-connection kit (100% test coverage) that standardizes UI across the Movement ecosystem",
           ].map((item, i) => (
             <li key={i} className={s.listItem}>
               <div className={s.bulletBlue} />
@@ -76,7 +76,7 @@ const timelineData = [
         <ul className={s.list}>
           {[
             "Architected an automated email management system (TypeScript, Express) that listens for, processes, and routes incoming customer requests",
-            "Built an AI intent-classification layer on the Vercel AI SDK — provider-agnostic (Gemini, OpenAI, Grok, and more) — to categorize emails into sales, support, and other intents and drive accurate, pre-defined agent assignment",
+            "Built an AI intent-classification layer on the Vercel AI SDK, provider-agnostic (Gemini, OpenAI, Grok, and more), to categorize emails into sales, support, and other intents and drive accurate, pre-defined agent assignment",
             "Designed backend API endpoints with validation and fault tolerance, integrated with an internal CRM and agent dashboard for real-time monitoring and full conversation-lifecycle tracking",
           ].map((item) => (
             <li key={item} className={s.listItem}>
@@ -108,16 +108,16 @@ const timelineData = [
           </div>
           <div>
             <p className={s.contentTitle}>Frontend Engineer · Movemint</p>
-            <p className={s.contentSubtitle}>NFT marketplace — a Razor sub-product</p>
+            <p className={s.contentSubtitle}>NFT marketplace, a Razor sub-product</p>
             <p className={s.contentText}>Mar 2024 – May 2024 · Remote</p>
           </div>
         </div>
         <ul className={s.list}>
           {[
-            "Built the NFT marketplace frontend — minting, listing, and purchase flows with wallet integrations and on-chain transaction workflows",
+            "Built the NFT marketplace frontend: minting, listing, and purchase flows with wallet integrations and on-chain transaction workflows",
             "Implemented wallet-connection and live transaction-status flows so users always knew where a mint or purchase stood",
-            "Built marketplace discovery — collection browsing, search, and filtering — so buyers could surface the right item fast",
-            "Handled the messy on-chain edge cases — pending, failed, and rejected transactions — so a dropped mint never left the UI in a broken state",
+            "Built marketplace discovery: collection browsing, search, and filtering, so buyers could surface the right item fast",
+            "Handled the messy on-chain edge cases: pending, failed, and rejected transactions, so a dropped mint never left the UI in a broken state",
           ].map((item) => (
             <li key={item} className={s.listItem}>
               <div className={s.bulletCyan} />
@@ -155,8 +155,8 @@ const timelineData = [
         <ul className={s.list}>
           {[
             "Served as a Software Development Mentor under the Edo State Government's technology empowerment initiative, delivered in partnership with 3MTT (3 Million Technical Talent)",
-            "Designed and delivered structured training on frontend and backend web development — HTML, CSS, JavaScript, TypeScript, Git/GitHub, React, Node.js, Express, and MongoDB",
-            <>Mentored <strong className="font-semibold text-white">30+ learners</strong> through hands-on projects, code reviews, and Agile/Git-based collaborative sprints — scalable app-building, debugging, and clean architecture</>,
+            "Designed and delivered structured training on frontend and backend web development: HTML, CSS, JavaScript, TypeScript, Git/GitHub, React, Node.js, Express, and MongoDB",
+            <>Mentored <strong className="font-semibold text-white">30+ learners</strong> through hands-on projects, code reviews, and Agile/Git-based collaborative sprints: scalable app-building, debugging, and clean architecture</>,
             "Contributed to curriculum design and program evaluation, improving training effectiveness and learner outcomes",
           ].map((item, i) => (
             <li key={i} className={s.listItem}>
@@ -197,7 +197,7 @@ const timelineData = [
         </div>
         <ul className={s.list}>
           {[
-            "Built the complete frontend for a DeFi lending protocol — supplying assets, borrowing, repaying, and managing collateral positions",
+            "Built the complete frontend for a DeFi lending protocol: supplying assets, borrowing, repaying, and managing collateral positions",
             "Developed dashboards visualizing lending pools, borrowing positions, collateral ratios, and protocol stats (React, Next.js, TypeScript)",
           ].map((item) => (
             <li key={item} className={s.listItem}>
@@ -236,7 +236,7 @@ const timelineData = [
         </div>
         <ul className={s.list}>
           {[
-            "Built the DEX protocol interface and contributed to the browser wallet-extension frontend — wallet interaction states and transaction interfaces",
+            "Built the DEX protocol interface and contributed to the browser wallet-extension frontend: wallet interaction states and transaction interfaces",
             "Built reusable UI kits and shared component libraries used across the protocol's products, connecting smart-contract logic to frontend transaction flows",
           ].map((item) => (
             <li key={item} className={s.listItem}>
@@ -274,8 +274,8 @@ const timelineData = [
         </div>
         <ul className={s.list}>
           {[
-            "Intensive full-stack training — JavaScript on the frontend, Python on the backend — through collaborative, Git-based agile workflows",
-            "Built Haggle, a capstone e-commerce project, with a team — wiring the full stack together end to end",
+            "Intensive full-stack training: JavaScript on the frontend, Python on the backend, through collaborative, Git-based agile workflows",
+            "Built Haggle, a capstone e-commerce project, with a team, wiring the full stack together end to end",
             "Cut my teeth on responsive UI, version control, and shipping as part of a team",
           ].map((item) => (
             <li key={item} className={s.listItem}>
@@ -313,7 +313,7 @@ const timelineData = [
         </div>
         <ul className={s.list}>
           {[
-            "First taste of building software — desktop apps in Visual Basic / .NET and web pages in HTML/CSS — learning application structure, program logic, and clean coding habits",
+            "First taste of building software: desktop apps in Visual Basic / .NET and web pages in HTML/CSS, learning application structure, program logic, and clean coding habits",
           ].map((item) => (
             <li key={item} className={s.listItem}>
               <div className={s.bulletOrange} />
@@ -404,7 +404,7 @@ export default function ExperiencePage() {
         <h1 className={s.mainTitle}>Changelog from my journey</h1>
         <p className={s.mainParagraph}>
           Frontend engineer with 5+ years building interfaces where mistakes are
-          expensive — wallets, exchanges, and AI products. Here&apos;s the
+          expensive: wallets, exchanges, and AI products. Here&apos;s the
           timeline of roles and work that got me here.
         </p>
 
