@@ -374,7 +374,7 @@ const timelineData = [
         <div className={s.specializationContainer}>
           <p className={s.specializationTitle}>Specializations</p>
           <div className={s.specializationBadgesContainer}>
-            {["Frontend Architecture", "Real-time & Web3", "AI Integration", "Backend & Systems", "Mentorship"].map((spec) => (
+            {["Frontend Architecture", "Real-time & Web3", "AI Integration", "Backend & Systems", "Mentorship", "Technical Writing"].map((spec) => (
               <span key={spec} className={s.specializationBadge}>{spec}</span>
             ))}
           </div>

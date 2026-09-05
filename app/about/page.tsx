@@ -15,6 +15,7 @@ const email = "ogbevoenetinosa@gmail.com";
 const interests = [
   "FRONTEND ENGINEER",
   "FULL-STACK DEV",
+  "TECHNICAL WRITER",
   "LLMS",
   "MUSIC",
   "FOOTBALL",
@@ -29,6 +30,7 @@ const techStack = [
   "React Native",
   "TypeScript",
   "Tailwind",
+  "GSAP",
   "GraphQL",
   "WebSockets",
   "Node.js",

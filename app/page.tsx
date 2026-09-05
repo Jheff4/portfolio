@@ -40,7 +40,7 @@ export default function HomePage() {
           </h1>
 
           <h2 className={s.h2}>
-            Frontend{" "}
+            Frontend & Design{" "}
             <span className={s.spanWithMargin}>
               <PointerHighlight>Engineer</PointerHighlight>
             </span>

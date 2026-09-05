@@ -270,6 +270,7 @@ export const projects: Project[] = [
       "Turned interview prep into a maintained artifact instead of a one-off cram session",
     ],
     links: {
+      visit: "https://stratos-wallet.vercel.app",
       github: "https://github.com/Jheff4/stratos-wallet",
     },
     author: "Etinosa Ogbevoen",

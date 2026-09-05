@@ -268,12 +268,15 @@ export function Sidebar() {
               <TypingAnimation
                 className={s.mobileTyping}
                 texts={[
-                  "Frontend Engineer",
+                  "Frontend & Design Engineer",
                   "AI Builder",
                   "Full-Stack Engineer",
                   "Product Thinker",
                   "Software Engineer",
                   "React Engineer",
+                  "Technical Writer",
+                  "Product Engineer",
+                  "Documentation Engineer",
                 ]}
               />
             </div>
@@ -303,12 +306,15 @@ export function Sidebar() {
             <TypingAnimation
               className={s.desktopTyping}
               texts={[
-                "Frontend Engineer",
+                "Frontend & Design Engineer",
                 "AI Builder",
                 "Full-Stack Engineer",
                 "Product Thinker",
                 "Software Engineer",
                 "React Engineer",
+                "Technical Writer",
+                "Product Engineer",
+                "Documentation Engineer",
               ]}
             />
           </div>
@@ -390,7 +396,7 @@ export function Sidebar() {
                 <EOAvatar size="sm" />
                 <div>
                   <p className={s.mobileName}>Etinosa Ogbevoen</p>
-                  <p className={s.mobileTyping}>Frontend Engineer</p>{" "}
+                  <p className={s.mobileTyping}>Frontend & Design Engineer</p>{" "}
                   {/* cycles on mobile open */}
                 </div>
               </div>

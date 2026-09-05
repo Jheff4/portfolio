@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 // Route segment config — this file is the site's Open Graph image, served at
 // /opengraph-image and auto-wired into <meta property="og:image"> by Next.
-export const alt = "Etinosa Ogbevoen — Frontend Engineer";
+export const alt = "Etinosa Ogbevoen — Frontend & Design Engineer";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -88,7 +88,7 @@ export default async function OpengraphImage() {
           </div>
           <div style={{ display: "flex", flexDirection: "column" }}>
             <div style={{ fontSize: 30, fontWeight: 700 }}>Etinosa Ogbevoen</div>
-            <div style={{ fontSize: 22, color: "#FFB800" }}>Frontend Engineer</div>
+            <div style={{ fontSize: 22, color: "#FFB800" }}>Frontend & Design Engineer</div>
           </div>
         </div>
 

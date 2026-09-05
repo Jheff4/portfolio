@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   description:
     "Frontend engineer building interfaces where mistakes cost money — wallets, exchanges, and AI products.",
   openGraph: {
-    title: "Etinosa Ogbevoen — Frontend Engineer",
+    title: "Etinosa Ogbevoen — Frontend & Design Engineer",
     description:
       "Frontend engineer building interfaces where mistakes cost money — wallets, exchanges, and AI products.",
     type: "website",
@@ -37,7 +37,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Etinosa Ogbevoen — Frontend Engineer",
+    title: "Etinosa Ogbevoen — Frontend & Design Engineer",
     description:
       "Frontend engineer building interfaces where mistakes cost money — wallets, exchanges, and AI products.",
     // twitter:image falls back to the og:image above
