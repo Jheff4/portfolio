@@ -14,7 +14,9 @@ const email = "ogbevoenetinosa@gmail.com";
 
 const interests = [
   "FRONTEND ENGINEER",
+  "DESIGN ENGINEER",
   "FULL-STACK DEV",
+  "DOCUMENTATION ENGINEER",
   "TECHNICAL WRITER",
   "LLMS",
   "MUSIC",
