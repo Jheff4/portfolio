@@ -1,8 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import { Sidebar } from "@/components/Sidebar";
-import Footer from "@/components/Footer";
+import { AppShell } from "@/components/AppShell";
 
 // display: "swap" prevents invisible text while the font loads —
 // the browser renders fallback text first, then swaps when Geist is ready.
@@ -21,6 +20,7 @@ const geistMono = Geist_Mono({
 // Metadata is a Server Component export — Next.js injects these into <head>
 // at build time (static) or per-request (dynamic). No client JS needed.
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.etinosa.dev"),
   title: {
     default: "Etinosa's Portfolio",
     // Pages can set their own title: "Projects | Etinosa"
@@ -56,24 +56,10 @@ export default function RootLayout({
       lang="en"
       className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      {/*
-        The Sidebar will live here once we build it (Step 3).
-        It's a Server Component wrapper around a "use client" inner nav —
-        that pattern keeps the shell static and only hydrates the interactive bits.
-      */}
       <body className="min-h-screen bg-zinc-950 text-zinc-100">
-        {/* The whole layout — sidebar + content — is one centered, capped block,
-            so on ultra-wide/zoomed-out screens it sits centered rather than pinned left. */}
-        <div className="mx-auto flex w-full max-w-[1660px]">
-          <Sidebar />
-          {/* border-l is the sidebar divider — on the content column so it's
-              content-height (stops at the footer) rather than viewport-height */}
-          <div className="flex min-w-0 flex-1 flex-col md:border-l md:border-zinc-800">
-            {/* Grows with content so the footer follows it, not pinned a screen away */}
-            <main>{children}</main>
-            <Footer />
-          </div>
-        </div>
+        {/* AppShell decides whether to render the normal sidebar+footer chrome
+            or, for a blog post in reader mode (?reader=1), just the content. */}
+        <AppShell>{children}</AppShell>
       </body>
     </html>
   );

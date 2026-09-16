@@ -36,3 +36,19 @@ body {
      giving the whole site a terminal/code aesthetic. */
   font-family: var(--font-geist-mono), ui-monospace, monospace;
 }
+
+/* Blog reading-font toggle — scoped to .blog-article so the rest of the site
+   (nav, cards, headings) always keeps the terminal-mono brand identity;
+   only long-form prose is offered a proportional alternative. Code blocks
+   stay monospace regardless of the toggle — the !important is deliberate,
+   since code readability depends on fixed-width alignment. */
+.blog-article {
+  font-family: var(--font-geist-mono), ui-monospace, monospace;
+}
+[data-reading-font="sans"] .blog-article {
+  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+}
+.blog-article pre,
+.blog-article code {
+  font-family: var(--font-geist-mono), ui-monospace, monospace !important;
+}

@@ -1,0 +1,62 @@
+---
+title: "Dropping gray-matter for a 15-Line Frontmatter Parser"
+description: "gray-matter hasn't shipped a fix for its vulnerable js-yaml dependency since 2023. Here's what I replaced it with instead of accepting the risk."
+date: "2026-09-15"
+tags: ["Security", "Node.js"]
+---
+
+Building this blog's MDX pipeline, I reached for `gray-matter` out of habit — it's the default answer for "parse frontmatter out of a markdown file." Then `npm audit` flagged it:
+
+```
+gray-matter@4.0.3
+└── js-yaml@3.15.2  (high severity, no fix available)
+```
+
+`gray-matter` pins `js-yaml@^3.13.1`. That major version has known vulnerabilities, `js-yaml` itself moved on to a patched `5.x` line, and `gray-matter` hasn't been updated since **2023** — there's no newer version to upgrade to that fixes it.
+
+## Why not just override the dependency?
+
+npm supports forcing a transitive dependency to a different version via `overrides`. It's tempting, but risky here: `gray-matter`'s code was written against `js-yaml@3`'s API, and nothing guarantees it behaves correctly if you silently swap in a `js-yaml@5` it was never tested against. You'd be trading a known, flagged vulnerability for an unknown, unflagged compatibility bug.
+
+## What frontmatter parsing actually needs
+
+Frontmatter is a YAML block between two `---` fences at the top of a file:
+
+```md
+---
+title: "My Post"
+date: "2026-09-15"
+tags: ["a", "b"]
+---
+
+The actual content starts here.
+```
+
+That's it. Splitting that out and handing the YAML block to a real (patched) YAML parser is genuinely small:
+
+```ts
+import yaml from "js-yaml";
+
+const FRONTMATTER_PATTERN = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?([\s\S]*)$/;
+
+export function parseFrontmatter<T extends object>(raw: string) {
+  const match = FRONTMATTER_PATTERN.exec(raw);
+  if (!match) return { data: {} as T, content: raw };
+
+  const [, yamlBlock, content] = match;
+  const data = (yaml.load(yamlBlock) ?? {}) as T;
+  return { data, content: content.trim() };
+}
+```
+
+`js-yaml` directly, at its current major version, has no fix-pending advisories. The dependency that was actually a problem — the abandoned wrapper pinning an old major version — is gone.
+
+## The general shape of this decision
+
+The instinct to reach for a well-known package isn't wrong. But "well-known" and "maintained" aren't the same claim, and `npm audit`'s job is to surface exactly the gap between them. When a flagged vulnerability has **no available fix through the package that introduced it**, the options are:
+
+1. Override the transitive version and hope the API is compatible
+2. Find an actively maintained alternative
+3. Write the (often small) piece of logic you actually needed, against a dependency you trust directly
+
+For something as narrow as "split a string on two `---` lines and parse YAML," option 3 wasn't a compromise — it was less code, fewer transitive dependencies, and zero unpatched advisories.

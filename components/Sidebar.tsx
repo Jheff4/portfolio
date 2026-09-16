@@ -73,6 +73,24 @@ const ExperienceIcon = ({ className, ...props }: IconProps) => (
     />
   </svg>
 );
+const BlogIcon = ({ className, ...props }: IconProps) => (
+  <svg
+    viewBox="0 0 24 24"
+    fill="none"
+    strokeWidth={2}
+    stroke="currentColor"
+    aria-hidden
+    className={className}
+    {...props}
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"
+    />
+    <path strokeLinecap="round" strokeLinejoin="round" d="M15 4v5h5M8 13h8M8 17h5" />
+  </svg>
+);
 const ToolsIcon = ({ className, ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
@@ -175,6 +193,7 @@ const navItems = [
   { href: "/", label: "Home", Icon: HomeIcon },
   { href: "/projects", label: "Projects", Icon: ProjectsIcon },
   { href: "/experience", label: "Experience", Icon: ExperienceIcon },
+  { href: "/blog", label: "Blog", Icon: BlogIcon },
   { href: "/tools", label: "Tools", Icon: ToolsIcon },
   { href: "/about", label: "About", Icon: UserIcon },
   { href: "/contact", label: "Contact", Icon: MailIcon },

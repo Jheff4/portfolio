@@ -567,3 +567,62 @@ export const sidebarStyles = {
   bottomMenuButton: "p-2 rounded-lg text-zinc-400 hover:text-zinc-200 hover:bg-zinc-800/50 transition-colors",
   bottomMenuIcon: "w-4 h-4",
 };
+
+export const blogListStyles = {
+  pageContainer: "flex w-full justify-center pt-20 bg-zinc-950 px-6 py-12 md:px-12 md:py-20 lg:px-16",
+  innerContainer: "w-full max-w-3xl",
+
+  header: "mb-12",
+  pageTitle: "text-4xl font-bold text-zinc-100 md:text-5xl",
+  pageSubtitle: "mt-2 text-zinc-400",
+
+  emptyState: "rounded-2xl border border-dashed border-zinc-800 p-12 text-center text-zinc-500",
+
+  postList: "flex flex-col divide-y divide-zinc-800",
+  postCard: "group block py-8 first:pt-0",
+  postMetaRow: "flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-zinc-500",
+  postDate: "font-medium text-zinc-400",
+  postReadingTime: "",
+  postTag: "rounded-md bg-zinc-800 px-2 py-0.5 text-zinc-400",
+  postTitle: "mt-2 text-xl font-bold text-zinc-100 transition-colors group-hover:text-amber-400",
+  postDescription: "mt-2 leading-relaxed text-zinc-400",
+  postReadMore: "mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-amber-400 opacity-0 transition-opacity group-hover:opacity-100",
+  postReadMoreIcon: "h-4 w-4 transition-transform group-hover:translate-x-0.5",
+
+  rssLink: "inline-flex items-center gap-1.5 text-sm text-zinc-500 transition-colors hover:text-amber-400",
+  rssIcon: "h-4 w-4",
+};
+
+export const blogPostStyles = {
+  pageContainer: "relative bg-zinc-950 pt-20 px-4 sm:px-6 lg:px-8 pb-20 antialiased",
+  innerContainer: "max-w-6xl mx-auto",
+
+  backButton: "inline-flex items-center gap-2 text-zinc-400 hover:text-zinc-300 transition-colors",
+  backIcon: "h-4 w-4",
+  topRow: "flex flex-wrap items-center justify-between gap-3",
+
+  header: "mt-8 mb-10 max-w-3xl",
+  postTitle: "text-3xl sm:text-4xl lg:text-5xl font-bold text-zinc-100",
+  postDescription: "mt-4 text-lg text-zinc-400",
+  metaRow: "mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-zinc-500",
+  metaDate: "font-medium text-zinc-400",
+  tagsContainer: "mt-6 flex flex-wrap gap-2",
+  tag: "rounded-full bg-zinc-800 px-3 py-1 text-xs font-medium text-zinc-300",
+
+  gridContainer: "grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1fr)_240px]",
+  // MDX content itself is unstyled here — every element is styled by the
+  // component overrides in lib/mdx.tsx, so "article" is just a max-width box.
+  article: "min-w-0 max-w-3xl",
+  sidebar: "hidden lg:block",
+  sidebarSticky: "sticky top-24",
+
+  notFoundContainer: "flex min-h-[50vh] flex-col items-center justify-center gap-4 text-center",
+  notFoundTitle: "text-2xl font-bold text-zinc-100",
+  notFoundText: "text-zinc-400",
+
+  // Reader mode — no sidebar/footer (stripped by AppShell), no TOC, no tags,
+  // no back link. Just the controls to get back out, the title, and the text.
+  readerContainer: "min-h-screen bg-zinc-950 px-4 py-8 sm:px-6",
+  readerControlsBar: "mx-auto flex max-w-3xl justify-end",
+  readerInner: "mx-auto mt-6 max-w-3xl",
+};

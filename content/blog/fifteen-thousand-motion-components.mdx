@@ -1,0 +1,99 @@
+---
+title: "Why 15,000 Framer Motion Components Broke a Contact Page"
+description: "A decorative hover-grid background was quietly blocking the main thread on mobile — here's how I found it and what actually fixed it."
+date: "2026-07-24"
+tags: ["Performance", "React", "Framer Motion"]
+---
+
+A user reported something specific: on their iPhone, opening the Contact page made the nav's typewriter animation stutter and the mobile menu slow to open — but only on that page, and only until they navigated away.
+
+That specificity was the clue. Whatever was wrong lived entirely in that page's mount, and cleaned itself up completely on unmount.
+
+```mermaid
+flowchart TD
+    A["Nav stutters, only on /contact"] --> B{"Fine once navigated away?"}
+    B -->|Yes| C["Problem lives entirely in mount, not runtime"]
+    B -->|No| D["Would point at something else — a leak, a timer"]
+    C --> E["Look at what /contact renders that nothing else does"]
+    E --> F["15,000 motion.div cells"]
+```
+
+## Finding the actual cost
+
+The Contact page renders a decorative background: a skewed grid of boxes that light up on hover. It looked like this:
+
+```tsx
+const rows = new Array(150).fill(1);
+const cols = new Array(100).fill(1);
+
+{rows.map((_, i) => (
+  <motion.div key={i}>
+    {cols.map((_, j) => (
+      <motion.div
+        key={j}
+        whileHover={{ backgroundColor: randomColor(), transition: { duration: 0 } }}
+      />
+    ))}
+  </motion.div>
+))}
+```
+
+150 × 100 is 15,000 cells — and every one of them was a `motion.div`, not a plain `div`. That's the detail that matters: a Motion component isn't just a DOM node. Per instance, it also:
+
+- Creates `MotionValue` objects to track animatable properties outside React's normal render cycle
+- Registers pointer-event listeners for `whileHover`
+- Keeps its own style/ref bookkeeping so it can animate independently of re-renders
+
+None of that is expensive once. It's expensive **fifteen thousand times, all at once, during mount** — which is exactly the main-thread spike that stalled the typewriter's `setState` and the menu's open transition while React was busy constructing the tree.
+
+## The fix wasn't "fewer cells"
+
+The first instinct is to just shrink the grid — 60×40 instead of 150×100. That helps, but it's treating the symptom. The actual question is: **does this need Motion at all?**
+
+The whole visual effect is "cell changes color on hover, then fades back." CSS does that natively:
+
+```css
+.cell {
+  transition-property: background-color;
+  transition-duration: 1500ms;
+}
+.cell:hover {
+  background-color: var(--hc);
+  transition-duration: 0ms;
+}
+```
+
+Swapping every `motion.div` for a plain `div` with this pattern keeps the exact same look — instant color-in on hover, slow fade-out — with zero JavaScript cost per cell. Motion was never buying anything here; it was just overhead.
+
+## Mobile needed a different answer entirely
+
+Here's the part that isn't obvious from profiling alone: **touch devices don't have hover.** A phone visitor can never see this effect, no matter how cheap each cell is made. So the right fix for mobile wasn't "make the grid lighter" — it was "don't render the grid at all."
+
+That's a real distinction. A `hidden md:flex` Tailwind class doesn't do this — React still mounts every component underneath a `display: none`, so the cost stays. The only way to actually skip the work is to not construct that part of the tree in the first place:
+
+```tsx
+const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
+
+useEffect(() => {
+  const mq = window.matchMedia("(min-width: 768px)");
+  const update = () => setIsDesktop(mq.matches);
+  update();
+  mq.addEventListener("change", update);
+  return () => mq.removeEventListener("change", update);
+}, []);
+
+if (isDesktop === null) return null;
+return isDesktop ? <HoverGrid /> : <MobileTexture />;
+```
+
+Mobile gets a lightweight, zero-element CSS texture instead — decorative, but with nothing to mount.
+
+## What changed, concretely
+
+| | Before | After |
+|---|---|---|
+| Desktop/tablet cells | 15,000 `motion.div` | 2,400 plain `div` + CSS hover |
+| Mobile | Same 15,000 `motion.div`, just visually hidden | Not mounted at all |
+| Hover behavior | Framer Motion `whileHover` | Native CSS `:hover` + `transition` |
+
+The lesson that generalizes: a performance bug that only shows up on one page, on one device class, is usually telling you exactly where to look. "It's slow while mounting, and fine once mounted" points at construction cost, not runtime cost — and construction cost scales with *how many* expensive things you're building, not how cheap each one looks in isolation.
