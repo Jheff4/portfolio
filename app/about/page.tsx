@@ -84,7 +84,7 @@ export default function AboutPage() {
               <div className="grid gap-3 sm:grid-cols-2">
                 {[
                   { title: "Razor DEX", slug: "razor-dex", blurb: "Move-ecosystem DEX (Aptos, Sui, Movement): first on Movement", metric: "1.47M+ users · 50M+ transactions" },
-                  { title: "Razor Kit", slug: "razor-kit", blurb: "Open-source wallet-connection kit for Movement", metric: "MIT · TypeScript · 100% coverage" },
+                  { title: "Razor Wallet", slug: "razor-wallet", blurb: "Browser-extension and mobile wallet for Movement", metric: "Extension · iOS & Android" },
                   { title: "Sportz", slug: "sportz", blurb: "Real-time multi-sport broadcast platform", metric: "Sub-second latency · 95 tests" },
                   { title: "Echo", slug: "echo", blurb: "Multi-tenant AI customer-support SaaS", metric: "RAG · full tenant isolation" },
                 ].map(({ title, slug, blurb, metric }) => (

@@ -103,37 +103,6 @@ export const projects: Project[] = [
     authorAvatar: "/icon.svg",
   },
   {
-    id: "3",
-    title: "Razor Kit",
-    slug: "razor-kit",
-    description:
-      "An open-source wallet-connection kit for the Move ecosystem: MIT, TypeScript, 100% coverage.",
-    detailedDescription:
-      "Razor Kit is the open-source wallet-connection kit for the Move ecosystem: the reusable frontend layer that lets any Move dapp (Aptos, Sui, Movement) add wallet connection and management in a few lines. Built in TypeScript with built-in themes, full customization, and 100% test coverage, published to npm and documented at kit.razorwallet.xyz. It's the standardized UI foundation behind Razor's own products, opened up for everyone.",
-    image: "/projects/razor-kit.jpg", // TODO: docs / demo screenshot
-    tags: ["Open Source", "TypeScript", "Library", "Web3"],
-    status: "active",
-    techStack: ["TypeScript", "React", "Vite", "npm"],
-    features: [
-      "Drop-in wallet connection and management for any Movement dapp",
-      "Built-in themes and fully customizable components",
-      "100% test coverage",
-      "Published to npm as @razorlabs/razorkit, MIT-licensed",
-    ],
-    learningOutcomes: [
-      "Designed a public API other developers build against: DX and docs treated as first-class",
-      "Held it to 100% coverage, because a library's bugs become everyone's bugs",
-      "Made it themeable by design so teams match their brand without forking",
-    ],
-    links: {
-      visit: "https://kit.razorwallet.xyz",
-      github: "https://github.com/razorlabsorg/razorkit",
-      link: "https://www.npmjs.com/package/@razorlabs/razorkit",
-    },
-    author: "Etinosa Ogbevoen",
-    authorAvatar: "/icon.svg",
-  },
-  {
     id: "4",
     title: "Sportz: Real-Time Broadcast Platform",
     slug: "sportz",
