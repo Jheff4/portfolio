@@ -11,10 +11,10 @@ const ReaderIcon = ({ active }: { active: boolean }) => (
   </svg>
 );
 
-// isReaderMode is known server-side already (the page read it off searchParams),
-// so this stays a plain prop — no client-side URL reading needed here at all.
+// Reader mode is a separate static route (/writing/[slug]/read), so toggling
+// is a plain link between two prerendered pages.
 export function ReaderControls({ slug, isReaderMode }: { slug: string; isReaderMode: boolean }) {
-  const href = isReaderMode ? `/writing/${slug}` : `/writing/${slug}?reader=1`;
+  const href = isReaderMode ? `/writing/${slug}` : `/writing/${slug}/read`;
 
   return (
     <div className="flex items-center gap-2">

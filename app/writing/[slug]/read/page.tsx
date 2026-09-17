@@ -6,38 +6,26 @@ interface Props {
   params: Promise<{ slug: string }>;
 }
 
-// Static params + dynamicParams=false: only posts that exist in
-// content/blog/ at build time are valid routes — anything else 404s
-// instead of trying (and failing) to read a file that isn't there.
 export function generateStaticParams() {
   return getAllSlugs().map((slug) => ({ slug }));
 }
 export const dynamicParams = false;
 
+// Same article as /writing/[slug], so it points search engines at that URL
+// and stays out of the index itself.
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
   if (!post) return {};
-
   return {
     title: post.title,
     description: post.description,
-    openGraph: {
-      title: post.title,
-      description: post.description,
-      type: "article",
-      publishedTime: post.date,
-      tags: post.tags,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: post.title,
-      description: post.description,
-    },
+    alternates: { canonical: `/writing/${slug}` },
+    robots: { index: false, follow: true },
   };
 }
 
-export default async function BlogPostPage({ params }: Props) {
+export default async function ReaderPage({ params }: Props) {
   const { slug } = await params;
-  return <PostPage slug={slug} isReaderMode={false} />;
+  return <PostPage slug={slug} isReaderMode />;
 }

@@ -58,7 +58,7 @@ export default function RootLayout({
     >
       <body className="min-h-screen bg-zinc-950 text-zinc-100">
         {/* AppShell decides whether to render the normal sidebar+footer chrome
-            or, for a blog post in reader mode (?reader=1), just the content. */}
+            or, for a blog post in reader mode (/writing/[slug]/read), just the content. */}
         <AppShell>{children}</AppShell>
       </body>
     </html>

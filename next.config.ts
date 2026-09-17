@@ -16,6 +16,13 @@ const nextConfig: NextConfig = {
     return [
       { source: "/blog", destination: "/writing", permanent: true },
       { source: "/blog/:path*", destination: "/writing/:path*", permanent: true },
+      // Reader mode used to be a ?reader=1 query; it's now its own static route.
+      {
+        source: "/writing/:slug",
+        has: [{ type: "query", key: "reader", value: "1" }],
+        destination: "/writing/:slug/read",
+        permanent: true,
+      },
     ];
   },
 };

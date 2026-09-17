@@ -5,7 +5,7 @@ import Footer from "./Footer";
 // (via display:contents wrappers, so the flex layout is unchanged) — blog
 // reader mode hides them by rendering a <style> rule from the page itself.
 // That keeps the decision where the knowledge is (the page, which reads
-// ?reader=1 server-side) instead of having this layout-level component
+// reader mode via its own route) instead of having this layout-level component
 // sniff the URL, which missed query-only client navigations.
 export function AppShell({ children }: { children: React.ReactNode }) {
   return (

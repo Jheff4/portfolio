@@ -31,13 +31,8 @@ interface ViewProps {
   isReaderMode: boolean;
 }
 
-// isReaderMode is now a plain prop, computed server-side in
-// app/blog/[slug]/page.tsx off its own `searchParams` — no client-side
-// useSearchParams/Suspense workaround. That workaround existed only to keep
-// this route statically generated, but it also caused real duplication bugs
-// in dev mode (duplicate ids that broke anchor-click navigation). Reading
-// searchParams directly makes the route dynamic per-request instead, which
-// is the right trade for a feature people actually click through.
+// isReaderMode comes from the route: /writing/[slug] renders the normal view,
+// /writing/[slug]/read the reader view. Both are prerendered at build time.
 export function BlogPostView({ post, toc, children, isReaderMode }: ViewProps) {
   if (isReaderMode) {
     // No back link, no tags — just the title, the content, the TOC (on the
