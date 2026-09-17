@@ -12,11 +12,15 @@ function applyFont(font: ReadingFont) {
 export function FontToggle() {
   const [font, setFont] = useState<ReadingFont>("mono");
 
-  // Read the saved preference after mount (not during render) — localStorage
-  // isn't available during SSR, and this avoids a hydration mismatch.
+  // Reading localStorage in the useState initializer would make the
+  // client's first render (during hydration) diverge from the server's
+  // plain-HTML output — a text mismatch React would warn about. Deferring
+  // the read to an effect is the deliberate fix for that, even though it
+  // means one extra render when a saved preference exists.
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored === "sans" || stored === "mono") {
+      // eslint-disable-next-line react-hooks/set-state-in-effect -- syncing a client-only preference after mount is the point here, not a smell to remove
       setFont(stored);
       applyFont(stored);
     }

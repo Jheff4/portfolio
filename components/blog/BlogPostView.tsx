@@ -1,12 +1,10 @@
-"use client";
-
-import { Suspense, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
 import { TableOfContents } from "./TableOfContents";
 import { ReaderControls } from "./ReaderControls";
 import type { TocEntry } from "@/lib/rehype-toc";
 import { blogPostStyles as s } from "@/lib/styles";
+import { tagColor } from "@/lib/tag-colors";
 
 interface PostSummary {
   slug: string;
@@ -33,39 +31,56 @@ interface ViewProps {
   isReaderMode: boolean;
 }
 
-function PostView({ post, toc, children, isReaderMode }: ViewProps) {
+// isReaderMode is now a plain prop, computed server-side in
+// app/blog/[slug]/page.tsx off its own `searchParams` — no client-side
+// useSearchParams/Suspense workaround. That workaround existed only to keep
+// this route statically generated, but it also caused real duplication bugs
+// in dev mode (duplicate ids that broke anchor-click navigation). Reading
+// searchParams directly makes the route dynamic per-request instead, which
+// is the right trade for a feature people actually click through.
+export function BlogPostView({ post, toc, children, isReaderMode }: ViewProps) {
   if (isReaderMode) {
-    // No back link, no tags, no TOC — just the title, the content, and the
-    // floating controls to get back out / change the font. (AppShell is what
-    // actually removes the sidebar/footer chrome; this is the in-page half
-    // of the same feature.)
+    // No back link, no tags — just the title, the content, the TOC (on the
+    // left here), and the floating controls to get back out / change the
+    // font. (AppShell is what actually removes the sidebar/footer chrome;
+    // this is the in-page half of the same feature.)
     return (
-      <div className={s.readerContainer}>
+      <div className={`${s.readerContainer} blog-post`}>
+        {/* Hides the site sidebar/footer (tagged in AppShell) only while this
+            view is mounted — server-rendered, so no flash of chrome. */}
+        <style>{`[data-app-chrome]{display:none!important}[data-app-column]{border-left:0!important}`}</style>
         <div className={s.readerControlsBar}>
           <ReaderControls slug={post.slug} isReaderMode />
         </div>
-        <div className={s.readerInner}>
-          <h1 className={s.postTitle}>{post.title}</h1>
-          <div className={s.metaRow}>
-            <time dateTime={post.date}>{formatDate(post.date)}</time>
-            <span aria-hidden>·</span>
-            <span>{post.readingTime}</span>
+        <div className={s.readerRow}>
+          <aside className={s.readerSidebar}>
+            <div className={s.readerSidebarSticky}>
+              <TableOfContents items={toc} />
+            </div>
+          </aside>
+          <div className={s.readerInner}>
+            <h1 className={s.postTitle}>{post.title}</h1>
+            <div className={s.metaRow}>
+              <time dateTime={post.date}>{formatDate(post.date)}</time>
+              <span aria-hidden>·</span>
+              <span>{post.readingTime}</span>
+            </div>
+            <article className={`${s.article} blog-article`}>{children}</article>
           </div>
-          <article className={`${s.article} blog-article`}>{children}</article>
         </div>
       </div>
     );
   }
 
   return (
-    <div className={s.pageContainer}>
+    <div className={`${s.pageContainer} blog-post`}>
       <div className={s.innerContainer}>
         <div className={s.topRow}>
-          <Link href="/blog" className={s.backButton}>
+          <Link href="/writing" className={s.backButton}>
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className={s.backIcon}>
               <path d="M19 12H5m0 0l7 7m-7-7l7-7" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
-            Back to Blog
+            Back to Writing
           </Link>
           <ReaderControls slug={post.slug} isReaderMode={false} />
         </div>
@@ -83,7 +98,7 @@ function PostView({ post, toc, children, isReaderMode }: ViewProps) {
           {post.tags && post.tags.length > 0 && (
             <div className={s.tagsContainer}>
               {post.tags.map((tag) => (
-                <span key={tag} className={s.tag}>{tag}</span>
+                <span key={tag} className={`${s.tag} ${tagColor(tag)}`}>{tag}</span>
               ))}
             </div>
           )}
@@ -99,24 +114,5 @@ function PostView({ post, toc, children, isReaderMode }: ViewProps) {
         </div>
       </div>
     </div>
-  );
-}
-
-function ReaderAware(props: Omit<ViewProps, "isReaderMode">) {
-  const searchParams = useSearchParams();
-  return <PostView {...props} isReaderMode={searchParams.get("reader") === "1"} />;
-}
-
-// The page itself (app/blog/[slug]/page.tsx) stays a plain static Server
-// Component — it never touches searchParams, so generateStaticParams still
-// prerenders every post at build time. Only this one small client leaf reads
-// the URL, and it's wrapped in its own Suspense boundary (fallback: normal
-// view) so that dynamic requirement doesn't leak out and de-opt the whole
-// route the way it would if the page component read searchParams directly.
-export function BlogPostView(props: Omit<ViewProps, "isReaderMode">) {
-  return (
-    <Suspense fallback={<PostView {...props} isReaderMode={false} />}>
-      <ReaderAware {...props} />
-    </Suspense>
   );
 }

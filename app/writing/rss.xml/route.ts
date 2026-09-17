@@ -21,7 +21,7 @@ export function GET() {
 
   const items = posts
     .map((post) => {
-      const url = `${SITE_URL}/blog/${post.slug}`;
+      const url = `${SITE_URL}/writing/${post.slug}`;
       return `
     <item>
       <title>${escapeXml(post.title)}</title>
@@ -36,11 +36,11 @@ export function GET() {
   const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>Etinosa Ogbevoen — Blog</title>
-    <link>${SITE_URL}/blog</link>
-    <description>Notes on frontend engineering, performance, and the systems behind the products I build.</description>
+    <title>Etinosa Ogbevoen: Writing</title>
+    <link>${SITE_URL}/writing</link>
+    <description>Articles on frontend and design engineering: performance, accessibility, security, interaction and the small details that decide whether a product feels right. Alongside them, the engineering handbooks I write as I build the systems they describe.</description>
     <language>en-us</language>
-    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="${SITE_URL}/blog/rss.xml" rel="self" type="application/rss+xml" />
+    <atom:link xmlns:atom="http://www.w3.org/2005/Atom" href="${SITE_URL}/writing/rss.xml" rel="self" type="application/rss+xml" />
     ${items}
   </channel>
 </rss>`;

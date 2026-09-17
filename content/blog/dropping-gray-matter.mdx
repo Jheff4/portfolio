@@ -5,18 +5,24 @@ date: "2026-09-15"
 tags: ["Security", "Node.js"]
 ---
 
-Building this blog's MDX pipeline, I reached for `gray-matter` out of habit — it's the default answer for "parse frontmatter out of a markdown file." Then `npm audit` flagged it:
+Building this blog's MDX pipeline, I reached for `gray-matter` out of habit: it's the default answer for "parse frontmatter out of a markdown file." Then `npm audit` flagged it:
 
 ```
 gray-matter@4.0.3
 └── js-yaml@3.15.2  (high severity, no fix available)
 ```
 
-`gray-matter` pins `js-yaml@^3.13.1`. That major version has known vulnerabilities, `js-yaml` itself moved on to a patched `5.x` line, and `gray-matter` hasn't been updated since **2023** — there's no newer version to upgrade to that fixes it.
+`gray-matter` pins `js-yaml@^3.13.1`. That major version has known vulnerabilities, `js-yaml` itself moved on to a patched `5.x` line, and `gray-matter` hasn't been updated since **2023**. There's no newer version to upgrade to that fixes it.
+
+> [!WARNING]
+> `npm audit`'s "fix available" isn't always true. When the flagged package itself is the one that's unmaintained, there's no version of *it* that resolves the issue: only a replacement.
 
 ## Why not just override the dependency?
 
 npm supports forcing a transitive dependency to a different version via `overrides`. It's tempting, but risky here: `gray-matter`'s code was written against `js-yaml@3`'s API, and nothing guarantees it behaves correctly if you silently swap in a `js-yaml@5` it was never tested against. You'd be trading a known, flagged vulnerability for an unknown, unflagged compatibility bug.
+
+> [!TIP]
+> When `npm audit` shows `fixAvailable` as an object rather than `true`, read it carefully: it names the actual package and version that would need to change, which is often a major bump in something upstream of what you installed, not the thing you asked for.
 
 ## What frontmatter parsing actually needs
 
@@ -49,7 +55,7 @@ export function parseFrontmatter<T extends object>(raw: string) {
 }
 ```
 
-`js-yaml` directly, at its current major version, has no fix-pending advisories. The dependency that was actually a problem — the abandoned wrapper pinning an old major version — is gone.
+`js-yaml` directly, at its current major version, has no fix-pending advisories. The dependency that was actually a problem (the abandoned wrapper pinning an old major version) is gone.
 
 ## The general shape of this decision
 
@@ -59,4 +65,4 @@ The instinct to reach for a well-known package isn't wrong. But "well-known" and
 2. Find an actively maintained alternative
 3. Write the (often small) piece of logic you actually needed, against a dependency you trust directly
 
-For something as narrow as "split a string on two `---` lines and parse YAML," option 3 wasn't a compromise — it was less code, fewer transitive dependencies, and zero unpatched advisories.
+For something as narrow as "split a string on two `---` lines and parse YAML," option 3 wasn't a compromise: it was less code, fewer transitive dependencies, and zero unpatched advisories.

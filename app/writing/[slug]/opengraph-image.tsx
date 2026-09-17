@@ -68,7 +68,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           >
             EO
           </div>
-          <div style={{ display: "flex", fontSize: 22, color: "#a1a1aa" }}>etinosa.dev/blog</div>
+          <div style={{ display: "flex", fontSize: 22, color: "#a1a1aa" }}>etinosa.dev/writing</div>
         </div>
 
         <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>

@@ -8,7 +8,8 @@ export interface TocEntry {
   depth: number;
 }
 
-const HEADING_TAGS = new Set(["h2", "h3"]);
+// Main sections only: including h3 made long posts' TOCs 40+ items deep.
+const HEADING_TAGS = new Set(["h2"]);
 
 // Runs *after* rehype-slug in the pipeline, so headings already have their
 // final `id`. Writing into `out` (a plain array reference passed in at

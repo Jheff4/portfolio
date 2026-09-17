@@ -10,9 +10,13 @@ import { imageSize } from "image-size";
 export function MdxImage({ src, alt }: { src?: string; alt?: string }) {
   if (!src) return null;
 
-  if (!src.startsWith("/")) {
-    // eslint-disable-next-line @next/next/no-img-element
+  const filePath = src.startsWith("/") ? path.join(process.cwd(), "public", src) : null;
+
+  // Remote, or a local path whose file hasn't been added to /public yet: render
+  // a plain <img> instead of crashing the build on readFileSync.
+  if (!filePath || !fs.existsSync(filePath)) {
     return (
+      // eslint-disable-next-line @next/next/no-img-element -- remote image, next/image can't read its dimensions
       <img
         src={src}
         alt={alt ?? ""}
@@ -22,7 +26,6 @@ export function MdxImage({ src, alt }: { src?: string; alt?: string }) {
     );
   }
 
-  const filePath = path.join(process.cwd(), "public", src);
   const { width, height } = imageSize(fs.readFileSync(filePath));
 
   return (

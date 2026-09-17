@@ -37,18 +37,39 @@ body {
   font-family: var(--font-geist-mono), ui-monospace, monospace;
 }
 
-/* Blog reading-font toggle — scoped to .blog-article so the rest of the site
-   (nav, cards, headings) always keeps the terminal-mono brand identity;
-   only long-form prose is offered a proportional alternative. Code blocks
-   stay monospace regardless of the toggle — the !important is deliberate,
-   since code readability depends on fixed-width alignment. */
-.blog-article {
+/* Clicking a table-of-contents link (or any in-page #anchor) eases into
+   view instead of snapping instantly — makes it legible that the click
+   actually did something, and easier to see the destination arrive. */
+html {
+  scroll-behavior: smooth;
+}
+
+/* Blog reading-font toggle. Scoped to .blog-post (the whole post view: title,
+   meta, article and TOC) so the rest of the site always keeps the mono brand
+   identity. Code stays monospace regardless of the toggle; the !important is
+   deliberate, since code readability depends on fixed-width alignment. */
+.blog-post {
   font-family: var(--font-geist-mono), ui-monospace, monospace;
 }
-[data-reading-font="sans"] .blog-article {
+[data-reading-font="sans"] .blog-post {
   font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
 }
-.blog-article pre,
-.blog-article code {
+.blog-post pre,
+.blog-post code {
   font-family: var(--font-geist-mono), ui-monospace, monospace !important;
+}
+
+/* Branded selection highlight, scoped to reading content only. */
+.blog-article ::selection {
+  background: rgba(245, 158, 11, 0.35); /* amber-500/35 */
+  color: #fef3c7; /* amber-100 */
+}
+
+/* The post's opening paragraph reads as a lead-in: bigger, lighter weight,
+   brighter text — a common editorial pattern that gives long-form content
+   a clear entry point instead of starting flat at body size. */
+.blog-article > p:first-of-type {
+  font-size: 1.2rem;
+  line-height: 2rem;
+  color: var(--color-zinc-200, #e4e4e7);
 }

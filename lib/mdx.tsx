@@ -8,9 +8,11 @@ import type { MDXComponents } from "mdx/types";
 import type { ComponentPropsWithoutRef } from "react";
 import { rehypeExtractToc, type TocEntry } from "./rehype-toc";
 import { remarkMermaid } from "./remark-mermaid";
+import { remarkCallouts } from "./remark-callouts";
 import { MdxImage } from "@/components/blog/MdxImage";
 import { Pre } from "@/components/blog/CodeBlock";
 import { Mermaid } from "@/components/blog/Mermaid";
+import { Callout } from "@/components/blog/Callout";
 
 const prettyCodeOptions = {
   theme: "github-dark",
@@ -83,24 +85,31 @@ function mdxComponents(): MDXComponents {
     ),
     a: AnchorOrLink,
     ul: (props) => (
-      <ul {...props} className="mt-6 list-disc space-y-3 pl-6 text-[1.05rem] leading-8 text-zinc-300" />
+      <ul
+        {...props}
+        className="mt-6 list-disc space-y-3 pl-6 text-[1.05rem] leading-8 text-zinc-300 marker:text-amber-500"
+      />
     ),
     ol: (props) => (
-      <ol {...props} className="mt-6 list-decimal space-y-3 pl-6 text-[1.05rem] leading-8 text-zinc-300" />
+      <ol
+        {...props}
+        className="mt-6 list-decimal space-y-3 pl-6 text-[1.05rem] leading-8 text-zinc-300 marker:font-semibold marker:text-amber-500"
+      />
     ),
     li: (props) => <li {...props} className="break-words pl-1" />,
     blockquote: (props) => (
       <blockquote
         {...props}
-        className="mt-6 break-words border-l-2 border-amber-500/40 pl-5 italic text-zinc-400"
+        className="not-prose relative mt-6 break-words rounded-r-lg border-l-4 border-amber-500/50 bg-zinc-900/40 py-3 pl-6 pr-4 italic leading-7 text-zinc-300"
       />
     ),
     hr: (props) => <hr {...props} className="my-12 border-zinc-800" />,
-    strong: (props) => <strong {...props} className="font-semibold text-zinc-100" />,
+    strong: (props) => <strong {...props} className="font-semibold text-amber-100" />,
     code: Code,
     pre: Pre,
     img: MdxImage,
     Mermaid,
+    Callout,
     table: (props) => (
       <div className="mt-6 overflow-x-auto rounded-lg border border-zinc-800">
         <table {...props} className="w-full border-collapse text-sm" />
@@ -109,6 +118,7 @@ function mdxComponents(): MDXComponents {
     thead: (props) => (
       <thead {...props} className="border-b border-zinc-700 bg-zinc-900/60 text-left text-zinc-300" />
     ),
+    tbody: (props) => <tbody {...props} className="[&>tr:nth-child(even)]:bg-zinc-900/40" />,
     th: (props) => <th {...props} className="px-4 py-3 font-semibold" />,
     td: (props) => <td {...props} className="border-b border-zinc-800 px-4 py-3 text-zinc-400" />,
   };
@@ -124,8 +134,9 @@ export async function compilePost(content: string) {
       mdxOptions: {
         // remarkMermaid must run before rehypePrettyCode: it rewrites
         // ```mermaid fences into a <Mermaid> element so Shiki never sees
-        // "mermaid" as a language it doesn't have a grammar for.
-        remarkPlugins: [remarkGfm, remarkMermaid],
+        // "mermaid" as a language it doesn't have a grammar for. remarkCallouts
+        // rewrites GitHub-style `> [!TIP]` blockquotes into <Callout> elements.
+        remarkPlugins: [remarkGfm, remarkMermaid, remarkCallouts],
         // Order matters: slug assigns ids first, then the TOC is extracted
         // from the clean heading text before autolink-headings appends its
         // "#" anchor into the heading (which would otherwise leak into the

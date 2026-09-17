@@ -73,7 +73,7 @@ const ExperienceIcon = ({ className, ...props }: IconProps) => (
     />
   </svg>
 );
-const BlogIcon = ({ className, ...props }: IconProps) => (
+const WritingIcon = ({ className, ...props }: IconProps) => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
@@ -83,12 +83,12 @@ const BlogIcon = ({ className, ...props }: IconProps) => (
     className={className}
     {...props}
   >
+    <path strokeLinecap="round" strokeLinejoin="round" d="M12 20h9" />
     <path
       strokeLinecap="round"
       strokeLinejoin="round"
-      d="M4 4h11l5 5v11a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5a1 1 0 0 1 1-1z"
+      d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"
     />
-    <path strokeLinecap="round" strokeLinejoin="round" d="M15 4v5h5M8 13h8M8 17h5" />
   </svg>
 );
 const ToolsIcon = ({ className, ...props }: IconProps) => (
@@ -193,7 +193,7 @@ const navItems = [
   { href: "/", label: "Home", Icon: HomeIcon },
   { href: "/projects", label: "Projects", Icon: ProjectsIcon },
   { href: "/experience", label: "Experience", Icon: ExperienceIcon },
-  { href: "/blog", label: "Blog", Icon: BlogIcon },
+  { href: "/writing", label: "Writing", Icon: WritingIcon },
   { href: "/tools", label: "Tools", Icon: ToolsIcon },
   { href: "/about", label: "About", Icon: UserIcon },
   { href: "/contact", label: "Contact", Icon: MailIcon },

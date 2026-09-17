@@ -583,7 +583,7 @@ export const blogListStyles = {
   postMetaRow: "flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-zinc-500",
   postDate: "font-medium text-zinc-400",
   postReadingTime: "",
-  postTag: "rounded-md bg-zinc-800 px-2 py-0.5 text-zinc-400",
+  postTag: "rounded-md border px-2 py-0.5 font-medium",
   postTitle: "mt-2 text-xl font-bold text-zinc-100 transition-colors group-hover:text-amber-400",
   postDescription: "mt-2 leading-relaxed text-zinc-400",
   postReadMore: "mt-3 inline-flex items-center gap-1.5 text-sm font-medium text-amber-400 opacity-0 transition-opacity group-hover:opacity-100",
@@ -591,11 +591,42 @@ export const blogListStyles = {
 
   rssLink: "inline-flex items-center gap-1.5 text-sm text-zinc-500 transition-colors hover:text-amber-400",
   rssIcon: "h-4 w-4",
+
+  newBadge: "inline-flex items-center gap-1.5 rounded-full border border-amber-500/40 bg-amber-500/10 px-2 py-0.5 text-[11px] font-semibold uppercase tracking-wider text-amber-400",
+  newBadgePing: "relative flex h-1.5 w-1.5",
+  newBadgePingRing: "absolute inline-flex h-full w-full animate-ping rounded-full bg-amber-400 opacity-75",
+  newBadgePingDot: "relative inline-flex h-1.5 w-1.5 rounded-full bg-amber-400",
+
+  sectionNav: "mt-6 flex gap-2",
+  sectionNavLink: "rounded-full border border-zinc-800 px-3 py-1 text-sm text-zinc-400 transition-colors hover:border-amber-500/50 hover:text-amber-400",
+  section: "scroll-mt-24",
+  sectionSpacer: "mt-20",
+  sectionHeader: "mb-8 flex items-baseline justify-between gap-4 border-b border-zinc-800 pb-3",
+  sectionTitle: "text-2xl font-bold text-zinc-100",
+  sectionCount: "text-sm text-zinc-500",
+  sectionIntro: "-mt-4 mb-8 text-sm text-zinc-500",
+
+  docsGrid: "grid gap-4 sm:grid-cols-2",
+  docCard: "group flex flex-col rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 transition-colors hover:border-amber-500/40",
+  docTitle: "text-lg font-bold text-zinc-100 transition-colors group-hover:text-amber-400",
+  docDescription: "mt-2 flex-1 text-sm leading-relaxed text-zinc-400",
+  docTags: "mt-4 flex flex-wrap gap-1.5",
+  docTag: "rounded-md border border-zinc-800 px-2 py-0.5 text-xs text-zinc-500",
+  docLinks: "mt-4 flex flex-wrap items-center gap-4 text-sm",
+  docPrimaryLink: "inline-flex items-center gap-1 font-medium text-amber-400 hover:text-amber-300",
+  docSecondaryLink: "text-zinc-500 transition-colors hover:text-zinc-300",
+  docLinkIcon: "h-3.5 w-3.5",
 };
 
 export const blogPostStyles = {
   pageContainer: "relative bg-zinc-950 pt-20 px-4 sm:px-6 lg:px-8 pb-20 antialiased",
-  innerContainer: "max-w-6xl mx-auto",
+  // Sized to exactly what the grid below needs (article 48rem + gap-12 3rem
+  // + TOC 240px ≈ 1056px) and centered — tight enough that mx-auto only ever
+  // distributes a reasonable, roughly-equal margin on both sides, instead of
+  // either the huge symmetric dead space from over-sizing this wrapper, or
+  // the all-flush-left/dead-space-only-on-the-right result from removing
+  // centering entirely.
+  innerContainer: "mx-auto max-w-[66rem]",
 
   backButton: "inline-flex items-center gap-2 text-zinc-400 hover:text-zinc-300 transition-colors",
   backIcon: "h-4 w-4",
@@ -607,22 +638,39 @@ export const blogPostStyles = {
   metaRow: "mt-6 flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-zinc-500",
   metaDate: "font-medium text-zinc-400",
   tagsContainer: "mt-6 flex flex-wrap gap-2",
-  tag: "rounded-full bg-zinc-800 px-3 py-1 text-xs font-medium text-zinc-300",
+  tag: "rounded-full border px-3 py-1 text-xs font-medium",
 
-  gridContainer: "grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,1fr)_240px]",
-  // MDX content itself is unstyled here — every element is styled by the
-  // component overrides in lib/mdx.tsx, so "article" is just a max-width box.
+  // The first column is capped at 48rem (minmax(0,48rem), not minmax(0,1fr))
+  // so it never stretches wider than the article actually is — that's what
+  // was leaving a big empty gap between the article's real right edge and
+  // the TOC column before. Capped this way, the TOC sits immediately next
+  // to the article no matter how wide the page's own content area is, and
+  // any leftover width just falls to the right of the TOC, not between the
+  // two or on the left.
+  gridContainer: "grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,48rem)_240px]",
   article: "min-w-0 max-w-3xl",
   sidebar: "hidden lg:block",
-  sidebarSticky: "sticky top-24",
+  // pointer-events-auto re-enables clicks that the reader-mode sidebar's
+  // pointer-events-none wrapper (needed so it doesn't block anything while
+  // spanning the article's full height) would otherwise disable; a no-op
+  // for the normal-mode sidebar, which never sets pointer-events-none.
+  sidebarSticky: "pointer-events-auto sticky top-24",
 
   notFoundContainer: "flex min-h-[50vh] flex-col items-center justify-center gap-4 text-center",
   notFoundTitle: "text-2xl font-bold text-zinc-100",
   notFoundText: "text-zinc-400",
 
-  // Reader mode — no sidebar/footer (stripped by AppShell), no TOC, no tags,
-  // no back link. Just the controls to get back out, the title, and the text.
+  // The reading column is centered on the page (relative mx-auto max-w-3xl);
+  // the TOC is a small scroll guide positioned *outside* it via `right-full`,
+  // floating in the left margin without consuming any of the text column's
+  // width. The controls bar shares the column's max-w-3xl so its buttons stay
+  // aligned with the text instead of drifting to the page edge.
   readerContainer: "min-h-screen bg-zinc-950 px-4 py-8 sm:px-6",
-  readerControlsBar: "mx-auto flex max-w-3xl justify-end",
-  readerInner: "mx-auto mt-6 max-w-3xl",
+  readerControlsBar: "relative mx-auto flex max-w-3xl justify-end",
+  readerRow: "relative mx-auto mt-6 max-w-3xl",
+  readerSidebar: "pointer-events-none absolute inset-y-0 right-full mr-12 hidden w-44 xl:block",
+  // Centered vertically in the viewport (top-1/2 + -translate-y-1/2) rather
+  // than pinned near the top like the normal-mode sidebar.
+  readerSidebarSticky: "pointer-events-auto sticky top-1/2 -translate-y-1/2",
+  readerInner: "min-w-0 w-full",
 };

@@ -14,7 +14,7 @@ const ReaderIcon = ({ active }: { active: boolean }) => (
 // isReaderMode is known server-side already (the page read it off searchParams),
 // so this stays a plain prop — no client-side URL reading needed here at all.
 export function ReaderControls({ slug, isReaderMode }: { slug: string; isReaderMode: boolean }) {
-  const href = isReaderMode ? `/blog/${slug}` : `/blog/${slug}?reader=1`;
+  const href = isReaderMode ? `/writing/${slug}` : `/writing/${slug}?reader=1`;
 
   return (
     <div className="flex items-center gap-2">
