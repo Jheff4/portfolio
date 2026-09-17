@@ -2,6 +2,7 @@ import type { ReactNode } from "react";
 import Link from "next/link";
 import { TableOfContents } from "./TableOfContents";
 import { ReaderControls } from "./ReaderControls";
+import { PostDiscussion } from "./PostDiscussion";
 import type { TocEntry } from "@/lib/rehype-toc";
 import { blogPostStyles as s } from "@/lib/styles";
 import { tagColor } from "@/lib/tag-colors";
@@ -61,6 +62,7 @@ export function BlogPostView({ post, toc, children, isReaderMode }: ViewProps) {
               <span>{post.readingTime}</span>
             </div>
             <article className={`${s.article} blog-article`}>{children}</article>
+            <PostDiscussion title={post.title} />
           </div>
         </div>
       </div>
@@ -100,7 +102,10 @@ export function BlogPostView({ post, toc, children, isReaderMode }: ViewProps) {
         </header>
 
         <div className={s.gridContainer}>
-          <article className={`${s.article} blog-article`}>{children}</article>
+          <div className="min-w-0">
+              <article className={`${s.article} blog-article`}>{children}</article>
+              <PostDiscussion title={post.title} />
+            </div>
           <aside className={s.sidebar}>
             <div className={s.sidebarSticky}>
               <TableOfContents items={toc} />
