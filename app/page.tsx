@@ -60,15 +60,15 @@ export default function HomePage() {
                 >
                   <path d="M3 16l9-9 9 9" strokeWidth="1.2" />
                 </svg>
-                <span className={s.calloutCard.text}>Connect with me on X</span>
+                <span className={s.calloutCard.text}>Connect with me on LinkedIn</span>
               </div>
               <a
-                href="https://x.com/_Etinosa_"
+                href="https://linkedin.com/in/etinosa-ogbevoen"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={s.calloutCard.button}
               >
-                Follow
+                Connect
               </a>
             </div>
           </div>
