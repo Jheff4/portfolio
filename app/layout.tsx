@@ -20,7 +20,7 @@ const geistMono = Geist_Mono({
 // Metadata is a Server Component export — Next.js injects these into <head>
 // at build time (static) or per-request (dynamic). No client JS needed.
 export const metadata: Metadata = {
-  metadataBase: new URL("https://www.etinosa.dev"),
+  metadataBase: new URL("https://etinosa.dev"),
   title: {
     default: "Etinosa's Portfolio",
     // Pages can set their own title: "Projects | Etinosa"

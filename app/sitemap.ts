@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 import { getAllProjectSlugs } from "@/lib/projects-data";
 import { getAllPosts } from "@/lib/blog";
 
-const SITE_URL = "https://www.etinosa.dev";
+const SITE_URL = "https://etinosa.dev";
 
 // Static file convention — Next.js serves this at /sitemap.xml automatically.
 // Covers every real, indexable route: the static pages, every project detail

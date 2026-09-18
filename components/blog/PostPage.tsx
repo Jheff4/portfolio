@@ -3,14 +3,19 @@ import { getPostBySlug } from "@/lib/blog";
 import { compilePost } from "@/lib/mdx";
 import { BlogPostView } from "@/components/blog/BlogPostView";
 
-const SITE_URL = "https://www.etinosa.dev";
+const SITE_URL = "https://etinosa.dev";
 
 // Shared by /writing/[slug] and /writing/[slug]/read. Reader mode is its own
 // static route rather than a ?reader=1 query: reading searchParams made every
 // post render on demand (compiling MDX per request), which made opening a post
 // and toggling reader mode noticeably slow. Two prerendered pages are instant.
-export async function PostPage({ slug, isReaderMode }: { slug: string; isReaderMode: boolean }) {
-
+export async function PostPage({
+  slug,
+  isReaderMode,
+}: {
+  slug: string;
+  isReaderMode: boolean;
+}) {
   const post = getPostBySlug(slug);
   if (!post) notFound();
 

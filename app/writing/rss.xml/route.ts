@@ -1,6 +1,6 @@
 import { getAllPosts } from "@/lib/blog";
 
-const SITE_URL = "https://www.etinosa.dev";
+const SITE_URL = "https://etinosa.dev";
 
 // Same content source as every other blog route (content/blog/*.mdx) and
 // never varies per-request — no reason for this to be server-rendered on
