@@ -5,9 +5,11 @@ date: "2026-07-24"
 tags: ["Performance", "React", "Framer Motion"]
 ---
 
-I noticed something specific: on my iPhone, opening the Contact page made the nav's typewriter animation stutter and the mobile menu slow to open, but only on that page, and only until I navigated away.
+My own `/contact` page was quietly the slowest thing on my site, and the way it failed made no sense at first.
 
-That specificity was the clue. Whatever was wrong lived entirely in that page's mount, and cleaned itself up completely on unmount.
+On my phone, opening that one page made the typewriter animation in the nav stutter and the mobile menu drag when it opened. Not the home page. Not projects. Only contact. And the instant I navigated away, everything went smooth again.
+
+That specificity was the entire clue. Whatever was wrong lived entirely in that page's mount, and cleaned itself up completely on unmount.
 
 ```mermaid
 flowchart TD
@@ -20,64 +22,66 @@ flowchart TD
 
 ## Finding the actual cost
 
-The Contact page renders a decorative background: a skewed grid of boxes that light up on hover. It looked like this:
+A page that is slow while it appears and fine forever after is not telling you it has a runtime problem. It is telling you something was very expensive to build, once, and then cost nothing to keep.
+
+So I opened the file to see what I had done. That is when I remembered I had not written it.
+
+The Contact page renders a decorative background I had pasted in months earlier from a popular component library: a skewed grid of boxes that light up on hover. It looked like this:
 
 ```tsx
 const rows = new Array(150).fill(1);
 const cols = new Array(100).fill(1);
 
-{rows.map((_, i) => (
-  <motion.div key={i}>
-    {cols.map((_, j) => (
-      <motion.div
-        key={j}
-        whileHover={{ backgroundColor: randomColor(), transition: { duration: 0 } }}
-      />
-    ))}
-  </motion.div>
-))}
+{
+  rows.map((_, i) => (
+    <motion.div key={i}>
+      {cols.map((_, j) => (
+        <motion.div
+          key={j}
+          whileHover={{
+            backgroundColor: randomColor(),
+            transition: { duration: 0 },
+          }}
+        />
+      ))}
+    </motion.div>
+  ));
+}
 ```
 
-150 × 100 is 15,000 cells, and every one of them was a `motion.div`, not a plain `div`. That's the detail that matters: a Motion component isn't just a DOM node. Per instance, it also:
+150 × 100 is 15,000 cells, and every one of them was a `motion.div`, not a plain `div`. That is the detail that matters. A `Motion` component is not just a DOM node. Per instance, it also:
 
 - Creates `MotionValue` objects to track animatable properties outside React's normal render cycle
 - Registers pointer-event listeners for `whileHover`
-- Keeps its own style/ref bookkeeping so it can animate independently of re-renders
+- Keeps its own style and ref bookkeeping so it can animate independently of re-renders
 
-None of that is expensive once. It's expensive **fifteen thousand times, all at once, during mount**, which is exactly the main-thread spike that stalled the typewriter's `setState` and the menu's open transition while React was busy constructing the tree.
+None of that is expensive once. It is expensive **fifteen thousand times, all at once, during mount**. That is exactly the main-thread spike that stalled my typewriter's `setState` and the menu's open transition while React was busy constructing the tree.
 
-Three things I missed the first time I looked at this.
+There were three things I missed the first time I looked at this.
 
-The component is exported as `React.memo(BoxesCore)`. `memo` skips re-renders when props haven't changed, and does nothing for mount cost. That's the exact distinction this whole problem turns on: the standard performance primitive everyone reaches for first doesn't touch construction cost at all. 15,000 Motion instances get built once regardless of whether the component is memoized.
+First, the component is exported as `React.memo(BoxesCore)`. `memo` skips re-renders when props have not changed, and it does absolutely nothing for mount cost. That is the exact distinction this whole problem turns on: the standard performance primitive everyone reaches for first does not touch construction cost at all. 15,000 `Motion` instances get built once regardless of whether the component is memoized.
 
-The count is also higher than 15,000. Every cell where `j % 2 === 0` and `i % 2 === 0` also renders an inline SVG with a path, which is roughly 3,750 more elements on top of the 15,000 cell `motion.div`s and the 150 row `motion.div`s. I haven't gone back to count the exact total, so take that as approximate until I verify it.
+Second, the element count is actually much higher than 15,000. Every cell where `j % 2 === 0` and `i % 2 === 0` also renders an inline SVG with a `path`. That is roughly 3,750 more elements stacked on top of the 15,000 cell `motion.div`s and the 150 row `motion.div`s.
 
-One more thing, unrelated to the cost but worth noting: the component now imports from `motion/react` rather than `framer-motion`, since the library was renamed to Motion.
+Third, unrelated to the cost but worth noting: the component imports from `motion/react`, as the library was recently renamed to `Motion`.
 
-## The fix wasn't "fewer cells"
+## The native CSS reality check
 
-The first instinct is to just shrink the grid: 60×40 instead of 150×100. That helps, but it's treating the symptom. The actual question is: **does this need Motion at all?**
+When you are staring at a massive grid doing simple hover states, you eventually have to ask: does this need `Motion` at all?
 
-The whole visual effect is "cell changes color on hover, then fades back." CSS does that natively:
+Generally speaking, swapping JavaScript animation wrappers for native CSS solutions is almost always better for performance. The visual effect here is just "cell changes color on hover, then fades back." CSS does that natively with `transition-property` and `:hover`. Replacing every `motion.div` with a plain `div` running CSS transitions would yield the exact same visual result with zero JavaScript cost per cell.
 
-```css
-.cell {
-  transition-property: background-color;
-  transition-duration: 1500ms;
-}
-.cell:hover {
-  background-color: var(--hc);
-  transition-duration: 0ms;
-}
-```
+If you are optimizing for older laptops or slow networks, native CSS is definitively the right call. JavaScript animations run on the main thread. Forcing a constrained CPU to register 15,000 event listeners and calculate hover states in JavaScript will immediately choke the browser. CSS `:hover` states, on the other hand, are handled directly by the browser's internal engine, leaving the main thread completely free. Furthermore, on a slow network, relying on CSS means sending zero extra JavaScript over the wire, so users are not left waiting for a heavy animation library to download and parse.
 
-Swapping every `motion.div` for a plain `div` with this pattern keeps the exact same look (instant color-in on hover, slow fade-out) with zero JavaScript cost per cell. Motion was never buying anything here; it was just overhead.
+But as much as I want to rewrite the desktop grid to use CSS natively, that was not the fire I needed to put out. Desktop browsers were chewing through the 15,000 components just fine. The crisis was on mobile, and mobile needed a different answer entirely.
 
-## Mobile needed a different answer entirely
+## Mobile needed a different answer
 
-Here's the part that isn't obvious from profiling alone: **touch devices don't have hover.** A phone visitor can never see this effect, no matter how cheap each cell is made. So the right fix for mobile wasn't "make the grid lighter": it was "don't render the grid at all."
+Here is the detail that makes the whole thing almost funny: **touch devices do not have hover.**
 
-That's a real distinction. A `hidden md:flex` Tailwind class doesn't do this: React still mounts every component underneath a `display: none`, so the cost stays. The only way to actually skip the work is to not construct that part of the tree in the first place:
+Every phone visitor was paying a massive performance penalty to mount an interactive effect they could never actually trigger. So the right fix for mobile was not "make the grid lighter." It was "do not render the grid at all."
+
+A `hidden md:flex` Tailwind class does not solve this because React still mounts every component underneath a `display: none`. The cost stays. The only way to actually skip the work is to not construct that part of the tree in the first place:
 
 ```tsx
 const [isDesktop, setIsDesktop] = useState<boolean | null>(null);
@@ -94,14 +98,15 @@ if (isDesktop === null) return null;
 return isDesktop ? <HoverGrid /> : <MobileTexture />;
 ```
 
-Mobile gets a lightweight, zero-element CSS texture instead: decorative, but with nothing to mount.
+Now, mobile gets a lightweight, zero-element CSS noise texture instead. It is still decorative, but with nothing to mount.
 
-## What changed, concretely
+## What actually shipped
 
-| | Before | After |
-|---|---|---|
-| Desktop/tablet cells | 15,000 `motion.div` | 2,400 plain `div` + CSS hover |
-| Mobile | Same 15,000 `motion.div`, just visually hidden | Not mounted at all |
-| Hover behavior | Framer Motion `whileHover` | Native CSS `:hover` + `transition` |
+|                      | Before                                         | After                                                 |
+| -------------------- | ---------------------------------------------- | ----------------------------------------------------- |
+| Desktop/tablet cells | 15,000 `motion.div`                            | 15,000 `motion.div`, unchanged                        |
+| Mobile               | Same 15,000 `motion.div`, just visually hidden | Not mounted at all — CSS noise texture, zero elements |
 
-The lesson that generalizes: a performance bug that only shows up on one page, on one device class, is usually telling you exactly where to look. "It's slow while mounting, and fine once mounted" points at construction cost, not runtime cost, and construction cost scales with *how many* expensive things you're building, not how cheap each one looks in isolation.
+The lesson here is about taking ownership of the code you ship. A component that looks flawless in an isolated library showcase can buckle in your layout. You cannot just drop ready-made components into your app without testing how they perform on mid-range phones, on touch devices, or on a rainy day when a user's network is struggling.
+
+A performance bug that only shows up on one page, on one device class, is usually telling you exactly where to look. "It is slow while mounting, and fine once mounted" points at construction cost, and construction cost scales with _how many_ expensive things you are building, not how cheap each one looks in isolation.

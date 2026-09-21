@@ -10,31 +10,19 @@ import { rehypeExtractToc, type TocEntry } from "./rehype-toc";
 import { remarkMermaid } from "./remark-mermaid";
 import { remarkCallouts } from "./remark-callouts";
 import { MdxImage } from "@/components/blog/MdxImage";
-import { Pre } from "@/components/blog/CodeBlock";
+import { Pre, Code } from "@/components/blog/CodeBlock";
 import { Mermaid } from "@/components/blog/Mermaid";
 import { Callout } from "@/components/blog/Callout";
 
 const prettyCodeOptions = {
   theme: "github-dark",
   keepBackground: false,
-  defaultLang: "text",
 };
 
 // rehype-pretty-code marks the <code> it produces with data-language; that's
 // how this tells "inline `code`" apart from a highlighted block's <code>,
 // which already carries its own theme colors and shouldn't get the inline
 // pill styling on top.
-function Code(props: ComponentPropsWithoutRef<"code"> & { "data-language"?: string }) {
-  if (props["data-language"]) {
-    return <code {...props} />;
-  }
-  return (
-    <code
-      {...props}
-      className="rounded bg-zinc-800 px-1.5 py-0.5 font-mono text-[0.85em] text-amber-300"
-    />
-  );
-}
 
 function AnchorOrLink({
   className,
@@ -58,7 +46,13 @@ function AnchorOrLink({
   return isInternal ? (
     <Link href={href ?? "#"} className={linkClass} {...props} />
   ) : (
-    <a href={href} target="_blank" rel="noopener noreferrer" className={linkClass} {...props} />
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={linkClass}
+      {...props}
+    />
   );
 }
 
@@ -71,17 +65,20 @@ function mdxComponents(): MDXComponents {
     h2: (props) => (
       <h2
         {...props}
-        className="group mt-14 scroll-mt-24 break-words text-2xl font-bold text-zinc-100"
+        className="group mt-14 scroll-mt-24 wrap-break-word text-2xl font-bold text-zinc-100"
       />
     ),
     h3: (props) => (
       <h3
         {...props}
-        className="group mt-10 scroll-mt-24 break-words text-xl font-bold text-zinc-100"
+        className="group mt-10 scroll-mt-24 wrap-break-word text-xl font-bold text-zinc-100"
       />
     ),
     p: (props) => (
-      <p {...props} className="mt-6 break-words text-[1.05rem] leading-8 text-zinc-300" />
+      <p
+        {...props}
+        className="mt-6 wrap-break-word text-[1.05rem] leading-8 text-zinc-300"
+      />
     ),
     a: AnchorOrLink,
     ul: (props) => (
@@ -96,15 +93,17 @@ function mdxComponents(): MDXComponents {
         className="mt-6 list-decimal space-y-3 pl-6 text-[1.05rem] leading-8 text-zinc-300 marker:font-semibold marker:text-amber-500"
       />
     ),
-    li: (props) => <li {...props} className="break-words pl-1" />,
+    li: (props) => <li {...props} className="wrap-break-word pl-1" />,
     blockquote: (props) => (
       <blockquote
         {...props}
-        className="not-prose relative mt-6 break-words rounded-r-lg border-l-4 border-amber-500/50 bg-zinc-900/40 py-3 pl-6 pr-4 italic leading-7 text-zinc-300"
+        className="not-prose relative mt-6 wrap-break-word rounded-r-lg border-l-4 border-amber-500/50 bg-zinc-900/40 py-3 pl-6 pr-4 italic leading-7 text-zinc-300"
       />
     ),
     hr: (props) => <hr {...props} className="my-12 border-zinc-800" />,
-    strong: (props) => <strong {...props} className="font-semibold text-amber-100" />,
+    strong: (props) => (
+      <strong {...props} className="font-semibold text-amber-100" />
+    ),
     code: Code,
     pre: Pre,
     img: MdxImage,
@@ -116,11 +115,21 @@ function mdxComponents(): MDXComponents {
       </div>
     ),
     thead: (props) => (
-      <thead {...props} className="border-b border-zinc-700 bg-zinc-900/60 text-left text-zinc-300" />
+      <thead
+        {...props}
+        className="border-b border-zinc-700 bg-zinc-900/60 text-left text-zinc-300"
+      />
     ),
-    tbody: (props) => <tbody {...props} className="[&>tr:nth-child(even)]:bg-zinc-900/40" />,
+    tbody: (props) => (
+      <tbody {...props} className="[&>tr:nth-child(even)]:bg-zinc-900/40" />
+    ),
     th: (props) => <th {...props} className="px-4 py-3 font-semibold" />,
-    td: (props) => <td {...props} className="border-b border-zinc-800 px-4 py-3 text-zinc-400" />,
+    td: (props) => (
+      <td
+        {...props}
+        className="border-b border-zinc-800 px-4 py-3 text-zinc-400"
+      />
+    ),
   };
 }
 
@@ -148,7 +157,10 @@ export async function compilePost(content: string) {
             rehypeAutolinkHeadings,
             {
               behavior: "append",
-              properties: { className: ["heading-anchor"], ariaLabel: "Link to this section" },
+              properties: {
+                className: ["heading-anchor"],
+                ariaLabel: "Link to this section",
+              },
               content: [{ type: "text", value: " #" }],
             },
           ],
