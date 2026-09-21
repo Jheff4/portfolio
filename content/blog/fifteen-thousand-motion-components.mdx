@@ -46,6 +46,14 @@ const cols = new Array(100).fill(1);
 
 None of that is expensive once. It's expensive **fifteen thousand times, all at once, during mount**, which is exactly the main-thread spike that stalled the typewriter's `setState` and the menu's open transition while React was busy constructing the tree.
 
+Three things I missed the first time I looked at this.
+
+The component is exported as `React.memo(BoxesCore)`. `memo` skips re-renders when props haven't changed, and does nothing for mount cost. That's the exact distinction this whole problem turns on: the standard performance primitive everyone reaches for first doesn't touch construction cost at all. 15,000 Motion instances get built once regardless of whether the component is memoized.
+
+The count is also higher than 15,000. Every cell where `j % 2 === 0` and `i % 2 === 0` also renders an inline SVG with a path, which is roughly 3,750 more elements on top of the 15,000 cell `motion.div`s and the 150 row `motion.div`s. I haven't gone back to count the exact total, so take that as approximate until I verify it.
+
+One more thing, unrelated to the cost but worth noting: the component now imports from `motion/react` rather than `framer-motion`, since the library was renamed to Motion.
+
 ## The fix wasn't "fewer cells"
 
 The first instinct is to just shrink the grid: 60×40 instead of 150×100. That helps, but it's treating the symptom. The actual question is: **does this need Motion at all?**
